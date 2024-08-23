@@ -1,0 +1,53 @@
+.Row {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .Input {
+    background: #ffffff;
+    border: 1px solid #f0f1f9;
+    box-sizing: border-box;
+    border-radius: 2px;
+    color: #855DCD;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .Header {
+    font-style: "Montserrat", sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 19px;
+    text-align: center;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #855DCD;
+  }
+  
+  .Link {
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    margin: auto;
+    color: #855DCD;
+  }
+  
+  .Link span {
+   font-weight: bold;
+  }
+  
+  .Link:hover {
+    color: #104db2;
+  }
+  .Container {
+    padding: 30px 10px;
+  }
+  
+  .SignInCol {
+    height: 320px;
+  }
+  
+  .SignUpCol {
+    height: 375px;
+  }
