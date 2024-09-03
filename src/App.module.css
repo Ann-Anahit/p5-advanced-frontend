@@ -13,22 +13,21 @@
   }
   
   a {
-    color: #855DCD; 
+    color: #050505; 
     transition: color ease-in-out 0.3s;
   }
   
-  a:hover {
-    color: #104db2; 
+  a:hover { 
     text-decoration: none;
   }
   
   a:hover i {
-    color:  #104db2;
+    color:  #050505;
     transition: color ease-in-out 0.3s;
   }
   
   i {
-    color:  #855DCD;
+    color:  #e3e3e3;
     font-size: 1rem;
     padding: 7px;
     vertical-align: middle;
@@ -37,11 +36,11 @@
   i:hover {
     cursor: pointer;
     transition: color ease-in-out 0.3s;
-    color:  #104db2;
+    color:  #050505;
   }
 
   .NavBar {
-    color: #855DCD;
+    color: #e3e3e3
   }
 
   .Content {
