@@ -13,11 +13,12 @@
   }
   
   a {
-    color: #e3e3e3;
+    color: #855DCD; 
     transition: color ease-in-out 0.3s;
   }
   
   a:hover {
+    color: #104db2; 
     text-decoration: none;
   }
   
