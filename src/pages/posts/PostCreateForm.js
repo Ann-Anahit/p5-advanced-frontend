@@ -147,13 +147,16 @@ function PostCreateForm() {
                                 </Form.Label>
                             )}
 
-                            <Form.File
+                            <Form.Control
                                 id="image-upload"
+                                type="file"
                                 accept="image/*"
                                 onChange={handleChangeImage}
                                 ref={imageInput}
+                                hidden
                             />
                         </Form.Group>
+
                         {errors?.image?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
                                 {message}
@@ -172,3 +175,4 @@ function PostCreateForm() {
 }
 
 export default PostCreateForm;
+

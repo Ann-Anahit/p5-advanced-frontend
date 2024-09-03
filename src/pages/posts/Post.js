@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Card, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropdown";
 
 const Post = (props) => {
     const {
@@ -25,6 +26,23 @@ const Post = (props) => {
 
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
+    const history = useHistory();
+
+    const handleEdit = () => {
+        history.push(`/posts/${id}/edit`);
+    };
+    console.log("Current User:", currentUser?.username);
+    console.log("Owner:", owner);
+    console.log("Is Owner:", is_owner);
+
+    const handleDelete = async () => {
+        try {
+            await axiosRes.delete(`/posts/${id}/`);
+            history.goBack();
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     const handleLike = async () => {
         try {
@@ -61,16 +79,25 @@ const Post = (props) => {
     return (
         <Card className={styles.Post}>
             <Card.Body>
-                <Media className="align-items-center justify-content-between">
-                    <Link to={`/profiles/${profile_id}`}>
-                        <Avatar src={profile_image} height={55} />
-                        {owner}
-                    </Link>
-                    <div className="d-flex align-items-center">
-                        <span>{updated_at}</span>
-                        {is_owner && postPage && "..."}
-                    </div>
-                </Media>
+                <Row className="align-items-center justify-content-between">
+                    <Col xs="auto">
+                        <Link to={`/profiles/${profile_id}`} className="d-flex align-items-center">
+                            <Avatar src={profile_image} height={55} />
+                            <span className="ml-2">{owner}</span>
+                        </Link>
+                    </Col>
+                    <Col xs="auto">
+                        <div className="d-flex align-items-center">
+                            <span>{updated_at}</span>
+                            {is_owner && postPage && (
+                                <MoreDropdown
+                                    handleEdit={handleEdit}
+                                    handleDelete={handleDelete}
+                                />
+                            )}
+                        </div>
+                    </Col>
+                </Row>
             </Card.Body>
             <Link to={`/posts/${id}`}>
                 <Card.Img src={image} alt={title} />
