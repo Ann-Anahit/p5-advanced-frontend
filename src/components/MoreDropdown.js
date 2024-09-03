@@ -3,9 +3,11 @@ import Dropdown from "react-bootstrap/Dropdown";
 import styles from "../styles/MoreDropdown.module.css";
 import { useHistory } from "react-router";
 
+// The forwardRef is important!!
+// Dropdown needs access to the DOM node in order to position the Menu
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   <i
-    className="fa-solid fa-ellipsis-vertical"
+    className="fas fa-ellipsis-v"
     ref={ref}
     onClick={(e) => {
       e.preventDefault();
@@ -28,21 +30,21 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
           onClick={handleEdit}
           aria-label="edit"
         >
-          <i className="fa-solid fa-pen" />
+          <i className="fas fa-edit" />
         </Dropdown.Item>
         <Dropdown.Item
           className={styles.DropdownItem}
           onClick={handleDelete}
           aria-label="delete"
         >
-          <i className="fa-solid fa-trash" />
+          <i className="fas fa-trash-alt" />
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
 };
 
-export function ProfileEditDropdown({ id }) {
+export const ProfileEditDropdown = ({ id }) => {
   const history = useHistory();
   return (
     <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">
@@ -52,23 +54,23 @@ export function ProfileEditDropdown({ id }) {
           onClick={() => history.push(`/profiles/${id}/edit`)}
           aria-label="edit-profile"
         >
-          <i className="fas fa-edit" /> Edit Profile
+          <i className="fas fa-edit" /> edit profile
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit/username`)}
           aria-label="edit-username"
         >
           <i className="far fa-id-card" />
-          Change Username
+          change username
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit/password`)}
           aria-label="edit-password"
         >
           <i className="fas fa-key" />
-          Change Password
+          change password
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
-}
+};
