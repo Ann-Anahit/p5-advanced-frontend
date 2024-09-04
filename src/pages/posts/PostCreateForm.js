@@ -18,8 +18,10 @@ import btnStyles from "../../styles/Button.module.css";
 
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function PostCreateForm() {
+    useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
 
     const [postData, setPostData] = useState({
@@ -147,16 +149,13 @@ function PostCreateForm() {
                                 </Form.Label>
                             )}
 
-                            <Form.Control
+                            <Form.File
                                 id="image-upload"
-                                type="file"
                                 accept="image/*"
                                 onChange={handleChangeImage}
                                 ref={imageInput}
-                                hidden
                             />
                         </Form.Group>
-
                         {errors?.image?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
                                 {message}
@@ -175,4 +174,3 @@ function PostCreateForm() {
 }
 
 export default PostCreateForm;
-
