@@ -1,6 +1,6 @@
 {
-  "short_name": "me mi",
-  "name": "meetandmingle App",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
