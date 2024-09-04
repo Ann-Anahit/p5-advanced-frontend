@@ -31,16 +31,16 @@ const Post = (props) => {
     const handleEdit = () => {
         history.push(`/posts/${id}/edit`);
     };
-    console.log("Current User:", currentUser?.username);
-    console.log("Owner:", owner);
-    console.log("Is Owner:", is_owner);
+    // console.log("Current User:", currentUser?.username);
+    // console.log("Owner:", owner);
+    // console.log("Is Owner:", is_owner);
 
     const handleDelete = async () => {
         try {
             await axiosRes.delete(`/posts/${id}/`);
             history.goBack();
         } catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     };
 
@@ -56,7 +56,7 @@ const Post = (props) => {
                 }),
             }));
         } catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     };
 
@@ -72,7 +72,7 @@ const Post = (props) => {
                 }),
             }));
         } catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     };
 
