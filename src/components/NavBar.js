@@ -5,10 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
-import {
-    useCurrentUser,
-    useSetCurrentUser,
-} from "../contexts/CurrentUserContext";
+import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
@@ -39,6 +36,7 @@ const NavBar = () => {
             <i className="far fa-plus-square"></i>Add post
         </NavLink>
     );
+
     const loggedInIcons = (
         <>
             <NavLink
@@ -55,6 +53,13 @@ const NavBar = () => {
             >
                 <i className="fas fa-heart"></i>Liked
             </NavLink>
+            <NavLink
+                className={`${styles.NavLink} ${styles.messagesButton}`}
+                activeClassName={styles.Active}
+                to="/messages"
+            >
+                <i className="fas fa-envelope"></i>Messages
+            </NavLink>
             <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
                 <i className="fas fa-sign-out-alt"></i>Sign out
             </NavLink>
@@ -66,6 +71,7 @@ const NavBar = () => {
             </NavLink>
         </>
     );
+
     const loggedOutIcons = (
         <>
             <NavLink
@@ -114,7 +120,6 @@ const NavBar = () => {
                         >
                             <i className="fas fa-home"></i>Home
                         </NavLink>
-
                         {currentUser ? loggedInIcons : loggedOutIcons}
                     </Nav>
                 </Navbar.Collapse>

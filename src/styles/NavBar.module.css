@@ -1,13 +1,47 @@
 .NavBar {
-   
-    border: 1px solid #e3e3e3;
-    background-color:#855DCD;
-   
+  border: 1px solid #e3e3e3;
+  background-color: #855DCD; /* Background color for the navbar */
+  color: #e3e3e3; /* Text color for the navbar */
 }
 
 .NavLink {
-    padding: 5px;
-  }
+  padding: 5px;
+  color: #e3e3e3; /* Default color for links */
+  text-decoration: none;
+  transition: color ease-in-out 0.3s; /* Smooth color transition */
+}
+
+.NavLink:hover {
+  color: #3854bd; /* Color on hover */
+}
+
+.NavLink.active {
+  color: #3854bd; /* Color for active link */
+}
+
+.NavLink i {
+  color: #e3e3e3; /* Icon color in links */
+  font-size: 1rem;
+  padding: 7px;
+  vertical-align: middle;
+}
+
+.NavLink:hover i {
+  color: #3854bd; /* Icon color on hover */
+}
+
+.NavLink .messagesButton {
+  background-color: #007bff; /* Background color for messages button */
+  color: white; /* Text color for messages button */
+  padding: 5px 10px; /* Padding for the button */
+  border-radius: 5px; /* Rounded corners */
+  text-decoration: none; /* Remove underline */
+}
+
+.NavLink .messagesButton:hover {
+  background-color: #0056b3; /* Background color on hover */
+}
+
   
   .Active i {
     color: #3854bd;

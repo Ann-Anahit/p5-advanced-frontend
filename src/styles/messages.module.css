@@ -1,0 +1,39 @@
+.messageList {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .messageItem {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .messageDetail {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+  }
+  
+  .messageForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .inputField {
+    padding: 10px;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+  }
+  
+  .submitButton {
+    align-self: flex-end;
+    padding: 10px 20px;
+    background-color: #855DCD;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
