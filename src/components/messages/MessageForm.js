@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { sendMessage } from '../../api/messages';
-import styles from '../../styles/messages.module.css';
+import styles from '../../styles/Messages.module.css';
 
-const MessageForm = () => {
+const MessageForm = ({ token }) => {
   const { receiverId } = useParams();
   const [content, setContent] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await sendMessage({ receiver: receiverId, content });
+      await sendMessage({ receiver: receiverId, content }, token);
       setContent('');
+      // Optionally show success feedback or redirect
     } catch (error) {
       console.error('Error sending message:', error);
+      // Optionally show error feedback to the user
     }
   };
 
