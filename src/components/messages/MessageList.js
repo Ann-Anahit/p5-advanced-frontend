@@ -11,7 +11,7 @@ const MessageList = ({ userId, token }) => {
     const fetchMessages = async () => {
       try {
         const data = await getMessages(userId, token);
-        setMessages(data.results || []); // Adjust based on actual API response
+        setMessages(data.results || []);
       } catch (error) {
         setError('Failed to load messages.');
         console.error('Error fetching messages:', error);

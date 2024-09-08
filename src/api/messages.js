@@ -4,7 +4,7 @@ export const sendMessage = async ({ receiver, content }, token) => {
     }
 
     try {
-        const response = await fetch('https://8000-annanahit-drfapi-niz9191cenx.ws.codeinstitute-ide.net/messages/create/', {
+        const response = await fetch('https://8000-annanahit-drfapi-niz9191cenx.ws.codeinstitute-ide.net/messages/', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -23,13 +23,14 @@ export const sendMessage = async ({ receiver, content }, token) => {
         throw error;
     }
 };
+
 export const getMessages = async (userId, token) => {
     if (!userId || !token) {
         throw new Error('User ID and token are required');
     }
 
     try {
-        const response = await fetch(`https://8000-annanahit-drfapi-niz9191cenx.ws.codeinstitute-ide.net/messages/user/${userId}/`, {
+        const response = await fetch(`https://8000-annanahit-drfapi-niz9191cenx.ws.codeinstitute-ide.net/messages/?user=${userId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -47,6 +48,7 @@ export const getMessages = async (userId, token) => {
         throw error;
     }
 };
+
 export const fetchMessage = async (messageId, token) => {
     if (!messageId) {
         console.error('No messageId provided');
@@ -71,5 +73,6 @@ export const fetchMessage = async (messageId, token) => {
         return data;
     } catch (error) {
         console.error('Error fetching message:', error);
+        throw error;
     }
 };
