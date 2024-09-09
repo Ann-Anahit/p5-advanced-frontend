@@ -1,36 +1,44 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { sendMessage } from '../../api/messages';
-import styles from '../../styles/Messages.module.css';
+import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap";
+import { axiosReq } from "../../api/axiosDefaults";
 
-const MessageForm = ({ token }) => {
-  const { receiverId } = useParams();
-  const [content, setContent] = useState('');
+const MessageForm = ({ receiver_id, setMessages }) => {
+    const [content, setContent] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await sendMessage({ receiver: receiverId, content }, token);
-      setContent('');
-      // Optionally show success feedback or redirect
-    } catch (error) {
-      console.error('Error sending message:', error);
-      // Optionally show error feedback to the user
-    }
-  };
+    const handleChange = (event) => {
+        setContent(event.target.value);
+    };
 
-  return (
-    <form className={styles.messageForm} onSubmit={handleSubmit}>
-      <textarea
-        className={styles.inputField}
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        placeholder="Type your message here"
-        required
-      />
-      <button className={styles.submitButton} type="submit">Send</button>
-    </form>
-  );
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const { data } = await axiosReq.post("/messages/", {
+                content,
+                receiver: receiver_id,
+            });
+            setMessages((prevMessages) => [data, ...prevMessages]);
+            setContent("");
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    return (
+        <Form onSubmit={handleSubmit}>
+            <Form.Group>
+                <Form.Control
+                    as="textarea"
+                    rows={3}
+                    value={content}
+                    onChange={handleChange}
+                    placeholder="Write your message..."
+                />
+            </Form.Group>
+            <Button type="submit" disabled={!content.trim()}>
+                Send
+            </Button>
+        </Form>
+    );
 };
 
 export default MessageForm;

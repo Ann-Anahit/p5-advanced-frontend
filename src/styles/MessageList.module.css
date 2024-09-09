@@ -1,0 +1,30 @@
+/* src/styles/MessageList.module.css */
+.MessageList {
+    padding: 20px;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.MessageItem {
+    margin-bottom: 10px;
+}
+
+.MessageItemSent {
+    background-color: #d1e7dd;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.MessageItemReceived {
+    background-color: #f8d7da;
+    padding: 10px;
+    border-radius: 10px;
+}
+.MessageList {
+    padding: 20px;
+}
+
+.MessageList p {
+    text-align: center;
+}

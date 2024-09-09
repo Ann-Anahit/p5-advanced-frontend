@@ -1,0 +1,31 @@
+.Form {
+    margin-top: 15px;
+}
+
+.FormInput {
+    width: 100%;
+    padding: 10px;
+    margin-left: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.Button {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.Button:hover:not(:disabled) {
+    background-color: #0056b3;
+}

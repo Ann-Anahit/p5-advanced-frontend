@@ -1,28 +1,15 @@
-export const sendMessage = async ({ receiver, content }, token) => {
-    if (!receiver || !content) {
-        throw new Error('Receiver and content are required');
-    }
+import axios from 'axios';
 
-    try {
-        const response = await fetch('https://8000-annanahit-drfapi-niz9191cenx.ws.codeinstitute-ide.net/messages/', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ receiver, content }),
-        });
+// Base URL for your API
+const API_URL = 'https://8000-annanahit-drfapi-niz9191cenx.ws.codeinstitute-ide.net/messages/';
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        return response.json();
-    } catch (error) {
-        console.error('Error sending message:', error);
-        throw error;
-    }
-};
+// Create axios instance with default settings
+const axiosInstance = axios.create({
+    baseURL: API_URL,
+    headers: {
+        'Content-Type': 'application/json',
+    },
+});
 
 export const getMessages = async (userId, token) => {
     if (!userId || !token) {
@@ -30,49 +17,34 @@ export const getMessages = async (userId, token) => {
     }
 
     try {
-        const response = await fetch(`https://8000-annanahit-drfapi-niz9191cenx.ws.codeinstitute-ide.net/messages/?user=${userId}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+        const response = await axiosInstance.get('', {
+            headers: { 'Authorization': `Bearer ${token}` },
+            params: { user: userId },
         });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        return response.json();
+        return response.data;
     } catch (error) {
         console.error('Error fetching messages:', error);
         throw error;
     }
 };
 
-export const fetchMessage = async (messageId, token) => {
-    if (!messageId) {
-        console.error('No messageId provided');
-        return;
+export const fetchConversation = async (receiverId, token) => {
+    console.log("Receiver ID:", receiverId);
+    console.log("Token:", token);
+
+    if (!receiverId || !token) {
+        throw new Error('Receiver ID and token are required');
     }
 
     try {
-        const response = await fetch(`https://8000-annanahit-drfapi-niz9191cenx.ws.codeinstitute-ide.net/messages/${messageId}/`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+        const response = await axiosInstance.get(`/conversation/${receiverId}/`, {
+            headers: { 'Authorization': `Bearer ${token}` },
         });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log('Message data:', data);
-        return data;
+        return response.data;
     } catch (error) {
-        console.error('Error fetching message:', error);
+        console.error('Error fetching conversation:', error);
         throw error;
     }
 };

@@ -1,66 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import { getMessages, sendMessage } from '../../api/messages';
-import styles from '../../styles/Messages.module.css';
+import React, { useEffect, useState } from "react";
+import { getMessages } from "../../api/messages";
+import Message from "./Message";
 
 const MessageList = ({ userId, token }) => {
   const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState('');
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!userId || !token) {
+      setError('User ID and token are required.');
+      setLoading(false);
+      return;
+    }
+
     const fetchMessages = async () => {
+      console.log("User ID:", userId); // Debugging line
+      console.log("Token:", token);    // Debugging line
+      setLoading(true);
+      setError(null);
+
       try {
-        const data = await getMessages(userId, token);
-        setMessages(data.results || []);
-      } catch (error) {
-        setError('Failed to load messages.');
-        console.error('Error fetching messages:', error);
+        const { results } = await getMessages(userId, token);
+        setMessages(results);
+      } catch (err) {
+        console.error('Error fetching messages:', err.response ? err.response.data : err.message);
+        setError('Failed to fetch messages.');
+      } finally {
+        setLoading(false);
       }
     };
 
-    if (userId && token) {
-      fetchMessages();
-    }
+    fetchMessages();
   }, [userId, token]);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      await sendMessage({ receiver: userId, content: newMessage }, token);
-      setNewMessage('');
-      const updatedMessages = await getMessages(userId, token);
-      setMessages(updatedMessages.results || []);
-    } catch (error) {
-      setError('Failed to send message.');
-      console.error('Error sending message:', error);
-    }
-  };
-
-  if (error) return <p className={styles.error}>{error}</p>;
-  if (messages.length === 0) return <p>No messages found.</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
-    <div className={styles.messageList}>
-      <h2>Message List</h2>
-      <ul>
-        {messages.map(message => (
-          <li key={message.id} className={styles.messageItem}>
-            <p><strong>From:</strong> {message.sender}</p>
-            <p><strong>Content:</strong> {message.content}</p>
-            <p><strong>Created At:</strong> {new Date(message.created_at).toLocaleString()}</p>
-          </li>
-        ))}
-      </ul>
-
-      <form onSubmit={handleSubmit} className={styles.messageForm}>
-        <textarea
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          placeholder="Write your message..."
-          required
-        />
-        <button type="submit" className={styles.submitButton}>Send</button>
-      </form>
+    <div>
+      {messages.length > 0 ? (
+        messages.map((message) => (
+          <Message
+            key={message.id}
+            id={message.id}
+            sender={message.sender}
+            created_at={message.created_at}
+            content={message.content}
+          />
+        ))
+      ) : (
+        <p>No messages</p>
+      )}
     </div>
   );
 };

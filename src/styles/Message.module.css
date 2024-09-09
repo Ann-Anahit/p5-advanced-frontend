@@ -36,4 +36,25 @@
     border-radius: 4px;
     cursor: pointer;
   }
-  
+  .Message {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.Media {
+    display: flex;
+    align-items: flex-start;
+}
+
+.Sender {
+    font-weight: bold;
+}
+
+.Date {
+    font-size: 0.8rem;
+    color: gray;
+}
+
+button {
+    margin: 0 5px;
+}
