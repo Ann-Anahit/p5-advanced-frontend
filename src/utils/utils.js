@@ -64,3 +64,12 @@ export const shouldRefreshToken = () => {
 export const removeTokenTimestamp = () => {
     localStorage.removeItem("refreshTokenTimestamp");
 };
+
+
+export const getAuthToken = () => {
+    const token = localStorage.getItem('access_token');
+    console.log('Retrieved token:', token);
+    return token;
+};
+
+

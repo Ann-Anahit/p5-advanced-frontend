@@ -6,12 +6,12 @@
 .FormInput {
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ced4da;
+    border: 1px solid #e3e3e3;
     border-radius: 5px;
 }
 
 .Button {
-    background-color: #28a745;
+    background-color: #3854bd; 
     color: white;
     border: none;
     padding: 8px 16px;
@@ -21,13 +21,13 @@
 }
 
 .ButtonCancel {
-    background-color: #dc3545;
+    background-color: #104db2; 
 }
 
 .Button:hover {
-    background-color: #218838;
+    background-color: #242a3d; 
 }
 
 .ButtonCancel:hover {
-    background-color: #c82333;
+    background-color: #C36BE4; 
 }

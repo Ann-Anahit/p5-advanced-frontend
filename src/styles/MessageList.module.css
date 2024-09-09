@@ -1,28 +1,25 @@
-/* src/styles/MessageList.module.css */
 .MessageList {
     padding: 20px;
-    background-color: #fafafa;
-    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
     border-radius: 5px;
 }
 
 .MessageItem {
     margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff; 
 }
 
 .MessageItemSent {
-    background-color: #d1e7dd;
-    padding: 10px;
-    border-radius: 10px;
+    background-color: #C36BE4;
+    color: white;
 }
 
 .MessageItemReceived {
-    background-color: #f8d7da;
-    padding: 10px;
-    border-radius: 10px;
-}
-.MessageList {
-    padding: 20px;
+    background-color: #855DCD; 
+    color: white;
 }
 
 .MessageList p {

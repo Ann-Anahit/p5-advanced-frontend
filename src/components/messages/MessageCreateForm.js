@@ -14,6 +14,8 @@ const MessageCreateForm = ({ receiver_id, setMessages }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!content.trim()) return; 
+
         try {
             const { data } = await axiosRes.post("/messages/", {
                 content,
@@ -23,15 +25,15 @@ const MessageCreateForm = ({ receiver_id, setMessages }) => {
                 ...prevMessages,
                 results: [data, ...prevMessages.results],
             }));
-            setContent("");
+            setContent(""); 
         } catch (err) {
-            console.log(err);
+            console.error("Error sending message:", err);
         }
     };
 
     return (
         <form onSubmit={handleSubmit} className={styles.Form}>
-            <div className="d-flex">
+            <div className="d-flex align-items-start">
                 <Avatar src={currentUser?.profile_image} />
                 <textarea
                     className={styles.FormInput}
@@ -39,6 +41,7 @@ const MessageCreateForm = ({ receiver_id, setMessages }) => {
                     value={content}
                     onChange={handleChange}
                     rows={2}
+                    aria-label="Message content"
                 />
             </div>
             <button

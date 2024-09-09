@@ -1,15 +1,21 @@
 import axios from 'axios';
 
-// Base URL for your API
-const API_URL = 'https://8000-annanahit-drfapi-niz9191cenx.ws.codeinstitute-ide.net/messages/';
+const BASE_API_URL = 'https://8000-annanahit-drfapi-niz9191cenx.ws.codeinstitute-ide.net/';
 
-// Create axios instance with default settings
 const axiosInstance = axios.create({
-    baseURL: API_URL,
+    baseURL: BASE_API_URL,
     headers: {
         'Content-Type': 'application/json',
     },
 });
+
+export const getAuthToken = () => {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+        console.error('Token not found in localStorage.');
+    }
+    return token;
+};
 
 export const getMessages = async (userId, token) => {
     if (!userId || !token) {
@@ -17,22 +23,18 @@ export const getMessages = async (userId, token) => {
     }
 
     try {
-        const response = await axiosInstance.get('', {
+        const response = await axiosInstance.get('/messages/', {
             headers: { 'Authorization': `Bearer ${token}` },
             params: { user: userId },
         });
-
         return response.data;
     } catch (error) {
-        console.error('Error fetching messages:', error);
+        console.error('Error fetching messages:', error.response ? error.response.data : error.message);
         throw error;
     }
 };
 
 export const fetchConversation = async (receiverId, token) => {
-    console.log("Receiver ID:", receiverId);
-    console.log("Token:", token);
-
     if (!receiverId || !token) {
         throw new Error('Receiver ID and token are required');
     }
@@ -41,10 +43,9 @@ export const fetchConversation = async (receiverId, token) => {
         const response = await axiosInstance.get(`/conversation/${receiverId}/`, {
             headers: { 'Authorization': `Bearer ${token}` },
         });
-
         return response.data;
     } catch (error) {
-        console.error('Error fetching conversation:', error);
+        console.error('Error fetching conversation:', error.response ? error.response.data : error.message);
         throw error;
     }
 };

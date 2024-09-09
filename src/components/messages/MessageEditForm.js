@@ -2,28 +2,22 @@ import React, { useState } from "react";
 import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/MessageEditForm.module.css";
 
-const MessageEditForm = ({ id, content, setShowEditForm, setMessages }) => {
+const MessageEditForm = ({ id, content, setShowEditForm, setMessages, receiverUsername }) => { // Added receiverUsername as a prop
     const [formContent, setFormContent] = useState(content);
 
     const handleChange = (e) => {
         setFormContent(e.target.value);
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         try {
-            await axiosRes.put(`/messages/${id}/edit/`, {
-                content: formContent.trim(),
+            const { data } = await axiosRes.post("/messages/", {
+                content: formContent,
+                receiver: receiverUsername,
             });
-            setMessages((prevMessages) => ({
-                ...prevMessages,
-                results: prevMessages.results.map((message) => {
-                    return message.id === id
-                        ? { ...message, content: formContent.trim() }
-                        : message;
-                }),
-            }));
-            setShowEditForm(false);
+            setMessages((prevMessages) => [data, ...prevMessages]);
+            setFormContent("");
         } catch (err) {
             console.log(err);
         }

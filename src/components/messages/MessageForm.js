@@ -11,15 +11,17 @@ const MessageForm = ({ receiver_id, setMessages }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if (!content.trim()) return; 
+
         try {
             const { data } = await axiosReq.post("/messages/", {
                 content,
                 receiver: receiver_id,
             });
             setMessages((prevMessages) => [data, ...prevMessages]);
-            setContent("");
+            setContent(""); 
         } catch (err) {
-            console.log(err);
+            console.error("Error sending message:", err);
         }
     };
 
@@ -32,9 +34,14 @@ const MessageForm = ({ receiver_id, setMessages }) => {
                     value={content}
                     onChange={handleChange}
                     placeholder="Write your message..."
+                    aria-label="Message content"
                 />
             </Form.Group>
-            <Button type="submit" disabled={!content.trim()}>
+            <Button
+                type="submit"
+                disabled={!content.trim()}
+                variant="primary" 
+            >
                 Send
             </Button>
         </Form>
