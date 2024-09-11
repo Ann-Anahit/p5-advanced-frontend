@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getAuthToken } from '../../api/messages';
+import { getAuthToken } from '../../api/messages'; // Ensure this function retrieves the token correctly  
 import axios from 'axios';
 import styles from '../../styles/Message.module.css';
 import Avatar from '../Avatar';
@@ -9,11 +9,13 @@ const Message = ({ id, sender, sender_image, created_at, content, setMessages })
     const [showEditForm, setShowEditForm] = useState(false);
 
     const handleDelete = async () => {
-        const token = getAuthToken();
+        const token = getAuthToken(); // Fetch the token via your utility function  
+
+        console.log('Access Token (before delete):', token); // Log the token  
 
         if (!token) {
             console.error('No authentication token found');
-            return;
+            return; // Exit if there's no token  
         }
 
         try {

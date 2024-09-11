@@ -1,41 +1,40 @@
-import React, { useEffect, useState } from "react";
-import { getMessages } from "../../api/messages";
+import React, { useState, useEffect } from 'react';  
+import { handleLogin, getMessages } from '../../api/messages'; // Adjust these imports  
+import { useHistory } from "react-router-dom";  
 
-const MessagesComponent = () => {
-    const [messages, setMessages] = useState([]);
-    const userId = 'admin';
-    const token = localStorage.getItem('access_token');
+const MessagesComponent = ({ userId }) => {  
+    const history = useHistory();  
+    const [messages, setMessages] = useState([]);  
+    const [error, setError] = useState('');  
 
-    useEffect(() => {
-        const fetchMessages = async () => {
-            try {
-                if (userId && token) {
-                    const data = await getMessages(userId, token);
-                    setMessages(data);
-                } else {
-                    console.warn('User ID or token is not available');
-                }
-            } catch (error) {
-                console.error('Failed to fetch messages:', error);
-            }
-        };
+    useEffect(() => {  
+        const fetchMessages = async () => {  
+            try {  
+                const token = localStorage.getItem('access_token'); // Get the token  
+                if (!token) {  
+                    throw new Error('Token not found'); // Handle missing token  
+                }  
+                const fetchedMessages = await getMessages(userId, token); // Fetch messages  
+                setMessages(fetchedMessages); // Set the messages state  
+            } catch (err) {  
+                console.error('Error fetching messages:', err);  
+                setError('Failed to fetch messages, please log in again.'); // Set error message  
+            }  
+        };  
 
-        fetchMessages();
-    }, [userId, token]);
+        fetchMessages(); // Call fetch messages on component mount  
+    }, [userId]); // Depend on userId if it changes  
 
-    return (
-        <div>
-            {messages.length > 0 ? (
-                <ul>
-                    {messages.map((message) => (
-                        <li key={message.id}>{message.content}</li>
-                    ))}
-                </ul>
-            ) : (
-                <p>No messages found.</p>
-            )}
-        </div>
-    );
-};
+    return (  
+        <div>  
+            {error && <p>{error}</p>}  
+            <ul>  
+                {messages.map(message => (  
+                    <li key={message.id}>{message.content}</li> // Adjust based on your message object structure  
+                ))}  
+            </ul>  
+        </div>  
+    );  
+};  
 
 export default MessagesComponent;
