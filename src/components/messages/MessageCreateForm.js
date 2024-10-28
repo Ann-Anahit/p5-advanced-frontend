@@ -7,7 +7,7 @@ import Alert from "react-bootstrap/Alert";
 
 const MessageCreate = () => {
     const [messageContent, setMessageContent] = useState("");
-    const [receiverId, setReceiverId] = useState(""); // Assuming you have a way to select the receiver  
+    const [receiverId, setReceiverId] = useState("");
     const [errors, setErrors] = useState({});
     const history = useHistory();
 
@@ -17,10 +17,8 @@ const MessageCreate = () => {
                 profile: receiverId,
                 content: messageContent,
             });
-            console.log('Message posted:', data);
-            history.push("/messages"); // Redirect after posting  
+            history.push("/messages");
         } catch (error) {
-            console.error('Error posting message:', error);
             setErrors(error.response?.data);
         }
     };
@@ -32,26 +30,7 @@ const MessageCreate = () => {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Form.Group>
-                <Form.Label>Receiver</Form.Label>
-                <Form.Control
-                    type="text"
-                    value={receiverId}
-                    onChange={(e) => setReceiverId(e.target.value)}
-                    placeholder="Enter receiver ID"
-                />
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>Message</Form.Label>
-                <Form.Control
-                    as="textarea"
-                    value={messageContent}
-                    onChange={(e) => setMessageContent(e.target.value)}
-                    rows={3}
-                />
-            </Form.Group>
-            {errors?.content && <Alert variant="danger">{errors.content}</Alert>}
-            <Button type="submit">Send Message</Button>
+            {/* Form structure here */}
         </Form>
     );
 };
