@@ -13,3 +13,5 @@ export const axiosRes = axios.create({
     baseURL: axios.defaults.baseURL,
     withCredentials: true,
 });
+
+export default axios;  

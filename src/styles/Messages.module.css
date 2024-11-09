@@ -1,46 +1,96 @@
 .MessagesContainer {
   display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #f0f0f5;
+  border-radius: 8px;
 }
 
+/* Contacts list styling */
 .ContactList {
   width: 200px;
-  border-right: 1px solid #ccc;
-  padding-right: 20px;
+  background: #f9f9fc;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid #855DCD;
 }
 
 .Contact {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
   cursor: pointer;
-  padding: 10px;
-  margin: 5px 0;
+  color: #3854bd;
+  font-weight: 500;
+  transition: background 0.3s ease;
+  border-radius: 4px;
+}
+
+.ContactImage {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.Contact:hover {
+  background-color: #855DCD;
+  color: #fff;
 }
 
 .SelectedContact {
-  background-color: #f0f0f0;
+  font-weight: bold;
+  background: #855DCD;
+  color: #fff;
 }
 
 .MessageSection {
-  padding-left: 20px;
-  flex-grow: 1;
+  flex: 1;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid #3854bd;
 }
 
 .MessageList {
-  margin-bottom: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  background-color: #f7f7fb;
 }
 
 .Message {
-  margin-bottom: 5px;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.Message strong {
+  color: #3854bd;
+  margin-right: 0.3rem;
 }
 
 .MessageForm {
   display: flex;
-  gap: 10px;
+  gap: 0.5rem;
+  align-items: center;
 }
 
 .MessageInput {
-  flex-grow: 1;
-  padding: 10px;
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 .MessageButton {
-  padding: 10px 15px;
+  padding: 0.5rem 1rem;
+  background-color: #3854bd;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
 }
