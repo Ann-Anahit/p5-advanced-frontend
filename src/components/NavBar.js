@@ -23,7 +23,7 @@ const NavBar = () => {
             setCurrentUser(null);
             removeTokenTimestamp();
         } catch (err) {
-            // console.log(err);
+            // console.log(err);  
         }
     };
 
@@ -54,11 +54,11 @@ const NavBar = () => {
                 <i className="fas fa-heart"></i>Liked
             </NavLink>
             <NavLink
-                className={`${styles.NavLink} ${styles.messagesButton}`}
+                className={styles.NavLink}
                 activeClassName={styles.Active}
-                to="/messages"
+                to="/groups"
             >
-                <i className="fas fa-envelope"></i>Messages
+                <i className="fas fa-users"></i>Groups
             </NavLink>
             <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
                 <i className="fas fa-sign-out-alt"></i>Sign out
