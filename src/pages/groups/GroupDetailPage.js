@@ -1,57 +1,63 @@
 import React, { useState, useEffect } from 'react';
+import { followHelper, unfollowHelper } from '../../utils/utils';  // Corrected path
+import { axiosReq } from '../../api/axiosDefaults';
 import { useParams } from 'react-router-dom';
-import { Card, Button, ListGroup } from 'react-bootstrap';
-import axios from 'axios';
 
 const GroupDetailPage = () => {
-    const { id } = useParams();
+    const { id } = useParams();  // Extract group ID from URL
     const [group, setGroup] = useState(null);
-    const [error, setError] = useState(null);
+    const [isFollowing, setIsFollowing] = useState(false);
 
     useEffect(() => {
+        // Fetch the group details on page load
         const fetchGroupDetails = async () => {
             try {
-                const response = await axios.get(`/api/groups/${id}`);
-                setGroup(response.data);
+                const { data } = await axiosReq.get(`/groups/${id}/`);
+                setGroup(data);
+                setIsFollowing(data.is_following);
             } catch (err) {
-                setError('Failed to fetch group details. Please try again.');
+                console.error(err);
             }
         };
 
         fetchGroupDetails();
     }, [id]);
 
-    if (error) {
-        return <div className="alert alert-danger">{error}</div>;
-    }
+    const handleFollow = async () => {
+        try {
+            const response = await axiosReq.post(`/groups/${id}/follow/`);
+            const updatedGroup = followHelper(group, response.data.group, response.data.following_id);
+            setGroup(updatedGroup);
+            setIsFollowing(true);
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
-    if (!group) {
-        return <div>Loading...</div>;
-    }
+    const handleUnfollow = async () => {
+        try {
+            const response = await axiosReq.post(`/groups/${id}/unfollow/`);
+            const updatedGroup = unfollowHelper(group, response.data.group);
+            setGroup(updatedGroup);
+            setIsFollowing(false);
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     return (
         <div>
-            <h1>{group.name}</h1>
-            <Card>
-                <Card.Body>
-                    <Card.Title>Description</Card.Title>
-                    <Card.Text>{group.description}</Card.Text>
-
-                    <Card.Title>Category</Card.Title>
-                    <Card.Text>{group.category?.name}</Card.Text>
-
-                    <Card.Title>Members</Card.Title>
-                    <ListGroup>
-                        {group.members.map((member) => (
-                            <ListGroup.Item key={member.id}>{member.username}</ListGroup.Item>
-                        ))}
-                    </ListGroup>
-
-                    <Button variant="primary" onClick={() => console.log('Join Group functionality')}>
-                        Join Group
-                    </Button>
-                </Card.Body>
-            </Card>
+            {group ? (
+                <div>
+                    <h1>{group.name}</h1>
+                    <p>{group.description}</p>
+                    <button onClick={isFollowing ? handleUnfollow : handleFollow}>
+                        {isFollowing ? 'Unfollow' : 'Follow'}
+                    </button>
+                </div>
+            ) : (
+                <p>Loading...</p>
+            )}
         </div>
     );
 };

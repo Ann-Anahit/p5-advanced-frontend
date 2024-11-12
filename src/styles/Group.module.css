@@ -1,0 +1,130 @@
+.Group {
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.Group .card-body {
+    padding: 1.5rem;
+}
+
+.Group .card-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.Group .card-text {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.Group .GroupCategory {
+    font-size: 1rem;
+    color: #007bff;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.Group .GroupBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Group .GroupBar button {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.Group .GroupBar button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.Group .GroupBar button:hover:not(:disabled) {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.Group .GroupBar span {
+    font-size: 1rem;
+    color: #555;
+}
+
+.Group .card-img {
+    object-fit: cover;
+    height: 250px;
+    width: 100%;
+}
+
+.Group .card-body .ml-2 {
+    margin-left: 10px;
+}
+
+.Group .GroupOwner {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.Group .GroupOwner:hover {
+    text-decoration: underline;
+}
+
+.Group .GroupDate {
+    font-size: 0.875rem;
+    color: #999;
+}
+
+.Group .GroupBar .btn-outline-primary {
+    border-color: #007bff;
+    color: #007bff;
+}
+
+.Group .GroupBar .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.Group .GroupBar .btn-outline-danger {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.Group .GroupBar .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .Group .card-body {
+        padding: 1rem;
+    }
+
+    .Group .card-title {
+        font-size: 1.5rem;
+    }
+
+    .Group .GroupCategory {
+        font-size: 0.875rem;
+    }
+
+    .Group .GroupBar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .Group .GroupBar span {
+        margin-bottom: 0.5rem;
+    }
+
+    .Group .GroupBar button {
+        margin-top: 0.5rem;
+    }
+}
