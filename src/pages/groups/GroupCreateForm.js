@@ -1,33 +1,18 @@
-// GroupCreateForm.js  
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Form, Alert, Spinner } from "react-bootstrap";
-import axios from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import styles from "../../styles/GroupCreateEditForm.module.css";
-import { getAuthToken } from '../../utils/utils';
-
-const api = axios.create({
-
-});
 
 function GroupCreateForm() {
-    const [errors, setErrors] = useState({});
     const [groupData, setGroupData] = useState({
         name: "",
         description: "",
         category: "Art",
     });
-    const { name, description, category } = groupData;
-    const history = useHistory();
+    const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        const token = getAuthToken();
-        if (!token) {
-            // Redirect to login if no token is present
-            history.push("/signin");
-        }
-    }, [history]);
+    const history = useHistory();
 
     const handleChange = (event) => {
         setGroupData({
@@ -41,34 +26,11 @@ function GroupCreateForm() {
         setLoading(true);
 
         try {
-            const token = getAuthToken();
-            if (token) {
-                const response = await api.post(
-                    "/api/groups/",
-                    groupData,
-                    {
-                        headers: {
-                            "Authorization": `Bearer ${token}`,
-                        },
-                        withCredentials: true,
-                    }
-                );
-                history.push(`/groups/${response.data.id}`); // Redirect to the group details page  
-            } else {
-                // If no token, handle unauthorized error  
-                setErrors({ ...errors, auth: ["Unauthorized. Please log in again."] });
-                history.push("/signin");
-            }
+            const { data } = await axiosReq.post("/groups/", groupData);
+            // Redirect to the new group’s detail page
+            history.push(`/groups/${data.id}`);
         } catch (err) {
-            if (err.response) {
-                if (err.response.status === 401) {
-                    setErrors({ ...errors, auth: ["Session expired. Please log in again."] });
-                } else {
-                    setErrors(err.response.data);
-                }
-            } else {
-                setErrors({ ...errors, general: ["An unknown error occurred. Please try again."] });
-            }
+            setErrors(err.response?.data || { general: ["An error occurred. Please try again."] });
         } finally {
             setLoading(false);
         }
@@ -77,53 +39,45 @@ function GroupCreateForm() {
     return (
         <Form onSubmit={handleSubmit} className={styles.Container}>
             <h1>Create a New Group</h1>
-            {errors.auth && (
+            {errors.general && (
                 <Alert variant="danger">
-                    {errors.auth.map((msg, idx) => (
-                        <div key={idx}>{msg}</div>
-                    ))}
+                    {errors.general.map((msg, idx) => <div key={idx}>{msg}</div>)}
                 </Alert>
             )}
-            <Form.Group className={styles.FormGroup}>
-                <Form.Label className={styles.FormLabel}>Group Name</Form.Label>
+            <Form.Group>
+                <Form.Label>Group Name</Form.Label>
                 <Form.Control
-                    className={styles.FormControl}
                     type="text"
                     name="name"
-                    value={name}
+                    value={groupData.name}
                     onChange={handleChange}
                     required
                 />
-                {errors?.name?.map((message, idx) => (
-                    <Alert variant="warning" key={idx}>
-                        {message}
-                    </Alert>
+                {errors.name?.map((msg, idx) => (
+                    <Alert variant="warning" key={idx}>{msg}</Alert>
                 ))}
             </Form.Group>
-            <Form.Group className={styles.FormGroup}>
-                <Form.Label className={styles.FormLabel}>Description</Form.Label>
+            <Form.Group>
+                <Form.Label>Description</Form.Label>
                 <Form.Control
                     as="textarea"
-                    rows={4}
                     name="description"
-                    value={description}
+                    value={groupData.description}
                     onChange={handleChange}
                     required
                 />
-                {errors?.description?.map((message, idx) => (
-                    <Alert variant="warning" key={idx}>
-                        {message}
-                    </Alert>
+                {errors.description?.map((msg, idx) => (
+                    <Alert variant="warning" key={idx}>{msg}</Alert>
                 ))}
             </Form.Group>
-            <Form.Group className={styles.FormGroup}>
-                <Form.Label className={styles.FormLabel}>Category</Form.Label>
+            <Form.Group>
+                <Form.Label>Category</Form.Label>
                 <Form.Control
                     as="select"
                     name="category"
-                    value={category}
+                    value={groupData.category}
                     onChange={handleChange}
-                    className={styles.FormControl}
+                    required
                 >
                     <option value="Art">Art</option>
                     <option value="Music">Music</option>
@@ -131,8 +85,8 @@ function GroupCreateForm() {
                     <option value="Food">Food</option>
                 </Form.Control>
             </Form.Group>
-            <Button type="submit" className={styles.Button} disabled={loading}>
-                {loading ? <Spinner as="span" animation="border" size="sm" /> : "Create Group"}
+            <Button type="submit" disabled={loading}>
+                {loading ? <Spinner animation="border" size="sm" /> : "Create Group"}
             </Button>
         </Form>
     );

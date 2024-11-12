@@ -1,65 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { followHelper, unfollowHelper } from '../../utils/utils'; 
-import { axiosReq } from '../../api/axiosDefaults';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { axiosReq } from "../../api/axiosDefaults";
 
-const GroupDetailPage = () => {
-    const { id } = useParams();  // Extract group ID from URL
+function GroupDetailPage() {
+    const { id } = useParams();
     const [group, setGroup] = useState(null);
-    const [isFollowing, setIsFollowing] = useState(false);
+    const [isMember, setIsMember] = useState(false);
 
     useEffect(() => {
-        // Fetch the group details on page load
-        const fetchGroupDetails = async () => {
+        const fetchGroup = async () => {
             try {
-                const { data } = await axiosReq.get(`/groups/${id}/`);
+                const { data } = await axiosReq.get(`/groups/${id}`);
                 setGroup(data);
-                setIsFollowing(data.is_following);
+                setIsMember(data.is_member);
             } catch (err) {
-                console.error(err);
+                console.error("Failed to load group details:", err);
             }
         };
-
-        fetchGroupDetails();
+        fetchGroup();
     }, [id]);
 
-    const handleFollow = async () => {
+    const handleJoin = async () => {
         try {
-            const response = await axiosReq.post(`/groups/${id}/follow/`);
-            const updatedGroup = followHelper(group, response.data.group, response.data.following_id);
-            setGroup(updatedGroup);
-            setIsFollowing(true);
+            await axiosReq.post(`/groups/${id}/join`);
+            setIsMember(true);
         } catch (err) {
-            console.error(err);
+            console.error("Failed to join group:", err);
         }
     };
 
-    const handleUnfollow = async () => {
-        try {
-            const response = await axiosReq.post(`/groups/${id}/unfollow/`);
-            const updatedGroup = unfollowHelper(group, response.data.group);
-            setGroup(updatedGroup);
-            setIsFollowing(false);
-        } catch (err) {
-            console.error(err);
-        }
-    };
+    if (!group) return <p>Loading group details...</p>;
 
     return (
         <div>
-            {group ? (
-                <div>
-                    <h1>{group.name}</h1>
-                    <p>{group.description}</p>
-                    <button onClick={isFollowing ? handleUnfollow : handleFollow}>
-                        {isFollowing ? 'Unfollow' : 'Follow'}
-                    </button>
-                </div>
+            <h2>{group.name}</h2>
+            <p>{group.description}</p>
+            <p>Category: {group.category}</p>
+            <p>Members: {group.members_count}</p>
+            {isMember ? (
+                <p>You are a member of this group.</p>
             ) : (
-                <p>Loading...</p>
+                <Button onClick={handleJoin}>Join Group</Button>
             )}
         </div>
     );
-};
+}
 
 export default GroupDetailPage;
