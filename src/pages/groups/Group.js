@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // useNavigate for React Router v6+
+import { Link, useHistory } from "react-router-dom";
 import { Card, Button, Row, Col, OverlayTrigger, Tooltip, Spinner } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
-import { axiosRes } from "../../api/axiosDefaults"; // Updated import
+import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Group.module.css";
@@ -11,7 +11,7 @@ const Group = (props) => {
     const { id, name, owner, description, image, category, updated_at, members_count, is_member, setGroups } = props;
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
-    const navigate = useNavigate();
+    const navigate = useHistory();
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {

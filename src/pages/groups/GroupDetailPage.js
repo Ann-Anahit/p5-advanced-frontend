@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { followHelper, unfollowHelper } from '../../utils/utils';  // Corrected path
+import { followHelper, unfollowHelper } from '../../utils/utils'; 
 import { axiosReq } from '../../api/axiosDefaults';
 import { useParams } from 'react-router-dom';
 

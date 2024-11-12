@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { fetchMoreData, followHelper } from '../../utils/utils';  // Corrected path
-import { axiosReq } from '../../api/axiosDefaults';  // Correct path
+import { fetchMoreData, followHelper } from '../../utils/utils';
+import { axiosReq } from '../../api/axiosDefaults';
 
 const GroupManagement = () => {
     const [groups, setGroups] = useState({

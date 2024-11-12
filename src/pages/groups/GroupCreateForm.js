@@ -7,7 +7,7 @@ import styles from "../../styles/GroupCreateEditForm.module.css";
 import { getAuthToken } from '../../utils/utils';
 
 const api = axios.create({
-    // Your API configuration  
+
 });
 
 function GroupCreateForm() {
@@ -22,7 +22,6 @@ function GroupCreateForm() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        // Optional: You can check if the user is logged in by checking the token on mount
         const token = getAuthToken();
         if (!token) {
             // Redirect to login if no token is present
@@ -49,9 +48,9 @@ function GroupCreateForm() {
                     groupData,
                     {
                         headers: {
-                            "Authorization": `Bearer ${token}`, // Ensure token is sent in the header  
+                            "Authorization": `Bearer ${token}`,
                         },
-                        withCredentials: true, // If using cookies  
+                        withCredentials: true,
                     }
                 );
                 history.push(`/groups/${response.data.id}`); // Redirect to the group details page  
@@ -61,7 +60,6 @@ function GroupCreateForm() {
                 history.push("/signin");
             }
         } catch (err) {
-            // The error handling logic remains the same  
             if (err.response) {
                 if (err.response.status === 401) {
                     setErrors({ ...errors, auth: ["Session expired. Please log in again."] });
