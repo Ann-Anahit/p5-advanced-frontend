@@ -16,9 +16,6 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import NotFound from "./components/NotFound";
 import HomePage from "./pages/HomePage";
-import GroupCreateForm from './pages/groups/GroupCreateForm';
-import GroupDetailPage from './pages/groups/GroupDetailPage';
-import GroupsPage from './pages/groups/GroupsPage';
 
 const App = () => {
   const currentUser = useCurrentUser();
@@ -37,11 +34,6 @@ const App = () => {
             <Route exact path="/profiles/:id/edit/username" component={UsernameForm} />
             <Route exact path="/profiles/:id/edit/password" component={UserPasswordForm} />
             <Route exact path="/profiles/:id/edit" component={ProfileEditForm} />
-
-            {/* Groups Routes */}
-            <Route exact path="/groups" component={GroupsPage} /> {/* Groups listing page */}
-            <Route exact path="/groups/create" component={GroupCreateForm} /> {/* Group creation form */}
-            <Route exact path="/groups/:id" component={GroupDetailPage} /> {/* Group detail page */}
 
             {/* Posts Routes */}
             <Route
