@@ -8,12 +8,26 @@ function GroupCreateForm() {
     const [groupData, setGroupData] = useState({
         name: "",
         description: "",
-        category: "Art",
+        category: "Art", // Default category
     });
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
     const history = useHistory();
 
+    // Define the category mapping here
+    const categoryMapping = {
+        Art: 1,
+        Music: 2,
+        Comedy: 3,
+        Food: 4,
+    };
+
+    // Implement a mock function to get the logged-in user's ID (this should be replaced with actual logic)
+    const getLoggedInUserId = () => {
+        return 1; // Replace with actual logic to get the logged-in user's ID, e.g., from localStorage or an API call
+    };
+
+    // Handle form input changes
     const handleChange = (event) => {
         setGroupData({
             ...groupData,
@@ -21,18 +35,38 @@ function GroupCreateForm() {
         });
     };
 
+    // Handle form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
 
+        // Convert category to the corresponding pk value
+        const categoryPk = categoryMapping[groupData.category];
+        const creatorId = getLoggedInUserId(); // Get the logged-in user's ID
+        const participants = [creatorId]; // Initially, participants will be just the creator
+
+        const groupToCreate = {
+            name: groupData.name,
+            description: groupData.description,
+            category: categoryPk, // Corrected variable name
+            creator: creatorId,
+            participants: participants, // Ensure this is in the correct format
+        };
+
         try {
-            const { data } = await axiosReq.post("/groups/", groupData);
-            // Redirect to the new group’s detail page
+            // Send the POST request to create a new group
+            const { data } = await axiosReq.post("/groups/", groupToCreate);
+            console.log("Group created successfully:", data);
+
+            // Redirect to the new group's detail page after creation
             history.push(`/groups/${data.id}`);
         } catch (err) {
+            console.error("Error creating group:", err.response?.data || err);
+            // Handle errors (make sure the backend sends the error message in the expected format)
             setErrors(err.response?.data || { general: ["An error occurred. Please try again."] });
         } finally {
             setLoading(false);
+            console.log("Form submission complete.");
         }
     };
 

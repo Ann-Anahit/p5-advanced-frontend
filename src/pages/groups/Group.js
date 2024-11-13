@@ -1,136 +1,63 @@
-import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { Card, Button, Row, Col, OverlayTrigger, Tooltip, Spinner } from "react-bootstrap";
-import Avatar from "../../components/Avatar";
+import React, { useState } from "react";
+import { Button, Spinner, Card, OverlayTrigger, Tooltip, Row, Col } from "react-bootstrap";
 import { axiosRes } from "../../api/axios";
-import { MoreDropdown } from "../../components/MoreDropdown";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useHistory } from "react-router-dom";
 import styles from "../../styles/Group.module.css";
+import Avatar from "../../components/Avatar";
 
-const Group = (props) => {
-    const { id, name, owner, description, image, category, updated_at, members_count, is_member, setGroups } = props;
-    const currentUser = useCurrentUser();
-    const is_owner = currentUser?.username === owner;
-    const navigate = useHistory();
+const Group = ({ id, name, owner, description, image, category, updated_at, members_count, is_member, setGroups }) => {
     const [loading, setLoading] = useState(false);
+    const history = useHistory();
 
-    useEffect(() => {
-        if (!currentUser) {
-            navigate("/signin"); // Redirect to signin if no user is found
-        }
-    }, [currentUser, navigate]);
-
-    const handleGroupMembership = async (action) => {
-        if (!currentUser) {
-            alert("Please sign in to join the group.");
-            navigate("/signin");
-            return;
-        }
-
+    const handleMembership = async (action) => {
         setLoading(true);
         try {
-            const url = `/groups/${id}/${action}/`;
+            const url = `/groups/${id}/${action}`;
             await axiosRes.post(url);
 
             setGroups((prevGroups) => ({
                 ...prevGroups,
                 results: prevGroups.results.map((group) =>
-                    group.id === id
-                        ? {
-                            ...group,
-                            members_count: action === "join" ? group.members_count + 1 : group.members_count - 1,
-                            is_member: action === "join",
-                        }
-                        : group
+                    group.id === id ? { ...group, is_member: action === "join", members_count: group.members_count + (action === "join" ? 1 : -1) } : group
                 ),
             }));
         } catch (err) {
-            console.error(`Error with ${action}ing group:`, err);
-            alert(`Failed to ${action} the group.`);
+            console.error(`Failed to ${action} group`, err);
         } finally {
             setLoading(false);
         }
     };
 
-    const handleEditGroup = () => {
-        if (!is_owner) {
-            alert("You are not the owner of this group.");
-            return;
-        }
-        navigate(`/groups/${id}/edit`);
-    };
-
-    const handleDeleteGroup = async () => {
-        if (!is_owner) {
-            alert("You are not the owner of this group.");
-            return;
-        }
-
-        try {
-            await axiosRes.delete(`/groups/${id}/`);
-            navigate(-1); // Go back to the previous page
-        } catch (err) {
-            console.error("Error deleting group:", err);
-            alert("Failed to delete the group.");
-        }
-    };
+    const isOwner = currentUser?.username === owner;
 
     return (
         <Card className={styles.Group}>
             <Card.Body>
                 <Row className="align-items-center justify-content-between">
                     <Col xs="auto">
-                        <Link to={`/profiles/${owner}`} className="d-flex align-items-center">
-                            <Avatar src={image} height={55} />
-                            <span className="ml-2">{owner}</span>
-                        </Link>
+                        <Avatar src={image} height={55} />
+                        <span className="ml-2">{owner}</span>
                     </Col>
                     <Col xs="auto">
                         <div className="d-flex align-items-center">
                             <span>{updated_at}</span>
-                            {is_owner && (
-                                <MoreDropdown
-                                    handleEdit={handleEditGroup}
-                                    handleDelete={handleDeleteGroup}
-                                />
-                            )}
                         </div>
                     </Col>
                 </Row>
-            </Card.Body>
-            <Card.Img src={image} alt={name} />
-            <Card.Body>
-                <Card.Title className="text-center">{name}</Card.Title>
+                <Card.Title>{name}</Card.Title>
                 <Card.Text>{description}</Card.Text>
-                <div className={styles.GroupCategory}>Category: {category}</div>
-                <div className={styles.GroupBar}>
-                    {is_owner ? (
-                        <OverlayTrigger
-                            placement="top"
-                            overlay={<Tooltip>You can't join your own group!</Tooltip>}
-                        >
-                            <Button variant="outline-primary" disabled>
-                                Join Group
-                            </Button>
-                        </OverlayTrigger>
-                    ) : is_member ? (
+                <div>Category: {category}</div>
+                <div>
+                    <span>{members_count} Members</span>
+                    {!isOwner && (
                         <Button
-                            variant="outline-danger"
-                            onClick={() => handleGroupMembership("leave")}
+                            onClick={() => handleMembership(is_member ? "leave" : "join")}
                             disabled={loading}
+                            variant={is_member ? "outline-danger" : "outline-primary"}
                         >
-                            {loading ? <Spinner as="span" animation="border" size="sm" /> : "Leave Group"}
-                        </Button>
-                    ) : (
-                        <Button
-                            variant="outline-primary"
-                            onClick={() => handleGroupMembership("join")}
-                            disabled={loading}
-                        >
-                            {loading ? <Spinner as="span" animation="border" size="sm" /> : "Join Group"}
+                            {loading ? <Spinner animation="border" size="sm" /> : is_member ? "Leave Group" : "Join Group"}
                         </Button>
                     )}
-                    <span>{members_count} Members</span>
                 </div>
             </Card.Body>
         </Card>
