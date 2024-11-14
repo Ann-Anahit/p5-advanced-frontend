@@ -191,9 +191,6 @@ This page is reserved for posts/events that the user has favorited because they 
 
 [Back to top](<#content>)
 
-### Messages Page
-
-Unfortunately, the messages frontend is not working yet.
 
 ### My Profile
 
@@ -319,15 +316,6 @@ Performed tests can be found in [TESTING.md](TESTING.md).
 
 [Back to top](<#content>)
 
-## Bugs
-
-### Known Bugs
-
-- The only error so far is the messaging tool. Unfortunately, the messaging frontend is not working yet.
-
-![bug chrome](src/documentation/images/messaging.png)
-
-[Back to top](<#content>)
 
 ## Credits
 

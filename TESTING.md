@@ -51,7 +51,7 @@ Visit the deployed website here → [Meet&Mingle](src/documentation/images/respo
 | Post Link                | Navigate to the Post page when clicked                                       | Click the Post link                                          | Passed |
 | Create Event Link          | Navigate to the create event page when clicked                                | Click the create event link                                   | Passed |
 | My Post Link             | Navigate to the user's Post page when clicked                                | Click the my Post link                                       | Passed |
-| Messaging    | Navigate to the user's messaging page when clicked                           | Click the messaging link                                  | Fail |
+link                                  | Fail |
 | Liked Link             | Navigate to the user's favorites page when clicked                             | Click the favorites link                                       | Passed |
 | User Profile Link          | Navigate to the user's profile page when clicked                               | Click the user profile link                                   | Passed |
 | Sign Out Modal             | Display a confirmation modal when clicking the sign-out link                   | Click the sign out link                                        | Passed |
