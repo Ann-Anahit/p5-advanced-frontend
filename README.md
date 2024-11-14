@@ -103,7 +103,7 @@ MEET&MINGLE<br>
 
 The color palette used in this website seems to have been chosen to evoke certain emotions, enhance user experience, and align with the brand identity. Here's a breakdown of the possible reasons behind the choice of each color:
 
-- **Black** ![#050505](https://via.placeholder.com/15/050505/000000?text=+) `#050505` - Black is often associated with elegance, simplicity, and professionalism. It might be used for text or backgrounds, providing contrast to make other elements stand out.
+- **Black** `#050505` - Black is often associated with elegance, simplicity, and professionalism. It might be used for text or backgrounds, providing contrast to make other elements stand out.
 
 - **Sapphire** ![#104DB2](https://via.placeholder.com/15/104DB2/000000?text=+) `#104DB2` - Blue shades like sapphire often symbolize trust, reliability, and calmness. This could be used for buttons or important action elements to give users a sense of security.
 
