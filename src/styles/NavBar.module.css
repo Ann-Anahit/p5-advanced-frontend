@@ -1,48 +1,48 @@
 .NavBar {
   border: 1px solid #e3e3e3;
-  background-color: #855DCD; /* Background color for the navbar */
-  color: #e3e3e3; /* Text color for the navbar */
+  background-color: #855DCD;
+  color: #e3e3e3;
 }
 
 .NavLink {
   padding: 5px;
-  color: #e3e3e3; /* Default color for links */
+  color: #e3e3e3;
   text-decoration: none;
-  transition: color ease-in-out 0.3s; /* Smooth color transition */
+  transition: color ease-in-out 0.3s;
 }
 
 .NavLink:hover {
-  color: #3854bd; /* Color on hover */
+  color: #3854bd;
 }
 
 .NavLink.active {
-  color: #3854bd; /* Color for active link */
+  color: #3854bd;
 }
 
 .NavLink i {
-  color: #e3e3e3; /* Icon color in links */
+  color: #e3e3e3;
   font-size: 1rem;
   padding: 7px;
   vertical-align: middle;
 }
 
 .NavLink:hover i {
-  color: #3854bd; /* Icon color on hover */
+  color: #3854bd;
 }
 
 .NavLink .messagesButton {
-  background-color: #007bff; /* Background color for messages button */
-  color: white; /* Text color for messages button */
-  padding: 5px 10px; /* Padding for the button */
-  border-radius: 5px; /* Rounded corners */
-  text-decoration: none; /* Remove underline */
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
 }
 
 .NavLink .messagesButton:hover {
-  background-color: #0056b3; /* Background color on hover */
+  background-color: #0056b3;
 }
 
-  
-  .Active i {
-    color: #3854bd;
-  }
+
+.Active i {
+  color: #3854bd;
+}
