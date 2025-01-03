@@ -63,7 +63,7 @@ function PostCreateForm() {
             const { data } = await axiosReq.post("/posts/", formData);
             history.push(`/posts/${data.id}`);
         } catch (err) {
-            // console.log(err);
+            console.error(err);
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
             }
@@ -126,7 +126,7 @@ function PostCreateForm() {
                             {image ? (
                                 <>
                                     <figure>
-                                        <Image className={appStyles.Image} src={image} rounded />
+                                        <Image className={styles.PostImage} src={image} rounded />
                                     </figure>
                                     <div>
                                         <Form.Label
