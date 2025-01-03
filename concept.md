@@ -1,10 +1,10 @@
 
 Must have = MH   Should have = SH    Could have = CH 
-
+# IN FRONTEND 
 MS
 edit create post page 
-- fix image size 
-- set placeholder img
+- fix image size ✅
+- set placeholder img 
 - limit char in post (maybe 600 words)
 
 fix follow unfollow buttons
