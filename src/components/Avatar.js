@@ -13,8 +13,8 @@ const Avatar = ({ src, height = 45, text }) => {
                 width={height}
                 alt="avatar"
                 onError={(e) => {
-                    e.target.onerror = null; // Prevents infinite fallback loop
-                    e.target.src = defaultAvatar; // Set to default avatar on error
+                    e.target.onerror = null;
+                    e.target.src = defaultAvatar;
                 }}
             />
             {text}
