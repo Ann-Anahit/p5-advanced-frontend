@@ -4,6 +4,7 @@ Must have = MH   Should have = SH    Could have = CH
 MS
 edit create post page 
 - fix image size ✅
+- style edit page
 - set placeholder img 
 - limit char in post (maybe 600 words)
 
