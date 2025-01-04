@@ -5,3 +5,11 @@
 .PostImage {
   max-width: 200px;
 }
+
+.Center {
+  justify-content: center;
+}
+
+.HiddenFileInput {
+  display: none;
+}

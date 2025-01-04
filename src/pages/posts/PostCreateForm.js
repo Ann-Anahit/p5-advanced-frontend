@@ -117,7 +117,16 @@ function PostCreateForm() {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Row>
+            <Row className="d-flex flex-column justify-content-center align-items-center">
+                <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+                    <Container
+                        className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+                    >
+                        <Form.Group className="text-center">
+                            {textFields}
+                        </Form.Group>
+                    </Container>
+                </Col>
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container
                         className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
@@ -142,33 +151,29 @@ function PostCreateForm() {
                                     className="d-flex justify-content-center"
                                     htmlFor="image-upload"
                                 >
-                                    <Asset
-                                        src={Upload}
-                                        message="Click or tap to upload an image"
-                                    />
+                                    <Asset src={Upload} message="Click or tap to upload an image" />
                                 </Form.Label>
                             )}
 
-                            <Form.File
-                                id="image-upload"
-                                accept="image/*"
-                                onChange={handleChangeImage}
-                                ref={imageInput}
-                            />
+                            <div className={`${image ? styles.HiddenFileInput : ""}`}>
+                                <Form.File
+                                    id="image-upload"
+                                    accept="image/*"
+                                    onChange={handleChangeImage}
+                                    ref={imageInput}
+                                />
+                            </div>
                         </Form.Group>
+
                         {errors?.image?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
                                 {message}
                             </Alert>
                         ))}
-
-                        <div className="d-md-none">{textFields}</div>
                     </Container>
                 </Col>
-                <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-                    <Container className={appStyles.Content}>{textFields}</Container>
-                </Col>
             </Row>
+
         </Form>
     );
 }
