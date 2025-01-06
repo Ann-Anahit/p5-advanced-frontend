@@ -37,7 +37,7 @@ function PostEditForm() {
 
                 is_owner ? setPostData({ title, content, image }) : history.push("/");
             } catch (err) {
-                // console.log(err);
+                console.error(err);
             }
         };
 
@@ -76,7 +76,7 @@ function PostEditForm() {
             await axiosReq.put(`/posts/${id}/`, formData);
             history.push(`/posts/${id}`);
         } catch (err) {
-            // console.log(err);
+            console.error(err);
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
             }
@@ -130,7 +130,7 @@ function PostEditForm() {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Row>
+            <Row className="d-flex flex-column justify-content-center align-items-center">
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container
                         className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}

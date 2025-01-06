@@ -1,7 +1,7 @@
 
 Must have = MH   Should have = SH    Could have = CH 
 # IN FRONTEND 
-MS
+MH
 edit create post page 
 - fix image size ✅
 - style edit page ✅
