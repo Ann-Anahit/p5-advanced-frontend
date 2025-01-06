@@ -17,7 +17,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 
 function PostEditForm() {
     const [errors, setErrors] = useState({});
-    const [wordCount, setWordCount] = useState(0); // Track word count
+    const [wordCount, setWordCount] = useState(0);
 
     const [postData, setPostData] = useState({
         title: "",
@@ -37,7 +37,7 @@ function PostEditForm() {
                 const { title, content, image, is_owner } = data;
 
                 is_owner ? setPostData({ title, content, image }) : history.push("/");
-                setWordCount(content.trim().split(/\s+/).length); // Initialize word count
+                setWordCount(content.trim().split(/\s+/).length);
             } catch (err) {
                 console.error(err);
             }
@@ -165,12 +165,12 @@ function PostEditForm() {
                                     Change the image
                                 </Form.Label>
                             </div>
-
                             <Form.File
                                 id="image-upload"
                                 accept="image/*"
                                 onChange={handleChangeImage}
                                 ref={imageInput}
+                                className={styles.HiddenFileInput}
                             />
                         </Form.Group>
                         {errors?.image?.map((message, idx) => (

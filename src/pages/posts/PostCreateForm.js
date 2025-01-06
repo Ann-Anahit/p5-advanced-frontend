@@ -181,15 +181,15 @@ function PostCreateForm() {
                                 </Form.Label>
                             )}
 
-                            <div className={`${image ? styles.HiddenFileInput : ""}`}>
-                                <Form.File
-                                    id="image-upload"
-                                    accept="image/*"
-                                    onChange={handleChangeImage}
-                                    ref={imageInput}
-                                />
-                            </div>
+                            <Form.File
+                                id="image-upload"
+                                accept="image/*"
+                                onChange={handleChangeImage}
+                                ref={imageInput}
+                                className={styles.HiddenFileInput}
+                            />
                         </Form.Group>
+
 
                         {errors?.image?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
