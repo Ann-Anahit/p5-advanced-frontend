@@ -17,6 +17,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 
 function PostEditForm() {
     const [errors, setErrors] = useState({});
+    const [wordCount, setWordCount] = useState(0); // Track word count
 
     const [postData, setPostData] = useState({
         title: "",
@@ -36,6 +37,7 @@ function PostEditForm() {
                 const { title, content, image, is_owner } = data;
 
                 is_owner ? setPostData({ title, content, image }) : history.push("/");
+                setWordCount(content.trim().split(/\s+/).length); // Initialize word count
             } catch (err) {
                 console.error(err);
             }
@@ -45,10 +47,26 @@ function PostEditForm() {
     }, [history, id]);
 
     const handleChange = (event) => {
+        const { name, value } = event.target;
+
         setPostData({
             ...postData,
-            [event.target.name]: event.target.value,
+            [name]: value,
         });
+
+        if (name === "content") {
+            const words = value.trim().split(/\s+/);
+            if (words.length > 500) {
+                setErrors((prev) => ({
+                    ...prev,
+                    content: ["Content cannot exceed 500 words."],
+                }));
+                return;
+            } else {
+                setErrors((prev) => ({ ...prev, content: null }));
+            }
+            setWordCount(words.length);
+        }
     };
 
     const handleChangeImage = (event) => {
@@ -101,7 +119,7 @@ function PostEditForm() {
             ))}
 
             <Form.Group>
-                <Form.Label>Content</Form.Label>
+                <Form.Label>Content (Word Count: {wordCount}/500)</Form.Label>
                 <Form.Control
                     as="textarea"
                     rows={6}
