@@ -6,7 +6,7 @@ edit create post page
 - fix image size ✅
 - style edit page ✅
 - set placeholder img 
-- limit char in post (maybe 600 words)
+- limit char in post (maybe 500 words)
 
 - fix follow unfollow buttons
 - set pagination in home

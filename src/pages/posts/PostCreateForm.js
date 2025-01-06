@@ -23,6 +23,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 function PostCreateForm() {
     useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
+    const [wordCount, setWordCount] = useState(0);
 
     const [postData, setPostData] = useState({
         title: "",
@@ -35,10 +36,30 @@ function PostCreateForm() {
     const history = useHistory();
 
     const handleChange = (event) => {
-        setPostData({
-            ...postData,
+        const { name, value } = event.target;
+        setPostData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+        if (name === "content") {
+            const words = value.trim().split(/\s+/);
+            if (words.length > 500) {
+                setErrors((prev) => ({
+                    ...prev,
+                    content: ["Content cannot exceed 500 words."],
+                }));
+                return;
+            } else {
+                setErrors((prev) => ({ ...prev, content: null }));
+            }
+            setWordCount(words.length);
+        }
+
+        setPostData((prevData) => ({
+            ...prevData,
+            [name]: value,
             [event.target.name]: event.target.value,
-        });
+        }));
     };
 
     const handleChangeImage = (event) => {
@@ -57,7 +78,11 @@ function PostCreateForm() {
 
         formData.append("title", title);
         formData.append("content", content);
-        formData.append("image", imageInput.current.files[0]);
+
+        // Only append image if a file is selected
+        if (imageInput.current.files.length > 0) {
+            formData.append("image", imageInput.current.files[0]);
+        }
 
         try {
             const { data } = await axiosReq.post("/posts/", formData);
@@ -69,6 +94,7 @@ function PostCreateForm() {
             }
         }
     };
+
 
     const textFields = (
         <div className="text-center">
@@ -88,7 +114,7 @@ function PostCreateForm() {
             ))}
 
             <Form.Group>
-                <Form.Label>Content</Form.Label>
+                <Form.Label>Content (Word Count: {wordCount}/500)</Form.Label>
                 <Form.Control
                     as="textarea"
                     rows={6}
@@ -176,6 +202,7 @@ function PostCreateForm() {
 
         </Form>
     );
+
 }
 
 export default PostCreateForm;
