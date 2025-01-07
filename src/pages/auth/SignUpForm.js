@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import Image from "react-bootstrap/Image";
 
 import {
     Form,
@@ -128,6 +129,14 @@ const SignUpForm = () => {
                 md={6}
                 className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
             >
+                <Image
+                    className={`${appStyles.FillerImage} ${styles.SmallImage}`}
+                    src={
+                        "https://res.cloudinary.com/ddbihgvkh/image/upload/v1736271630/signin_signup_nyg44v.webp"
+                    }
+                    alt="Sign In Illustration"
+                    fluid
+                />
             </Col>
         </Row>
     );

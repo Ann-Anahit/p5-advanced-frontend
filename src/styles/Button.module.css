@@ -1,3 +1,8 @@
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
 .Button {
   font-size: 0.8rem;
   align-self: center;
@@ -13,10 +18,6 @@
   opacity: 0.8;
   border-color: transparent;
   cursor: pointer;
-}
-
-.Button:hover:active {
-  background-color: #2142b2 !important;
 }
 
 .Button:active {
@@ -57,7 +58,18 @@
   color: #242a3d;
 }
 
-.Bright {
+.Button:disabled {
   background-color: #855DCD;
-  color: #2142b2;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .Button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .pagination {
+    margin-top: 15px;
+  }
 }
