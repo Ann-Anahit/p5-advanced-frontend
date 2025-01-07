@@ -9,7 +9,7 @@ edit create post page
 - set placeholder img ✅
 
 - fix follow unfollow buttons
-- set pagination in home
+- set pagination in home ✅
 
 MH
 -responsiveness! ✅
