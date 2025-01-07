@@ -5,18 +5,19 @@ MH
 edit create post page 
 - fix image size ✅
 - style edit page ✅
-- set placeholder img 
-- limit char in post (maybe 500 words)
+- limit char in post (maybe 500 words) ✅
+- set placeholder img ✅
 
 - fix follow unfollow buttons
 - set pagination in home
 
-
+MH
+-responsiveness! ✅
 
 SH
+- set date under the profile img ✅
 - set sign out in edit profile
 - set edit delete buttons in profile one below the other
-- set date under the profile img
 - set pagination 
 - create post list in profile page 
 - set edit delete buttons under posts
