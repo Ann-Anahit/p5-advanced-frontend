@@ -81,14 +81,16 @@ const Post = (props) => {
             <Card.Body>
                 <Row className="align-items-center justify-content-between">
                     <Col xs="auto">
-                        <Link to={`/profiles/${profile_id}`} className="d-flex align-items-center">
-                            <Avatar src={profile_image} height={55} />
-                            <span className="ml-2">{owner}</span>
+                        <Link to={`/profiles/${profile_id}`} className="d-flex flex-column align-items-start">
+                            <div className="d-flex align-items-center">
+                                <Avatar src={profile_image} height={55} />
+                                <span className="ml-2">{owner}</span>
+                            </div>
+                            <small className="text-muted">{updated_at}</small>
                         </Link>
                     </Col>
                     <Col xs="auto">
                         <div className="d-flex align-items-center">
-                            <span>{updated_at}</span>
                             {is_owner && postPage && (
                                 <MoreDropdown
                                     handleEdit={handleEdit}
@@ -137,6 +139,7 @@ const Post = (props) => {
                 </div>
             </Card.Body>
         </Card>
+
     );
 };
 
