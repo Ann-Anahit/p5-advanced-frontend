@@ -10,6 +10,7 @@ edit create post page
 
 - fix follow unfollow buttons
 - set pagination in home ✅
+- add an image to sign in and sign up  ✅
 
 MH
 -responsiveness! ✅
