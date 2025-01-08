@@ -55,11 +55,6 @@ function PostCreateForm() {
             }
             setWordCount(words.length);
         }
-
-        setPostData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
     };
 
     const handleChangeImage = (event) => {
@@ -80,7 +75,6 @@ function PostCreateForm() {
         formData.append("content", content);
         formData.append("category", category);
 
-
         if (imageInput.current.files.length > 0) {
             formData.append("image", imageInput.current.files[0]);
         }
@@ -99,11 +93,73 @@ function PostCreateForm() {
     return (
         <Form onSubmit={handleSubmit}>
             <Row className="d-flex flex-column justify-content-center align-items-center">
+                {/* Main Form Fields */}
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container
                         className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
                     >
-                        {/* Image Upload Section */}
+                        <Form.Group>
+                            <Form.Label>Category</Form.Label>
+                            <Form.Control
+                                as="select"
+                                name="category"
+                                value={category}
+                                onChange={handleChange}
+                            >
+                                <option value="">Select a category</option>
+                                <option value="Business">Business</option>
+                                <option value="Food">Food</option>
+                                <option value="Art">Art</option>
+                                <option value="Music">Music</option>
+                                <option value="Lifestyle">Lifestyle</option>
+                                <option value="Events">Events</option>
+                            </Form.Control>
+                        </Form.Group>
+                        {errors?.category?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
+                        <Form.Group>
+                            <Form.Label>Title</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="title"
+                                value={title}
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                        {errors?.title?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
+
+                        <Form.Group>
+                            <Form.Label>Content (Word Count: {wordCount}/500)</Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                rows={6}
+                                name="content"
+                                value={content}
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                        {errors?.content?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
+
+
+                    </Container>
+                </Col>
+
+                {/* Image Upload Section */}
+                <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+                    <Container
+                        className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+                    >
                         <Form.Group className="text-center">
                             {image ? (
                                 <>
@@ -145,78 +201,21 @@ function PostCreateForm() {
                     </Container>
                 </Col>
 
-                {/* Category Selection */}
-                <Form.Group>
-                    <Form.Label>Category</Form.Label>
-                    <Form.Control
-                        as="select"
-                        name="category"
-                        value={category}
-                        onChange={handleChange}
+                {/* Buttons Section */}
+                <div className="text-center mt-3">
+                    <Button
+                        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                        onClick={() => history.goBack()}
                     >
-                        <option value="">Select a category</option>
-                        <option value="Business">Business</option>
-                        <option value="Food">Food</option>
-                        <option value="Art">Art</option>
-                        <option value="Music">Music</option>
-                        <option value="Lifestyle">Lifestyle</option>
-                        <option value="Events">Events</option>
-                    </Form.Control>
-                </Form.Group>
-                {errors?.category?.map((message, idx) => (
-                    <Alert variant="warning" key={idx}>
-                        {message}
-                    </Alert>
-                ))}
-                {/* Text Fields and Buttons Section */}
-                <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-                    <Container
-                        className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+                        Cancel
+                    </Button>
+                    <Button
+                        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                        type="submit"
                     >
-                        <Form.Group>
-                            <Form.Label>Title</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="title"
-                                value={title}
-                                onChange={handleChange}
-                            />
-                        </Form.Group>
-                        {errors?.title?.map((message, idx) => (
-                            <Alert variant="warning" key={idx}>
-                                {message}
-                            </Alert>
-                        ))}
-
-                        <Form.Group>
-                            <Form.Label>Content (Word Count: {wordCount}/500)</Form.Label>
-                            <Form.Control
-                                as="textarea"
-                                rows={6}
-                                name="content"
-                                value={content}
-                                onChange={handleChange}
-                            />
-                        </Form.Group>
-                        {errors?.content?.map((message, idx) => (
-                            <Alert variant="warning" key={idx}>
-                                {message}
-                            </Alert>
-                        ))}
-
-                        <div className="text-center mt-3">
-                            <Button
-                                className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                                onClick={() => history.goBack()}
-                            >
-                                Cancel
-                            </Button>
-                            <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-                                Create
-                            </Button>
-                        </div>
-                    </Container>
-                </Col>
+                        Create
+                    </Button>
+                </div>
             </Row>
         </Form>
     );
