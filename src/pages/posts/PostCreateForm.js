@@ -29,8 +29,9 @@ function PostCreateForm() {
         title: "",
         content: "",
         image: "",
+        category: "",
     });
-    const { title, content, image } = postData;
+    const { title, content, image, category } = postData;
 
     const imageInput = useRef(null);
     const history = useHistory();
@@ -77,6 +78,8 @@ function PostCreateForm() {
 
         formData.append("title", title);
         formData.append("content", content);
+        formData.append("category", category);
+
 
         if (imageInput.current.files.length > 0) {
             formData.append("image", imageInput.current.files[0]);
@@ -142,6 +145,29 @@ function PostCreateForm() {
                     </Container>
                 </Col>
 
+                {/* Category Selection */}
+                <Form.Group>
+                    <Form.Label>Category</Form.Label>
+                    <Form.Control
+                        as="select"
+                        name="category"
+                        value={category}
+                        onChange={handleChange}
+                    >
+                        <option value="">Select a category</option>
+                        <option value="Business">Business</option>
+                        <option value="Food">Food</option>
+                        <option value="Art">Art</option>
+                        <option value="Music">Music</option>
+                        <option value="Lifestyle">Lifestyle</option>
+                        <option value="Events">Events</option>
+                    </Form.Control>
+                </Form.Group>
+                {errors?.category?.map((message, idx) => (
+                    <Alert variant="warning" key={idx}>
+                        {message}
+                    </Alert>
+                ))}
                 {/* Text Fields and Buttons Section */}
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container

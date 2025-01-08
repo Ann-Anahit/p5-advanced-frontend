@@ -7,6 +7,7 @@ edit create post page
 - style edit page ✅
 - limit char in post (maybe 500 words) ✅
 - set placeholder img ✅
+- change the placeholder img ✅
 
 - fix follow unfollow buttons
 - set pagination in home ✅
@@ -42,8 +43,8 @@ migration ✅
 - url✅
 - Serializer✅
 
-
+# IN FRONTEND 
 ## in post APP
+- when the user create new post, can choose a category with dropdown menue ✅
 - Category field in add post
 - Category has icon, title 
-- when the user create new post, can choose a category with dropdown menue 
