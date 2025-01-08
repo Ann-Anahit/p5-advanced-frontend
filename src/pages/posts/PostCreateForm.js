@@ -58,7 +58,6 @@ function PostCreateForm() {
         setPostData((prevData) => ({
             ...prevData,
             [name]: value,
-            [event.target.name]: event.target.value,
         }));
     };
 
@@ -79,7 +78,6 @@ function PostCreateForm() {
         formData.append("title", title);
         formData.append("content", content);
 
-        // Only append image if a file is selected
         if (imageInput.current.files.length > 0) {
             formData.append("image", imageInput.current.files[0]);
         }
@@ -95,52 +93,6 @@ function PostCreateForm() {
         }
     };
 
-
-    const textFields = (
-        <div className="text-center">
-            <Form.Group>
-                <Form.Label>Title</Form.Label>
-                <Form.Control
-                    type="text"
-                    name="title"
-                    value={title}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            {errors?.title?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
-
-            <Form.Group>
-                <Form.Label>Content (Word Count: {wordCount}/500)</Form.Label>
-                <Form.Control
-                    as="textarea"
-                    rows={6}
-                    name="content"
-                    value={content}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            {errors?.content?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
-
-            <Button
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                onClick={() => history.goBack()}
-            >
-                cancel
-            </Button>
-            <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-                create
-            </Button>
-        </div>
-    );
-
     return (
         <Form onSubmit={handleSubmit}>
             <Row className="d-flex flex-column justify-content-center align-items-center">
@@ -148,15 +100,7 @@ function PostCreateForm() {
                     <Container
                         className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
                     >
-                        <Form.Group className="text-center">
-                            {textFields}
-                        </Form.Group>
-                    </Container>
-                </Col>
-                <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-                    <Container
-                        className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-                    >
+                        {/* Image Upload Section */}
                         <Form.Group className="text-center">
                             {image ? (
                                 <>
@@ -190,7 +134,6 @@ function PostCreateForm() {
                             />
                         </Form.Group>
 
-
                         {errors?.image?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
                                 {message}
@@ -198,11 +141,59 @@ function PostCreateForm() {
                         ))}
                     </Container>
                 </Col>
-            </Row>
 
+                {/* Text Fields and Buttons Section */}
+                <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+                    <Container
+                        className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+                    >
+                        <Form.Group>
+                            <Form.Label>Title</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="title"
+                                value={title}
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                        {errors?.title?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
+
+                        <Form.Group>
+                            <Form.Label>Content (Word Count: {wordCount}/500)</Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                rows={6}
+                                name="content"
+                                value={content}
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                        {errors?.content?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
+
+                        <div className="text-center mt-3">
+                            <Button
+                                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                                onClick={() => history.goBack()}
+                            >
+                                Cancel
+                            </Button>
+                            <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+                                Create
+                            </Button>
+                        </div>
+                    </Container>
+                </Col>
+            </Row>
         </Form>
     );
-
 }
 
 export default PostCreateForm;
