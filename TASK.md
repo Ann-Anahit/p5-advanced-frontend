@@ -34,16 +34,16 @@ MH
 MH
 # IN BACKEND 
 ## NEW APP 
- achievment
-- Model
-migration 
-- views
-- form
-- url
-- Serializer
+ category✅
+- Model ✅
+migration ✅
+- views✅
+- form✅
+- url✅
+- Serializer✅
 
 
 ## in post APP
-- Category field
+- Category field in add post
 - Category has icon, title 
 - when the user create new post, can choose a category with dropdown menue 
