@@ -9,7 +9,7 @@ edit create post page
 - set placeholder img ✅
 - change the placeholder img ✅
 
-- fix follow unfollow buttons
+- fix follow unfollow buttons ✅
 - set pagination in home ✅
 - add an image to sign in and sign up  ✅
 
