@@ -136,7 +136,7 @@ function PostCreateForm() {
                         ))}
 
                         <Form.Group>
-                            <Form.Label>Content (Word Count: {wordCount}/500)</Form.Label>
+                            <Form.Label>Content (Word Count: {wordCount}/50)</Form.Label>
                             <Form.Control
                                 as="textarea"
                                 rows={6}
