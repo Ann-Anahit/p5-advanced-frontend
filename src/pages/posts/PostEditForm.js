@@ -56,10 +56,10 @@ function PostEditForm() {
 
         if (name === "content") {
             const words = value.trim().split(/\s+/);
-            if (words.length > 500) {
+            if (words.length > 50) {
                 setErrors((prev) => ({
                     ...prev,
-                    content: ["Content cannot exceed 500 words."],
+                    content: ["Content cannot exceed 50 words."],
                 }));
                 return;
             } else {
