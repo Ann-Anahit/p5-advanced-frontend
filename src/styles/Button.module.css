@@ -20,6 +20,10 @@
   cursor: pointer;
 }
 
+.Button:hover:active {
+  background-color: #2142b2 !important;
+}
+
 .Button:active {
   background-color: #2142b2 !important;
 }

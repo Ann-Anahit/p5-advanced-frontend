@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/Avatar.module.css";
 
-const defaultAvatar = "https://res.cloudinary.com/ddbihgvkh/image/upload/v1731019372/vecteezy_default-profile_uoif6j.jpg";
+const defaultAvatar = "https://res.cloudinary.com/ddbihgvkh/image/upload/v1736421108/default_profile_f6vj23.jpg";
 
 const Avatar = ({ src, height = 45, text }) => {
     return (
