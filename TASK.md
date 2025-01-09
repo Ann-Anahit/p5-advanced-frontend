@@ -43,6 +43,8 @@ migration ✅
 - url✅
 - Serializer✅
 
+- add category field to post model and serializers ✅
+
 # IN FRONTEND 
 ## in post APP
 - when the user create new post, can choose a category with dropdown menue ✅

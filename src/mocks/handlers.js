@@ -13,7 +13,7 @@ export const handlers = [
                 last_name: "",
                 profile_id: 2,
                 profile_image:
-                    "https://res.cloudinary.com/ddbihgvkh/image/upload/v1731019372/vecteezy_default-profile_uoif6j.jpg"
+                    "https://res.cloudinary.com/ddbihgvkh/image/upload/v1736421108/default_profile_f6vj23.jpg"
             })
         );
     }),
