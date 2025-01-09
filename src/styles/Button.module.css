@@ -4,14 +4,14 @@
 }
 
 .Button {
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   align-self: center;
-  border-radius: 18px;
+  border-radius: 100px;
   border-color: transparent;
-  padding: 8px 12px;
-  margin-left: 8px;
-  margin-right: 8px;
-  min-width: 72px;
+  padding: 4px 10px;
+  margin-left: 2px;
+  margin-right: 2px;
+  min-width: 75px;
 }
 
 .Button:hover {
