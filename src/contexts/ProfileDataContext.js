@@ -11,7 +11,7 @@ export const useSetProfileData = () => useContext(SetProfileDataContext);
 
 export const ProfileDataProvider = ({ children }) => {
   const [profileData, setProfileData] = useState({
-    // we will use the pageProfile later!
+
     pageProfile: { results: [] },
     popularProfiles: { results: [] },
   });
@@ -38,8 +38,9 @@ export const ProfileDataProvider = ({ children }) => {
           ),
         },
       }));
+      window.location.reload();
     } catch (err) {
-      //  console.log(err);
+      console.error(err);
     }
   };
 
@@ -61,8 +62,9 @@ export const ProfileDataProvider = ({ children }) => {
           ),
         },
       }));
+      window.location.reload();
     } catch (err) {
-      // console.log(err);
+      console.error(err);
     }
   };
 
@@ -77,7 +79,7 @@ export const ProfileDataProvider = ({ children }) => {
           popularProfiles: data,
         }));
       } catch (err) {
-        // console.log(err);
+        console.error(err);
       }
     };
 
