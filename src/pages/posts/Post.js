@@ -22,6 +22,7 @@ const Post = (props) => {
         updated_at,
         postPage,
         setPosts,
+        category_name, // Added this property
     } = props;
 
     const currentUser = useCurrentUser();
@@ -31,9 +32,6 @@ const Post = (props) => {
     const handleEdit = () => {
         history.push(`/posts/${id}/edit`);
     };
-    // console.log("Current User:", currentUser?.username);
-    // console.log("Owner:", owner);
-    // console.log("Is Owner:", is_owner);
 
     const handleDelete = async () => {
         try {
@@ -100,7 +98,8 @@ const Post = (props) => {
                         </div>
                     </Col>
                 </Row>
-                <span className="text-muted">Category: {props.category_name}</span>
+                {/* Display Category Name */}
+                <span className="text-muted">Category: {category_name || "None"}</span>
             </Card.Body>
             <Link to={`/posts/${id}`}>
                 <Card.Img src={image} alt={title} />
@@ -140,7 +139,6 @@ const Post = (props) => {
                 </div>
             </Card.Body>
         </Card>
-
     );
 };
 

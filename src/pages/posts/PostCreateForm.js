@@ -86,6 +86,7 @@ function PostCreateForm() {
         formData.append("title", title);
         formData.append("content", content);
         formData.append("category", category);
+        console.log("Selected Category:", category);
 
         if (imageInput.current.files.length > 0) {
             formData.append("image", imageInput.current.files[0]);
