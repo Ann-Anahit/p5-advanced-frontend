@@ -100,6 +100,7 @@ const Post = (props) => {
                         </div>
                     </Col>
                 </Row>
+                <span className="text-muted">Category: {props.category_name}</span>
             </Card.Body>
             <Link to={`/posts/${id}`}>
                 <Card.Img src={image} alt={title} />

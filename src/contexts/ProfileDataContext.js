@@ -40,7 +40,7 @@ export const ProfileDataProvider = ({ children }) => {
       }));
       window.location.reload();
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
   };
 
@@ -79,7 +79,7 @@ export const ProfileDataProvider = ({ children }) => {
           popularProfiles: data,
         }));
       } catch (err) {
-        console.error(err);
+        console.log(err);
       }
     };
 
