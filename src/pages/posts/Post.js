@@ -6,6 +6,8 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMusic, faPalette, faUtensils, faBriefcase, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Post = (props) => {
     const {
@@ -22,12 +24,20 @@ const Post = (props) => {
         updated_at,
         postPage,
         setPosts,
-        category_name, // Added this property
+        category_name,
     } = props;
 
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
     const history = useHistory();
+
+    const categoryIcons = {
+        music: faMusic,
+        art: faPalette,
+        food: faUtensils,
+        business: faBriefcase,
+        events: faCalendarAlt,
+    };
 
     const handleEdit = () => {
         history.push(`/posts/${id}/edit`);
@@ -98,8 +108,20 @@ const Post = (props) => {
                         </div>
                     </Col>
                 </Row>
-                {/* Display Category Name */}
-                <span className="text-muted">Category: {category_name || "None"}</span>
+                <span className="text-muted">
+                    Category:
+                    {category_name ? (
+                        <>
+                            <FontAwesomeIcon
+                                icon={categoryIcons[category_name.toLowerCase()]}
+                                className="ml-1"
+                            />
+                            <span className="ml-2">{category_name}</span>
+                        </>
+                    ) : (
+                        "None"
+                    )}
+                </span>
             </Card.Body>
             <Link to={`/posts/${id}`}>
                 <Card.Img src={image} alt={title} />

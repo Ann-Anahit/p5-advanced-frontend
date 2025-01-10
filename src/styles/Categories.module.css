@@ -1,0 +1,15 @@
+.categories {
+    display: flex;
+    gap: 8px;
+}
+
+.category {
+    text-align: center;
+    font-size: 16px;
+}
+
+.category-icon {
+    font-size: 16px;
+    color: #855DCD;
+    margin-bottom: 5px;
+}

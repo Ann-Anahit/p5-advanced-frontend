@@ -106,7 +106,6 @@ function PostCreateForm() {
     return (
         <Form onSubmit={handleSubmit}>
             <Row className="d-flex flex-column justify-content-center align-items-center">
-                {/* Main Form Fields */}
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container
                         className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
@@ -168,8 +167,6 @@ function PostCreateForm() {
                         ))}
                     </Container>
                 </Col>
-
-                {/* Image Upload Section */}
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container
                         className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
@@ -214,8 +211,6 @@ function PostCreateForm() {
                         ))}
                     </Container>
                 </Col>
-
-                {/* Buttons Section */}
                 <div className="text-center mt-3">
                     <Button
                         className={`${btnStyles.Button} ${btnStyles.Blue}`}
