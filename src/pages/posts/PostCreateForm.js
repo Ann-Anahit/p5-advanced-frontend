@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -24,6 +24,18 @@ function PostCreateForm() {
     useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
     const [wordCount, setWordCount] = useState(0);
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        axiosReq.get('https://8000-annanahit-drfapi-fa28dgkrr6c.ws.codeinstitute-ide.net/postcategories/')
+            .then((response) => {
+                setCategories(response.data.results); // Assuming the API returns data in a similar structure
+            })
+            .catch((error) => {
+                console.error("Error fetching post categories:", error);
+                setCategories([]); // Clear categories on error
+            });
+    }, []);
 
     const [postData, setPostData] = useState({
         title: "",
@@ -107,19 +119,22 @@ function PostCreateForm() {
                                 onChange={handleChange}
                             >
                                 <option value="">Select a category</option>
-                                <option value="Business">Business</option>
-                                <option value="Food">Food</option>
-                                <option value="Art">Art</option>
-                                <option value="Music">Music</option>
-                                <option value="Lifestyle">Lifestyle</option>
-                                <option value="Events">Events</option>
+                                {categories.length > 0 ? (
+                                    categories.map((cat) => (
+                                        <option key={cat.id} value={cat.id}>
+                                            {cat.name}
+                                        </option>
+                                    ))
+                                ) : null}
                             </Form.Control>
                         </Form.Group>
+
                         {errors?.category?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
                                 {message}
                             </Alert>
                         ))}
+
                         <Form.Group>
                             <Form.Label>Title</Form.Label>
                             <Form.Control
@@ -150,8 +165,6 @@ function PostCreateForm() {
                                 {message}
                             </Alert>
                         ))}
-
-
                     </Container>
                 </Col>
 
