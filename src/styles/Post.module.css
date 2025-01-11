@@ -1,24 +1,33 @@
 .Post {
-    background-color: #ffffff;
-    border: 1px solid #dadadf;
-    border-radius: 2px;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-  
-  .Post figure,
-  h5 {
-    margin: 0 0;
-  }
-  
-  .Heart {
-    color: #855DCD;
-  }
-  
-  .Heart:hover {
-    color: #C36BE4;
-  }
-  
-  .HeartOutline:hover {
-    color: #3854bd;
-  }
+  background-color: #ffffff;
+  border: 1px solid #dadadf;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.Post figure,
+h5 {
+  margin: 0 0;
+}
+
+.Heart {
+  color: #855DCD;
+}
+
+.Heart:hover {
+  color: #C36BE4;
+}
+
+.HeartOutline:hover {
+  color: #3854bd;
+}
+
+.CategoryImage {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: middle;
+  margin: 4px;
+}
