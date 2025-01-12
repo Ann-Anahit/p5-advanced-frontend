@@ -16,6 +16,7 @@ import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
+import Select from "react-select";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
@@ -27,7 +28,8 @@ function PostEditForm() {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        axiosReq.get('https://8000-annanahit-drfapi-fa28dgkrr6c.ws.codeinstitute-ide.net/postcategories/')
+        axiosReq
+            .get("https://8000-annanahit-drfapi-fa28dgkrr6c.ws.codeinstitute-ide.net/postcategories/")
             .then((response) => {
                 setCategories(response.data.results);
             })
@@ -36,6 +38,22 @@ function PostEditForm() {
                 setCategories([]);
             });
     }, []);
+
+    const options = categories.map((cat) => ({
+        value: cat.id,
+        label: (
+            <div className="d-flex align-items-center">
+                {cat.image && (
+                    <img
+                        src={cat.image}
+                        alt={cat.name}
+                        style={{ width: "20px", height: "20px", marginRight: "8px" }}
+                    />
+                )}
+                {cat.name}
+            </div>
+        ),
+    }));
 
     const [postData, setPostData] = useState({
         title: "",
@@ -86,6 +104,13 @@ function PostEditForm() {
         }
     };
 
+    const handleCategoryChange = (selectedOption) => {
+        setPostData((prevData) => ({
+            ...prevData,
+            category: selectedOption.value,
+        }));
+    };
+
     const handleChangeImage = (event) => {
         if (event.target.files.length) {
             URL.revokeObjectURL(image);
@@ -127,21 +152,13 @@ function PostEditForm() {
                     >
                         <Form.Group>
                             <Form.Label>Category</Form.Label>
-                            <Form.Control
-                                as="select"
-                                name="category"
-                                value={category}
-                                onChange={handleChange}
-                            >
-                                <option value="">Select a category</option>
-                                {categories.length > 0 ? (
-                                    categories.map((cat) => (
-                                        <option key={cat.id} value={cat.id}>
-                                            {cat.name}
-                                        </option>
-                                    ))
-                                ) : null}
-                            </Form.Control>
+                            <Select
+                                options={options}
+                                onChange={handleCategoryChange}
+                                value={options.find((option) => option.value === category)}
+                                className="react-select-container"
+                                classNamePrefix="react-select"
+                            />
                         </Form.Group>
 
                         {errors?.category?.map((message, idx) => (
