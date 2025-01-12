@@ -36,12 +36,11 @@ function PostCreateForm() {
     const imageInput = useRef(null);
     const history = useHistory();
 
-    // Fetch categories with images
     useEffect(() => {
         axiosReq
             .get("https://8000-annanahit-drfapi-fa28dgkrr6c.ws.codeinstitute-ide.net/postcategories/")
             .then((response) => {
-                setCategories(response.data.results); // API returns categories
+                setCategories(response.data.results);
             })
             .catch((error) => {
                 console.error("Error fetching post categories:", error);
@@ -49,7 +48,6 @@ function PostCreateForm() {
             });
     }, []);
 
-    // Generate options for react-select
     const categoryOptions = categories.map((cat) => ({
         value: cat.id,
         label: (
@@ -66,7 +64,6 @@ function PostCreateForm() {
         ),
     }));
 
-    // Handle form data changes
     const handleChange = (event) => {
         const { name, value } = event.target;
         setPostData((prevData) => ({
@@ -88,7 +85,6 @@ function PostCreateForm() {
         }
     };
 
-    // Handle react-select changes
     const handleCategoryChange = (selectedOption) => {
         setPostData((prevData) => ({
             ...prevData,
@@ -184,7 +180,6 @@ function PostCreateForm() {
                     </Container>
                 </Col>
 
-                {/* Image Upload */}
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container
                         className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
@@ -228,9 +223,7 @@ function PostCreateForm() {
                         ))}
                     </Container>
                 </Col>
-
-                {/* Buttons */}
-                <div className="text-center mt-3">
+                <div className="text-center StackedButtons">
                     <Button
                         className={`${btnStyles.Button} ${btnStyles.Blue}`}
                         onClick={() => history.goBack()}
