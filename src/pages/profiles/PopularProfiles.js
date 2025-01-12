@@ -15,6 +15,40 @@ const PopularProfiles = ({ mobile }) => {
     const { popularProfiles } = profileData;
     const currentUser = useCurrentUser();
 
+    const handleFollow = async (profile) => {
+        try {
+            const { data } = await axiosReq.post("/follows/", { followed: profile.id });
+            setProfileData((prevState) => ({
+                ...prevState,
+                popularProfiles: {
+                    ...prevState.popularProfiles,
+                    results: prevState.popularProfiles.results.map((p) =>
+                        p.id === profile.id ? { ...p, following_id: data.id } : p
+                    ),
+                },
+            }));
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const handleUnfollow = async (profile) => {
+        try {
+            await axiosReq.delete(`/follows/${profile.following_id}/`);
+            setProfileData((prevState) => ({
+                ...prevState,
+                popularProfiles: {
+                    ...prevState.popularProfiles,
+                    results: prevState.popularProfiles.results.map((p) =>
+                        p.id === profile.id ? { ...p, following_id: null } : p
+                    ),
+                },
+            }));
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     useEffect(() => {
         const handleMount = async () => {
             try {
@@ -26,7 +60,7 @@ const PopularProfiles = ({ mobile }) => {
                     popularProfiles: data,
                 }));
             } catch (err) {
-                //console.log(err);
+                console.log("Error loading popular profiles.");
             }
         };
 
@@ -35,8 +69,7 @@ const PopularProfiles = ({ mobile }) => {
 
     return (
         <Container
-            className={`${appStyles.Content} ${mobile && "d-lg-none text-center mb-3"
-                }`}
+            className={`${appStyles.Content} ${mobile && "d-lg-none text-center mb-3"}`}
         >
             {popularProfiles.results.length ? (
                 <>
@@ -44,12 +77,12 @@ const PopularProfiles = ({ mobile }) => {
                     {mobile ? (
                         <div className="d-flex justify-content-around">
                             {popularProfiles.results.slice(0, 4).map((profile) => (
-                                <Profile key={profile.id} profile={profile} mobile />
+                                <Profile key={profile.id} profile={profile} mobile handleFollow={handleFollow} handleUnfollow={handleUnfollow} />
                             ))}
                         </div>
                     ) : (
                         popularProfiles.results.map((profile) => (
-                            <Profile key={profile.id} profile={profile} />
+                            <Profile key={profile.id} profile={profile} handleFollow={handleFollow} handleUnfollow={handleUnfollow} />
                         ))
                     )}
                 </>
