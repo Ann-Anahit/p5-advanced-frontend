@@ -1,7 +1,12 @@
 import React from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
+
+import { Card, Col } from "react-bootstrap";
+import Media from "react-bootstrap/Media";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -54,7 +59,7 @@ const Post = (props) => {
                 ),
             }));
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
     };
 
@@ -70,14 +75,14 @@ const Post = (props) => {
                 ),
             }));
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
     };
 
     return (
         <Card className={styles.Post}>
             <Card.Body>
-                <Row className="align-items-center justify-content-between">
+                <Media className="align-items-center justify-content-between">
                     <Col xs="auto">
                         <Link to={`/profiles/${profile_id}`} className="d-flex flex-column align-items-start">
                             <div className="d-flex align-items-center">
@@ -97,7 +102,7 @@ const Post = (props) => {
                             )}
                         </div>
                     </Col>
-                </Row>
+                </Media>
                 <span>
                     Category:{" "}
                     {category ? (
