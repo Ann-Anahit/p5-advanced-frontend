@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -7,9 +6,9 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
+import Select from "react-select";
 
 import Asset from "../../components/Asset";
-
 import Upload from "../../assets/upload.png";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
@@ -26,34 +25,55 @@ function PostCreateForm() {
     const [wordCount, setWordCount] = useState(0);
     const [categories, setCategories] = useState([]);
 
-    useEffect(() => {
-        axiosReq.get('https://8000-annanahit-drfapi-fa28dgkrr6c.ws.codeinstitute-ide.net/postcategories/')
-            .then((response) => {
-                setCategories(response.data.results); // Assuming the API returns data in a similar structure
-            })
-            .catch((error) => {
-                console.error("Error fetching post categories:", error);
-                setCategories([]); // Clear categories on error
-            });
-    }, []);
-
     const [postData, setPostData] = useState({
         title: "",
         content: "",
         image: "",
         category: "",
     });
-    const { title, content, image, category } = postData;
 
+    const { title, content, image, category } = postData;
     const imageInput = useRef(null);
     const history = useHistory();
 
+    // Fetch categories with images
+    useEffect(() => {
+        axiosReq
+            .get("https://8000-annanahit-drfapi-fa28dgkrr6c.ws.codeinstitute-ide.net/postcategories/")
+            .then((response) => {
+                setCategories(response.data.results); // API returns categories
+            })
+            .catch((error) => {
+                console.error("Error fetching post categories:", error);
+                setCategories([]);
+            });
+    }, []);
+
+    // Generate options for react-select
+    const categoryOptions = categories.map((cat) => ({
+        value: cat.id,
+        label: (
+            <div className="d-flex align-items-center">
+                {cat.image && (
+                    <img
+                        src={cat.image}
+                        alt={cat.name}
+                        style={{ width: "20px", height: "20px", marginRight: "8px" }}
+                    />
+                )}
+                {cat.name}
+            </div>
+        ),
+    }));
+
+    // Handle form data changes
     const handleChange = (event) => {
         const { name, value } = event.target;
         setPostData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
+
         if (name === "content") {
             const words = value.trim().split(/\s+/);
             if (words.length > 50) {
@@ -61,12 +81,19 @@ function PostCreateForm() {
                     ...prev,
                     content: ["Content cannot exceed 50 words."],
                 }));
-                return;
             } else {
                 setErrors((prev) => ({ ...prev, content: null }));
             }
             setWordCount(words.length);
         }
+    };
+
+    // Handle react-select changes
+    const handleCategoryChange = (selectedOption) => {
+        setPostData((prevData) => ({
+            ...prevData,
+            category: selectedOption?.value || "",
+        }));
     };
 
     const handleChangeImage = (event) => {
@@ -86,7 +113,6 @@ function PostCreateForm() {
         formData.append("title", title);
         formData.append("content", content);
         formData.append("category", category);
-        console.log("Selected Category:", category);
 
         if (imageInput.current.files.length > 0) {
             formData.append("image", imageInput.current.files[0]);
@@ -112,23 +138,13 @@ function PostCreateForm() {
                     >
                         <Form.Group>
                             <Form.Label>Category</Form.Label>
-                            <Form.Control
-                                as="select"
-                                name="category"
-                                value={category}
-                                onChange={handleChange}
-                            >
-                                <option value="">Select a category</option>
-                                {categories.length > 0 ? (
-                                    categories.map((cat) => (
-                                        <option key={cat.id} value={cat.id}>
-                                            {cat.name}
-                                        </option>
-                                    ))
-                                ) : null}
-                            </Form.Control>
+                            <Select
+                                options={categoryOptions}
+                                onChange={handleCategoryChange}
+                                className="react-select-container"
+                                classNamePrefix="react-select"
+                            />
                         </Form.Group>
-
                         {errors?.category?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
                                 {message}
@@ -167,6 +183,8 @@ function PostCreateForm() {
                         ))}
                     </Container>
                 </Col>
+
+                {/* Image Upload */}
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container
                         className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
@@ -203,7 +221,6 @@ function PostCreateForm() {
                                 className={styles.HiddenFileInput}
                             />
                         </Form.Group>
-
                         {errors?.image?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
                                 {message}
@@ -211,6 +228,8 @@ function PostCreateForm() {
                         ))}
                     </Container>
                 </Col>
+
+                {/* Buttons */}
                 <div className="text-center mt-3">
                     <Button
                         className={`${btnStyles.Button} ${btnStyles.Blue}`}
