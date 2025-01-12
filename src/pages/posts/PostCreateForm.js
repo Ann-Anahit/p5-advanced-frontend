@@ -40,7 +40,7 @@ function PostCreateForm() {
         axiosReq
             .get("https://8000-annanahit-drfapi-fa28dgkrr6c.ws.codeinstitute-ide.net/postcategories/")
             .then((response) => {
-                console.log("Fetched categories:", response.data.results); // Log category data
+                console.log("Fetched categories:", response.data.results); //
                 setCategories(response.data.results);
             })
             .catch((error) => {
@@ -67,7 +67,7 @@ function PostCreateForm() {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        console.log(`Field changed: ${name}, Value: ${value}`); // Log field changes
+        console.log(`Field changed: ${name}, Value: ${value}`);
         setPostData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -88,7 +88,7 @@ function PostCreateForm() {
     };
 
     const handleCategoryChange = (selectedOption) => {
-        console.log("Selected category:", selectedOption?.value); // Log selected category
+        console.log("Selected category:", selectedOption?.value);
         setPostData((prevData) => ({
             ...prevData,
             category: selectedOption?.value || "",
@@ -97,7 +97,7 @@ function PostCreateForm() {
 
     const handleChangeImage = (event) => {
         if (event.target.files.length) {
-            console.log("Selected image:", event.target.files[0]); // Log selected image
+            console.log("Selected image:", event.target.files[0]);
             URL.revokeObjectURL(image);
             setPostData({
                 ...postData,
@@ -108,7 +108,15 @@ function PostCreateForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("Submitting form data:", { title, content, category, image }); // Log form data
+        console.log("Submitting form data:", { title, content, category, image });
+
+        if (!title || !content || !category) {
+            setErrors({
+                ...errors,
+                form: "Please fill in all required fields.",
+            });
+            return;
+        }
         const formData = new FormData();
 
         formData.append("title", title);
@@ -121,10 +129,9 @@ function PostCreateForm() {
 
         try {
             const { data } = await axiosReq.post("/posts/", formData);
-            console.log("Post created successfully:", data); // Log success response
+            console.log("Post created successfully:", data);
             history.push(`/posts/${data.id}`);
         } catch (err) {
-            console.error("Error creating post:", err.response?.data); // Log error response
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
             }
