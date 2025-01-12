@@ -22,7 +22,7 @@ const Post = (props) => {
         updated_at,
         postPage,
         setPosts,
-        category_name,
+        category,
     } = props;
 
     const currentUser = useCurrentUser();
@@ -47,11 +47,11 @@ const Post = (props) => {
             const { data } = await axiosRes.post("/likes/", { post: id });
             setPosts((prevPosts) => ({
                 ...prevPosts,
-                results: prevPosts.results.map((post) => {
-                    return post.id === id
+                results: prevPosts.results.map((post) =>
+                    post.id === id
                         ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
-                        : post;
-                }),
+                        : post
+                ),
             }));
         } catch (err) {
             console.log(err);
@@ -63,11 +63,11 @@ const Post = (props) => {
             await axiosRes.delete(`/likes/${like_id}/`);
             setPosts((prevPosts) => ({
                 ...prevPosts,
-                results: prevPosts.results.map((post) => {
-                    return post.id === id
+                results: prevPosts.results.map((post) =>
+                    post.id === id
                         ? { ...post, likes_count: post.likes_count - 1, like_id: null }
-                        : post;
-                }),
+                        : post
+                ),
             }));
         } catch (err) {
             console.log(err);
@@ -100,14 +100,23 @@ const Post = (props) => {
                 </Row>
                 <span className="text-muted">
                     Category:
-                    {category_name ? (
+                    {category && category.name ? (
                         <>
-                            <span className="ml-2">{category_name}</span>
+                            {category.image && (
+                                <img
+                                    src={category.image}
+                                    alt={category.name}
+                                    height="20"
+                                    style={{ marginLeft: "8px" }}
+                                />
+                            )}
+                            {category.name}
                         </>
                     ) : (
                         "None"
                     )}
                 </span>
+
             </Card.Body>
             <Link to={`/posts/${id}`}>
                 <Card.Img src={image} alt={title} />
