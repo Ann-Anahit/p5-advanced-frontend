@@ -13,7 +13,7 @@ export const handlers = [
                 last_name: "",
                 profile_id: 2,
                 profile_image:
-                    "https://res.cloudinary.com/ddbihgvkh/image/upload/v1736421108/default_profile_f6vj23.jpg"
+                    "https://res.cloudinary.com/ddbihgvkh/image/upload/v1736698824/image_profile_p4bhnp.jpg"
             })
         );
     }),
