@@ -8,7 +8,7 @@ import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 import Comment from "../comments/Comment";
-
+import styles from "../../styles/Post.module.css";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
@@ -49,8 +49,7 @@ function PostPage() {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <Post {...postData} setPosts={setPost} postPage />
 
-        <span className="text-muted">
-
+        <span>
           {category ? (
             <>
               {category.image && (
@@ -58,14 +57,16 @@ function PostPage() {
                   src={category.image}
                   alt={category.name}
                   height="20"
-                  style={{ marginLeft: "8px" }}
+                  className={styles.CategoryImage}
                 />
               )}
+              {category.name}
             </>
           ) : (
             "None"
           )}
         </span>
+
 
         <Container className={appStyles.Content}>
           {currentUser ? (

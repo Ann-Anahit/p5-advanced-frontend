@@ -24,8 +24,8 @@ h5 {
 }
 
 .CategoryImage {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   object-fit: cover;
   vertical-align: middle;

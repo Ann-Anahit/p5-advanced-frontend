@@ -98,16 +98,16 @@ const Post = (props) => {
                         </div>
                     </Col>
                 </Row>
-                <span className="text-muted">
-                    Category:
-                    {category && category.name ? (
+                <span>
+                    {category ? (
                         <>
+                            Category:
                             {category.image && (
                                 <img
                                     src={category.image}
                                     alt={category.name}
                                     height="20"
-                                    style={{ marginLeft: "8px" }}
+                                    className={styles.CategoryImage}
                                 />
                             )}
                             {category.name}
@@ -116,6 +116,7 @@ const Post = (props) => {
                         "None"
                     )}
                 </span>
+
 
             </Card.Body>
             <Link to={`/posts/${id}`}>
