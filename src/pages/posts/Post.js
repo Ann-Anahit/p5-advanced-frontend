@@ -3,9 +3,9 @@ import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import { Card, Col } from "react-bootstrap";
-import Media from "react-bootstrap/Media";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import Row from "react-bootstrap/Row";
 
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
@@ -82,7 +82,7 @@ const Post = (props) => {
     return (
         <Card className={styles.Post}>
             <Card.Body>
-                <Media className="align-items-center justify-content-between">
+                <Row className="align-items-center justify-content-between">
                     <Col xs="auto">
                         <Link to={`/profiles/${profile_id}`} className="d-flex flex-column align-items-start">
                             <div className="d-flex align-items-center">
@@ -102,7 +102,7 @@ const Post = (props) => {
                             )}
                         </div>
                     </Col>
-                </Media>
+                </Row>
                 <span>
                     Category:{" "}
                     {category ? (
