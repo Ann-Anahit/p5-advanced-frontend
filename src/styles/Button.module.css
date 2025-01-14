@@ -41,7 +41,7 @@
 .BlueOutline:hover,
 .Bright:hover {
   background-color: #2C1A47;
-  color: #C36BE4;
+  color: aliceblue;
 }
 
 .BlueOutline,
@@ -59,7 +59,7 @@
 .Black:hover,
 .BlackOutline {
   background-color: #855DCD;
-  color: #2C1A47;
+  color: aliceblue;
 }
 
 .Button:disabled {
