@@ -8,7 +8,7 @@ import Profile from "./Profile";
 
 const PopularProfiles = ({ mobile }) => {
     const [profileData, setProfileData] = useState({
-        // we will use the pageProfile later!
+
         pageProfile: { results: [] },
         popularProfiles: { results: [] },
     });
