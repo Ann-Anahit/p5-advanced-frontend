@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
@@ -33,6 +33,30 @@ const Post = (props) => {
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
     const history = useHistory();
+
+    const [categories, setCategories] = useState([]);
+    const [categoryDetails, setCategoryDetails] = useState(null);
+
+    useEffect(() => {
+        // Fetch categories from the API
+        axiosRes
+            .get("https://8000-annanahit-drfapi-fa28dgkrr6c.ws.codeinstitute-ide.net/postcategories/")
+            .then((response) => {
+                setCategories(response.data.results);
+            })
+            .catch((error) => {
+                console.error("Error fetching categories:", error.response?.data);
+                setCategories([]);
+            });
+    }, []);
+
+    useEffect(() => {
+        // Find and set the category details for the current post
+        if (categories.length > 0) {
+            const selectedCategory = categories.find((cat) => cat.id === category);
+            setCategoryDetails(selectedCategory || null);
+        }
+    }, [categories, category]);
 
     const handleEdit = () => {
         history.push(`/posts/${id}/edit`);
@@ -105,23 +129,22 @@ const Post = (props) => {
                 </Row>
                 <span>
                     Category:{" "}
-                    {category ? (
+                    {categoryDetails ? (
                         <>
-                            {category.image && (
+                            {categoryDetails.image && (
                                 <img
-                                    src={category.image}
-                                    alt={category.name}
+                                    src={categoryDetails.image}
+                                    alt={categoryDetails.name}
                                     height="20"
                                     className={styles.CategoryImage}
                                 />
                             )}
-                            {category.name}
+                            {categoryDetails.name}
                         </>
                     ) : (
                         "None"
                     )}
                 </span>
-
             </Card.Body>
             <Link to={`/posts/${id}`}>
                 <Card.Img src={image} alt={title} />
