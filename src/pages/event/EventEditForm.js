@@ -37,7 +37,6 @@ function EventEditForm() {
                 setEventData(data);
             } catch (err) {
                 console.error(err);
-                // Handle error appropriately
             }
         };
 
@@ -148,6 +147,23 @@ function EventEditForm() {
                     {message}
                 </Alert>
             ))}
+
+            <Form.Group>
+                <Form.Label>Location</Form.Label>
+                <Form.Control
+                    className={styles.Input}
+                    type="text"
+                    name="event_location"
+                    value={event_location}
+                    onChange={handleChange}
+                />
+            </Form.Group>
+            {errors?.event_location?.map((message, idx) => (
+                <Alert variant="warning" key={idx}>
+                    {message}
+                </Alert>
+            ))}
+
 
             <Button
                 className={`${btnStyles.Button} ${btnStyles.Color}`}

@@ -11,7 +11,6 @@ import {
     Modal,
 } from "react-bootstrap";
 
-
 const Event = (props) => {
     const {
         id,
@@ -22,6 +21,7 @@ const Event = (props) => {
         event_image,
         event_start,
         event_duration,
+        event_location,
         eventPage,
     } = props;
 
@@ -42,7 +42,6 @@ const Event = (props) => {
         } catch (err) { }
         setShowModal(false);
     };
-
 
     return (
         <>
@@ -90,6 +89,10 @@ const Event = (props) => {
                             <i className="fa-solid fa-users fa-xl ml-3" />
                         </div>
 
+                    </div>
+                    <div className="d-flex align-items-center mt-2">
+                        <i className="fa-solid fa-map-marker-alt fa-xl" />
+                        <span>{event_location ? event_location : "Location not available"}</span>
                     </div>
                 </Card.Body>
             </Card >

@@ -14,17 +14,17 @@ import { fetchMoreData } from "../../utils/utils";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 function MyEvents({ message, filter = "" }) {
-    const [events, setEvents] = useState({ results: [] });
+    const [event, setEvent] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
     const { pathname } = useLocation();
     const [query, setQuery] = useState("");
     useEffect(() => {
-        const fetchEvents = async () => {
+        const fetchEvent = async () => {
             try {
                 const { data } = await axiosReq.get(
-                    `/events/?${filter}search=${query}`
+                    `/event/?${filter}search=${query}`
                 );
-                setEvents(data);
+                setEvent(data);
                 setHasLoaded(true);
             } catch (err) {
             }
@@ -32,7 +32,7 @@ function MyEvents({ message, filter = "" }) {
 
         setHasLoaded(false);
         const timer = setTimeout(() => {
-            fetchEvents();
+            fetchEvent();
         }, 1000);
 
         return () => {
@@ -58,15 +58,15 @@ function MyEvents({ message, filter = "" }) {
                 </Form>
                 {hasLoaded ? (
                     <>
-                        {events.results.length ? (
+                        {event.results.length ? (
                             <InfiniteScroll
-                                children={events.results.map((event) => (
-                                    <Event key={event.id} {...event} setEvents={setEvents} />
+                                children={event.results.map((event) => (
+                                    <Event key={event.id} {...event} setEvents={setEvent} />
                                 ))}
-                                dataLength={events.results.length}
+                                dataLength={event.results.length}
                                 loader={<Asset spinner />}
-                                hasMore={!!events.next}
-                                next={() => fetchMoreData(events, setEvents)}
+                                hasMore={!!event.next}
+                                next={() => fetchMoreData(event, setEvent)}
                             />
                         ) : (
                             <Container
