@@ -1,0 +1,31 @@
+.Container {
+    min-height: 343px;
+    padding: 32px 8px;
+}
+
+.Input {
+    background: #ffffff;
+    border: 1px solid #dadadf;
+    box-sizing: border-box;
+    border-radius: 2px;
+    color: #855DCD;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.Header {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    line-height: 19px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.Row {
+    height: 70vh;
+    display: flex;
+    align-items: center;
+}
