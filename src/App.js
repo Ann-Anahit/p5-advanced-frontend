@@ -16,6 +16,10 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import NotFound from "./components/NotFound";
 import HomePage from "./pages/HomePage";
+import EventCreateForm from "./pages/event/EventCreateForm";
+import EventPage from "./pages/event/EventPage";
+import EventEditForm from "./pages/event/EventEditForm";
+import MyEvents from "./pages/event/MyEvents";
 
 const App = () => {
   const currentUser = useCurrentUser();
@@ -72,6 +76,12 @@ const App = () => {
             <Route exact path="/posts/create" component={PostCreateForm} />
             <Route exact path="/posts/:id" component={PostPage} />
             <Route exact path="/posts/:id/edit" component={PostEditForm} />
+
+            {/* Event Management Routes */}
+            <Route exact path="/events/create" component={EventCreateForm} />
+            <Route exact path="/events/:id" component={EventPage} />
+            <Route exact path="/events/:id/edit" component={EventEditForm} />
+            <Route exact path="/events/myevents" component={MyEvents} />
 
             {/* Profile Routes */}
             <Route exact path="/profiles/:id" component={ProfilePage} />
