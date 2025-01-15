@@ -55,7 +55,7 @@ function EventCreateForm() {
         formData.append("event_image", imageInput.current.files[0]);
         formData.append("event_start", event_start);
         formData.append("event_duration", event_duration);
-        formData.append("event_location", event_location);
+        formData.append("location", event_location);
 
         try {
             const { data } = await axiosReq.post("/event/", formData);
@@ -167,7 +167,7 @@ function EventCreateForm() {
                                     </figure>
                                     <div>
                                         <Form.Label
-                                            className={`${btnStyles.Button} ${btnStyles.Button}`}
+                                            className={`${btnStyles.Button} ${btnStyles.Color}`}
                                             htmlFor="image-upload"
                                         >
                                             Change the image
@@ -201,13 +201,13 @@ function EventCreateForm() {
                         ))}
 
                         <Button
-                            className={`${btnStyles.Button} ${btnStyles.margin}`}
+                            className={`${btnStyles.Button} ${btnStyles.Color} ${btnStyles.center}`}
                             onClick={() => history.push('/')}
                         >
                             Cancel
                         </Button>
                         <Button
-                            className={`${btnStyles.Button} ${btnStyles.Button}`}
+                            className={`${btnStyles.Button} ${btnStyles.Color}`}
                             type="submit"
                         >
                             Create
