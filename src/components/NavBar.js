@@ -37,6 +37,26 @@ const NavBar = () => {
         </NavLink>
     );
 
+    const addEventIcon = (
+        <NavLink
+            className={styles.NavLink}
+            activeClassName={styles.Active}
+            to="/events/create"
+        >
+            <i className="fas fa-calendar-plus"></i>Add event
+        </NavLink>
+    );
+
+    const myEventsIcon = (
+        <NavLink
+            className={styles.NavLink}
+            activeClassName={styles.Active}
+            to="/events/myevents"
+        >
+            <i className="fas fa-calendar-alt"></i>My events
+        </NavLink>
+    );
+
     const loggedInIcons = (
         <>
             <NavLink
@@ -53,6 +73,9 @@ const NavBar = () => {
             >
                 <i className="fas fa-heart"></i>Liked
             </NavLink>
+            {addPostIcon}
+            {addEventIcon}
+            {myEventsIcon}
             <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
                 <i className="fas fa-sign-out-alt"></i>Sign out
             </NavLink>
