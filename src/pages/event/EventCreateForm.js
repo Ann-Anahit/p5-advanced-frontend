@@ -15,7 +15,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function EventCreateForm() {
-    useRedirect('loggedOut')
+    useRedirect('loggedOut');
     const [errors, setErrors] = useState({});
     const [postData, setPostData] = useState({
         title: "",
@@ -57,10 +57,9 @@ function EventCreateForm() {
         formData.append("event_duration", event_duration);
         formData.append("event_location", event_location);
 
-
         try {
-            const { data } = await axiosReq.post("/events/", formData);
-            history.push(`/events/${data.id}`);
+            const { data } = await axiosReq.post("/event/", formData);
+            history.push(`/event/${data.id}`);
         } catch (err) {
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
@@ -68,151 +67,152 @@ function EventCreateForm() {
         }
     };
 
-    const textFields = (
-        <div className="text-center">
-            <Form.Group>
-                <Form.Label>Title</Form.Label>
-                <Form.Control
-                    className={styles.Input}
-                    type="text"
-                    name="title"
-                    value={title}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            {errors?.title?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
-
-            <Form.Group>
-                <Form.Label>Description</Form.Label>
-                <Form.Control
-                    className={styles.Input}
-                    as="textarea"
-                    rows={6}
-                    name="description"
-                    value={description}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            {errors?.description?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
-
-            <Form.Group>
-                <Form.Label>Event Start</Form.Label>
-                <Form.Control
-                    className={styles.Input}
-                    type="datetime-local"
-                    name="event_date"
-                    value={event_start}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            {errors?.event_date?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
-            <Form.Group>
-                <Form.Label>Event Duration</Form.Label>
-                <Form.Control
-                    className={styles.Input}
-                    type="datetime-local"
-                    name="event_duration"
-                    value={event_duration}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            {errors?.event_duration?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
-
-            <Button
-                className={`${btnStyles.Button} ${btnStyles.Color}`}
-                onClick={() => history.goBack()}
-            >
-                Cancel
-            </Button>
-            <Button
-                className={`${btnStyles.Button} ${btnStyles.Color}`}
-                type="submit"
-            >
-                Create
-            </Button>
-        </div>
-    );
-
     return (
         <Row className={`justify-content-center ${styles.Row}`}>
             <Col className="my-auto py-2 p-md-2" sm={12}>
-                <h1 className={styles.Header}>create an event</h1>
+                <h1 className={styles.Header}>Create an Event</h1>
                 <Form onSubmit={handleSubmit}>
-                    <Row>
-                        <Col className="mx-3 py-2 p-0 p-md-2" md={6} lg={7}>
-                            <Container
-                                className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-                            >
-                                <Form.Group className="text-center">
-                                    {event_image ? (
-                                        <>
-                                            <figure>
-                                                <Image
-                                                    className={appStyles.Image}
-                                                    src={event_image}
-                                                    rounded
-                                                />
-                                            </figure>
-                                            <div>
-                                                <Form.Label
-                                                    className={`${btnStyles.Button} ${btnStyles.Color}`}
-                                                    htmlFor="image-upload"
-                                                >
-                                                    Change the image
-                                                </Form.Label>
-                                            </div>
-                                        </>
-                                    ) : (
+                    <Container className={`${appStyles.Content} ${styles.Container}`}>
+                        <Form.Group>
+                            <Form.Label>Title</Form.Label>
+                            <Form.Control
+                                className={styles.Input}
+                                type="text"
+                                name="title"
+                                value={title}
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                        {errors?.title?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
+
+                        <Form.Group>
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control
+                                className={styles.Input}
+                                as="textarea"
+                                rows={6}
+                                name="description"
+                                value={description}
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                        {errors?.description?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
+
+                        <Form.Group>
+                            <Form.Label>Event Start</Form.Label>
+                            <Form.Control
+                                className={styles.Input}
+                                type="datetime-local"
+                                name="event_start"
+                                value={event_start}
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                        {errors?.event_start?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
+
+                        <Form.Group>
+                            <Form.Label>Event Duration</Form.Label>
+                            <Form.Control
+                                className={styles.Input}
+                                type="text"
+                                name="event_duration"
+                                value={event_duration}
+                                onChange={handleChange}
+                                placeholder="e.g., 2 hours, 3 days, 4 months"
+                            />
+                        </Form.Group>
+                        {errors?.event_duration?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
+
+                        <Form.Group>
+                            <Form.Label>Location</Form.Label>
+                            <Form.Control
+                                className={styles.Input}
+                                type="text"
+                                name="event_location"
+                                value={event_location}
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                        {errors?.event_location?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
+
+                        <Form.Group className="text-center">
+                            {event_image ? (
+                                <>
+                                    <figure>
+                                        <Image
+                                            className={appStyles.Image}
+                                            src={event_image}
+                                            rounded
+                                        />
+                                    </figure>
+                                    <div>
                                         <Form.Label
-                                            className="d-flex justify-content-center"
+                                            className={`${btnStyles.Button} ${btnStyles.Button}`}
                                             htmlFor="image-upload"
                                         >
-                                            <Asset
-                                                src={Upload}
-                                                message="Click or tap to upload an image"
-                                            />
+                                            Change the image
                                         </Form.Label>
-                                    )}
+                                    </div>
+                                </>
+                            ) : (
+                                <Form.Label
+                                    className="d-flex justify-content-center"
+                                    htmlFor="image-upload"
+                                >
+                                    <Asset
+                                        src={Upload}
+                                        message="Click or tap to upload an image"
+                                    />
+                                </Form.Label>
+                            )}
+                            <Form.Control
+                                id="image-upload"
+                                className="d-none"
+                                type="file"
+                                accept="image/*"
+                                onChange={handleChangeImage}
+                                ref={imageInput}
+                            />
+                        </Form.Group>
+                        {errors?.event_image?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
 
-                                    <Form.Group controlId="image-upload" className="d-none">
-                                        <Form.Control
-                                            className={styles.Input}
-                                            type="file"
-                                            accept="image/*"
-                                            onChange={handleChangeImage}
-                                            ref={imageInput}
-                                        />
-                                    </Form.Group>
-                                </Form.Group>
-                                {errors?.event_image?.map((message, idx) => (
-                                    <Alert variant="warning" key={idx}>
-                                        {message}
-                                    </Alert>
-                                ))}
-
-                                <div className="d-md-none">{textFields}</div>
-                            </Container>
-                        </Col>
-                        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-                            <Container className={appStyles.Content}>{textFields}</Container>
-                        </Col>
-                    </Row>
+                        <Button
+                            className={`${btnStyles.Button} ${btnStyles.margin}`}
+                            onClick={() => history.push('/')}
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            className={`${btnStyles.Button} ${btnStyles.Button}`}
+                            type="submit"
+                        >
+                            Create
+                        </Button>
+                    </Container>
                 </Form>
             </Col>
         </Row>
