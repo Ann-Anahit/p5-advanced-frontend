@@ -27,6 +27,7 @@ function MyEvents({ message, filter = "" }) {
                 setEvent(data);
                 setHasLoaded(true);
             } catch (err) {
+                console.log(err)
             }
         };
 
