@@ -55,11 +55,10 @@ const HomePage = () => {
             {/* Text Content */}
             <h1 className={styles.headline}>Meet&Mingle</h1>
             <h2 className={styles.subtitle}>Connect, Discover and Enjoy</h2>
-            <p className={styles.paragraph}>
-                Welcome to <span className={styles.highlight}>Meet&Mingle</span>, is your vibrant space to connect, share, and engage with a community of like-minded individuals. Whether you're passionate about Lifestyle, Music, Art, Food, Business, or Events, our platform provides a space where creativity thrives and connections grow.
+            <div className={styles.paragraph}>
+                Welcome to <span className={styles.highlight}>Meet&Mingle</span>, is your vibrant space to connect, share, and engage with a community of like-minded individuals. Whether you're passionate about Lifestyle, Music, Art, Food, or Business, our platform provides a space where creativity thrives and connections grow.
                 <h3>Create Your Account</h3>
-                Sign up and create your personal profile to start posting, sharing your experiences, and connecting with others. With categories tailored to your interests, your posts will be seen by a community that truly appreciates your content.
-
+                <p>Sign up and create your personal profile to start posting and sharing your experiences. With tailored categories based on your interests, your content will be seen by a community that genuinely appreciates it. Additionally, you have the opportunity to share and create events.</p>
                 <h3>Categories for Every Passion</h3>
 
                 <strong>Lifestyle:</strong> Share your personal journey, daily experiences, and tips for a fulfilling lifestyle.
@@ -67,8 +66,7 @@ const HomePage = () => {
                 <strong>Art:</strong>  Showcase your artwork, express creativity, and engage in art-focused conversations.
                 <strong>Food:</strong>  Share recipes, food photography, dining experiences, and foodie adventures.
                 <strong>Business:</strong>  Connect with entrepreneurs, discuss trends, and share business insights.
-                <strong>Events:</strong>  Stay updated on upcoming events, gatherings, and community activities.
-            </p>
+            </div>
 
             {/* Post List */}
             <div className={styles.postsContainer}>
