@@ -49,11 +49,11 @@ const Events = (props) => {
                             <Card.Img
                                 src={event_image}
                                 alt={title}
-                                className={`${styles.EventImage} rounded mb-3`}
+                                className={`${styles.EventImage} mb-3`}
                             />
                         </Link>
 
-                        <div className={`${styles.EventMeta} mb-3`}>
+                        <div className="mb-3">
                             <div className="d-flex align-items-center justify-content-center">
                                 <i className="fa-solid fa-calendar-days me-2" />
                                 <span>{event_start}</span>
