@@ -51,7 +51,7 @@ const NavBar = () => {
         <NavLink
             className={styles.NavLink}
             activeClassName={styles.Active}
-            to="/events/myevents"
+            to="/events/"
         >
             <i className="fas fa-calendar-alt"></i>My events
         </NavLink>
@@ -73,7 +73,6 @@ const NavBar = () => {
             >
                 <i className="fas fa-heart"></i>Liked
             </NavLink>
-            {addPostIcon}
             {addEventIcon}
             {myEventsIcon}
             <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
