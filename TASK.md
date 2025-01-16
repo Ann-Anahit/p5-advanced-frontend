@@ -45,6 +45,14 @@ migration ✅
 
 - add category field to post model and serializers ✅
 
+## NEW APP 
+events
+- Model ✅
+migration ✅
+- views✅
+- url✅
+- Serializer✅
+
 # IN FRONTEND 
 ## in post APP
 - when the user create new post, can choose a category with dropdown menue ✅
@@ -52,8 +60,3 @@ migration ✅
 - Category has icon, title 
 
 
-1. app um aelacnel renderov
-2. copy anel Post.js
-3. dnel rendery
-4 rendery PostsPage i copina prosto event i apiov
-5. hanel add posty
