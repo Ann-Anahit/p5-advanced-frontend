@@ -1,5 +1,7 @@
 .Container {
   min-height: 360px;
+  padding: 32px 8px;
+
 }
 
 .PostImage {
