@@ -17,7 +17,7 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import NotFound from "./components/NotFound";
 import HomePage from "./pages/HomePage";
 import EventCreateForm from "./pages/event/EventCreateForm";
-import EventPage from "./pages/event/EventPage";
+import EventPage from "./pages/event/EventRenderPage";
 import EventEditForm from "./pages/event/EventEditForm";
 
 const App = () => {
