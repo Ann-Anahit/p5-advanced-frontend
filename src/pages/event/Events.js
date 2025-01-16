@@ -4,13 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import {
-    Col,
-    Card,
-    Media,
-    Button,
-    Modal,
-} from "react-bootstrap";
+import { Card, Button, Modal } from "react-bootstrap";
 
 const Events = (props) => {
     const {
@@ -40,80 +34,79 @@ const Events = (props) => {
         try {
             await axiosRes.delete(`/event/${id}/`);
             history.goBack();
-        } catch (err) { }
+        } catch (err) {
+            console.error(err);
+        }
         setShowModal(false);
     };
 
     return (
         <>
-            <Card className={styles.Event}>
-                <Card.Body>
-                    <Media className="d-flex align-items-center justify-content-between">
-                        <Col xs="auto">
-                            <div className="d-flex align-items-center">
-                                {is_owner && eventPage && (
-                                    <MoreDropdown
-                                        handleEdit={handleEdit}
-                                        handleDelete={handleDelete}
-                                    />
-                                )}
-                            </div>
-                        </Col>
-                        <Link
-                            to={`/event/${id}`}
-                            className="d-flex flex-grow-1 justify-content-center pt-3"
-                        >
-                            {title && (
-                                <Card.Title className="text-center">{title}</Card.Title>
-                            )}
-                        </Link>
-                        <div className="mt-3 p-3 text-center">
-                            {description && <Card.Text>{description}</Card.Text>}
-                        </div>
-                        {is_owner && eventPage && (
-                            <MoreDropdown
-                                handleEdit={handleEdit}
-                                handleDelete={() => setShowModal(true)}
+            <Card className={`${styles.Event} mb-4`}>
+                <Card.Body className="d-flex flex-row align-items-start">
+                    <div className="text-center">
+                        <Link to={`/event/${id}`}>
+                            <Card.Img
+                                src={event_image}
+                                alt={title}
+                                className={`${styles.EventImage} rounded mb-3`}
                             />
-                        )}
-                    </Media>
-                </Card.Body>
-                <Link to={`/event/${id}`}>
-                    <Card.Img src={event_image} alt={title} />
-                </Link>
-                <Card.Body>
-                    <div className="d-flex justify-content-between align-items-center">
-                        <div className="d-flex align-items-center">
-                            Hosted by{" "}
-                            <Link
-                                to={`/profiles/${profile_id}`}
-                                className="d-flex align-items-center ms-2"
-                            >
-                                {owner}
-                            </Link>
-                        </div>
-                        <div className="d-flex align-items-center">
-                            <i className="fa-solid fa-calendar-days fa-xl" />
-                            <span>{event_start}</span>
-                            <i className="fa-solid fa-clock fa-xl ml-3" />
-                            <span>{event_duration ? `${event_duration} hours` : "Duration not available"}</span>
-                        </div>
+                        </Link>
 
+                        <div className={`${styles.EventMeta} mb-3`}>
+                            <div className="d-flex align-items-center justify-content-center">
+                                <i className="fa-solid fa-calendar-days me-2" />
+                                <span>{event_start}</span>
+                                <i className="fa-solid fa-clock ms-4 me-2" />
+                                <span>
+                                    {event_duration ? `${event_duration} hours` : "Duration not available"}
+                                </span>
+                            </div>
+                            <div className="d-flex align-items-center justify-content-center mt-2">
+                                <i className="fa-solid fa-map-marker-alt me-2" />
+                                <span>
+                                    {event_location || "Location not available"}
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div className="d-flex align-items-center mt-2">
-                        <i className="fa-solid fa-map-marker-alt fa-xl" />
-                        <span>{event_location ? event_location : "Location not available"}</span>
+                    <div className="flex-grow-1">
+                        <Link to={`/event/${id}`} className="text-decoration-none">
+                            {title && <Card.Title className="text-start">{title}</Card.Title>}
+                        </Link>
+
+                        {description && (
+                            <Card.Text className="text-start mt-2">{description}</Card.Text>
+                        )}
+
+                        <div className="mt-3">
+                            <div className="d-flex align-items-center mb-2">
+                                <span>Hosted by </span>
+                                <Link
+                                    to={`/profiles/${profile_id}`}
+                                    className="ms-2 text-decoration-none fw-bold"
+                                >
+                                    {owner}
+                                </Link>
+                            </div>
+                        </div>
                     </div>
+
+                    {is_owner && eventPage && (
+                        <MoreDropdown
+                            handleEdit={handleEdit}
+                            handleDelete={() => setShowModal(true)}
+                        />
+                    )}
                 </Card.Body>
-            </Card >
+            </Card>
 
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Confirm Delete</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Are you sure you want to delete this event? This action cannot be
-                    undone.
+                    Are you sure you want to delete this event? This action cannot be undone.
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowModal(false)}>

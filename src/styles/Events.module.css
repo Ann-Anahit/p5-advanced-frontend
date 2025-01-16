@@ -9,3 +9,10 @@
 h5 {
     margin: 0 0;
 }
+
+.EventImage {
+    width: 180px;
+    margin: 4px;
+}
+
+.EventMeta {}
