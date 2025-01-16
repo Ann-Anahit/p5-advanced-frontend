@@ -28,6 +28,8 @@ const Post = (props) => {
         postPage,
         setPosts,
         category,
+        hashtags,
+        inspiration,
     } = props;
 
     const currentUser = useCurrentUser();
@@ -152,6 +154,18 @@ const Post = (props) => {
             <Card.Body>
                 {title && <Card.Title className="text-center">{title}</Card.Title>}
                 {content && <Card.Text>{content}</Card.Text>}
+                {hashtags && (
+                    <Card.Text className="text-muted">
+                        <i className="fas fa-hashtag mr-2" />
+                        <strong>Hashtags:</strong> {hashtags}
+                    </Card.Text>
+                )}
+                {inspiration && (
+                    <Card.Text className="text-muted">
+                        <i className="fas fa-lightbulb mr-2" />
+                        <strong>Inspiration:</strong> {inspiration}
+                    </Card.Text>
+                )}
                 <div className={styles.PostBar}>
                     {is_owner ? (
                         <OverlayTrigger
