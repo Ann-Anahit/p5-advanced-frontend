@@ -70,7 +70,6 @@ function EventCreateForm() {
     return (
         <Row className={`justify-content-center ${styles.Row}`}>
             <Col className="my-auto py-2 p-md-2" sm={12}>
-                <h1 className={styles.Header}>Create an Event</h1>
                 <Form onSubmit={handleSubmit}>
                     <Container className={`${appStyles.Content} ${styles.Container}`}>
                         <Form.Group>
@@ -160,7 +159,7 @@ function EventCreateForm() {
                                 <>
                                     <figure>
                                         <Image
-                                            className={appStyles.Image}
+                                            className={styles.Image}
                                             src={event_image}
                                             rounded
                                         />
@@ -199,19 +198,20 @@ function EventCreateForm() {
                                 {message}
                             </Alert>
                         ))}
-
-                        <Button
-                            className={`${btnStyles.Button} ${btnStyles.Color} ${btnStyles.center}`}
-                            onClick={() => history.push('/')}
-                        >
-                            Cancel
-                        </Button>
-                        <Button
-                            className={`${btnStyles.Button} ${btnStyles.Color}`}
-                            type="submit"
-                        >
-                            Create
-                        </Button>
+                        <div className="text-center StackedButtons">
+                            <Button
+                                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                                onClick={() => history.push('/')}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                                type="submit"
+                            >
+                                Create
+                            </Button>
+                        </div>
                     </Container>
                 </Form>
             </Col>
