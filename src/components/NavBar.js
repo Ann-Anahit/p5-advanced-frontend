@@ -41,7 +41,7 @@ const NavBar = () => {
         <NavLink
             className={styles.NavLink}
             activeClassName={styles.Active}
-            to="/events/create"
+            to="/event/create"
         >
             <i className="fas fa-calendar-plus"></i>Add event
         </NavLink>
@@ -51,7 +51,7 @@ const NavBar = () => {
         <NavLink
             className={styles.NavLink}
             activeClassName={styles.Active}
-            to="/events/"
+            to="/event/"
         >
             <i className="fas fa-calendar-alt"></i>Events
         </NavLink>
@@ -73,7 +73,6 @@ const NavBar = () => {
             >
                 <i className="fas fa-heart"></i>Liked
             </NavLink>
-            {addEventIcon}
             {EventIcon}
             <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
                 <i className="fas fa-sign-out-alt"></i>Sign out
@@ -120,6 +119,7 @@ const NavBar = () => {
                     </Navbar.Brand>
                 </NavLink>
                 {currentUser && addPostIcon}
+                {addEventIcon}
                 <Navbar.Toggle
                     ref={ref}
                     onClick={() => setExpanded(!expanded)}
