@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import styles from "../../styles/Event.module.css";
+import styles from "../../styles/Events.module.css";
 import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import {
+    Col,
     Card,
     Media,
     Button,
     Modal,
 } from "react-bootstrap";
 
-const Event = (props) => {
+const Events = (props) => {
     const {
         id,
         owner,
@@ -32,12 +33,12 @@ const Event = (props) => {
     const [showModal, setShowModal] = useState(false);
 
     const handleEdit = () => {
-        history.push(`/events/${id}/edit`);
+        history.push(`/event/${id}/edit`);
     };
 
     const handleDelete = async () => {
         try {
-            await axiosRes.delete(`/events/${id}/`);
+            await axiosRes.delete(`/event/${id}/`);
             history.goBack();
         } catch (err) { }
         setShowModal(false);
@@ -48,8 +49,18 @@ const Event = (props) => {
             <Card className={styles.Event}>
                 <Card.Body>
                     <Media className="d-flex align-items-center justify-content-between">
+                        <Col xs="auto">
+                            <div className="d-flex align-items-center">
+                                {is_owner && eventPage && (
+                                    <MoreDropdown
+                                        handleEdit={handleEdit}
+                                        handleDelete={handleDelete}
+                                    />
+                                )}
+                            </div>
+                        </Col>
                         <Link
-                            to={`/events/${id}`}
+                            to={`/event/${id}`}
                             className="d-flex flex-grow-1 justify-content-center pt-3"
                         >
                             {title && (
@@ -67,7 +78,7 @@ const Event = (props) => {
                         )}
                     </Media>
                 </Card.Body>
-                <Link to={`/events/${id}`}>
+                <Link to={`/event/${id}`}>
                     <Card.Img src={event_image} alt={title} />
                 </Link>
                 <Card.Body>
@@ -86,7 +97,6 @@ const Event = (props) => {
                             <span>{event_start}</span>
                             <i className="fa-solid fa-clock fa-xl ml-3" />
                             <span>{event_duration ? `${event_duration} hours` : "Duration not available"}</span>
-                            <i className="fa-solid fa-users fa-xl ml-3" />
                         </div>
 
                     </div>
@@ -118,4 +128,4 @@ const Event = (props) => {
     );
 };
 
-export default Event;
+export default Events;
