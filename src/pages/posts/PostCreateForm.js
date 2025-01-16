@@ -30,9 +30,11 @@ function PostCreateForm() {
         content: "",
         image: "",
         category: "",
+        hashtags: "",
+        inspiration: "",
     });
 
-    const { title, content, image, category } = postData;
+    const { title, content, image, category, hashtags, inspiration } = postData;
     const imageInput = useRef(null);
     const history = useHistory();
 
@@ -40,7 +42,6 @@ function PostCreateForm() {
         axiosReq
             .get("https://8000-annanahit-drfapi-fa28dgkrr6c.ws.codeinstitute-ide.net/postcategories/")
             .then((response) => {
-                console.log("Fetched categories:", response.data.results); //
                 setCategories(response.data.results);
             })
             .catch((error) => {
@@ -67,7 +68,6 @@ function PostCreateForm() {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        console.log(`Field changed: ${name}, Value: ${value}`);
         setPostData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -88,7 +88,6 @@ function PostCreateForm() {
     };
 
     const handleCategoryChange = (selectedOption) => {
-        console.log("Selected category:", selectedOption?.value);
         setPostData((prevData) => ({
             ...prevData,
             category: selectedOption?.value || "",
@@ -97,7 +96,6 @@ function PostCreateForm() {
 
     const handleChangeImage = (event) => {
         if (event.target.files.length) {
-            console.log("Selected image:", event.target.files[0]);
             URL.revokeObjectURL(image);
             setPostData({
                 ...postData,
@@ -108,7 +106,6 @@ function PostCreateForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("Submitting form data:", { title, content, category, image });
 
         if (!title || !content || !category) {
             setErrors({
@@ -122,6 +119,8 @@ function PostCreateForm() {
         formData.append("title", title);
         formData.append("content", content);
         formData.append("category", category);
+        formData.append("hashtags", hashtags);
+        formData.append("inspiration", inspiration);
 
         if (imageInput.current.files.length > 0) {
             formData.append("image", imageInput.current.files[0]);
@@ -129,7 +128,6 @@ function PostCreateForm() {
 
         try {
             const { data } = await axiosReq.post("/posts/", formData);
-            console.log("Post created successfully:", data);
             history.push(`/posts/${data.id}`);
         } catch (err) {
             if (err.response?.status !== 401) {
@@ -186,6 +184,38 @@ function PostCreateForm() {
                             />
                         </Form.Group>
                         {errors?.content?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
+
+                        <Form.Group>
+                            <Form.Label>Hashtags</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="hashtags"
+                                value={hashtags}
+                                placeholder="Enter hashtags, separated by commas"
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                        {errors?.hashtags?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
+
+                        <Form.Group>
+                            <Form.Label>Inspiration</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="inspiration"
+                                value={inspiration}
+                                placeholder="Enter the source of inspiration"
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                        {errors?.inspiration?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
                                 {message}
                             </Alert>
