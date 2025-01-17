@@ -52,7 +52,6 @@ const Events = (props) => {
                                 className={`${styles.EventImage} mb-3`}
                             />
                         </Link>
-
                         <div className="mb-3">
                             <div className="d-flex align-items-center justify-content-center mb-2">
                                 <i className="fa-solid fa-calendar-days me-2" />
@@ -62,20 +61,16 @@ const Events = (props) => {
                                 <i className="fa-solid fa-clock me-2" />
                                 <span>{duration ? `${duration} hours` : "Duration not available"}</span>
                             </div>
-
                             <div className="d-flex align-items-center justify-content-center">
                                 <i className="fa-solid fa-map-marker-alt me-2" />
                                 <span>{location ? location : "Location not available"}</span>
                             </div>
-
-
                         </div>
                     </div>
                     <div className="flex-grow-1">
                         <Link to={`/event/${id}`} className="text-decoration-none">
                             {title && <Card.Title className="text-start">{title}</Card.Title>}
                         </Link>
-
                         {description && (
                             <Card.Text className="text-start mt-2">{description}</Card.Text>
                         )}
