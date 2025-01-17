@@ -73,7 +73,9 @@ function EventEditForm() {
 
         formData.append("title", title);
         formData.append("description", description);
-        formData.append("event_image", imageInput.current.files[0]);
+        if (imageInput.current.files[0]) {
+            formData.append("event_image", imageInput.current.files[0]);
+        }
         formData.append("event_start", event_start);
         formData.append("duration", duration);
         formData.append("location", location);
