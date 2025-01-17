@@ -18,13 +18,12 @@ MH
 
 SH
 - set date under the profile img ✅
-- set sign out in edit profile
 - set edit delete buttons in profile one below the other
 - set pagination 
 - create post list in profile page 
 - set edit delete buttons under posts
 
-CH
+SH
 - set all cosole.log to console.error
 
 MH
@@ -56,7 +55,10 @@ migration ✅
 # IN FRONTEND 
 ## in post APP
 - when the user create new post, can choose a category with dropdown menue ✅
-- Category field in add post
-- Category has icon, title 
+- Category field in add post ✅
+- Category has icon, title ✅
+
+- add event edit form to event
+- solve cors allow issue
 
 
