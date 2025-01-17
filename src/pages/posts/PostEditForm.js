@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -8,14 +7,11 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
-
 import Asset from "../../components/Asset";
 import Upload from "../../assets/upload.png";
-
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
 import Select from "react-select";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -60,9 +56,11 @@ function PostEditForm() {
         content: "",
         image: "",
         category: "",
+        hashtags: "",
+        inspiration: "",
     });
-    const { title, content, image, category } = postData;
 
+    const { title, content, image, category, hashtags, inspiration } = postData;
     const imageInput = useRef(null);
     const history = useHistory();
     const { id } = useParams();
@@ -71,9 +69,8 @@ function PostEditForm() {
         const fetchPostData = async () => {
             try {
                 const { data } = await axiosReq.get(`/posts/${id}/`);
-                const { title, content, image, category } = data;
-
-                setPostData({ title, content, image, category });
+                const { title, content, image, category, hashtags, inspiration } = data;
+                setPostData({ title, content, image, category, hashtags, inspiration });
                 setWordCount(content.trim().split(/\s+/).length);
             } catch (err) {
                 console.error(err);
@@ -128,6 +125,8 @@ function PostEditForm() {
         formData.append("title", title);
         formData.append("content", content);
         formData.append("category", category);
+        formData.append("hashtags", hashtags);
+        formData.append("inspiration", inspiration);
         if (imageInput.current.files.length > 0) {
             formData.append("image", imageInput.current.files[0]);
         }
@@ -197,6 +196,38 @@ function PostEditForm() {
                                 {message}
                             </Alert>
                         ))}
+
+                        <Form.Group>
+                            <Form.Label>Hashtags</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="hashtags"
+                                value={hashtags}
+                                placeholder="Enter hashtags, separated by commas"
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                        {errors?.hashtags?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
+
+                        <Form.Group>
+                            <Form.Label>Inspiration</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="inspiration"
+                                value={inspiration}
+                                placeholder="Enter the source of inspiration"
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                        {errors?.inspiration?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
                     </Container>
                 </Col>
 
@@ -244,6 +275,7 @@ function PostEditForm() {
                         ))}
                     </Container>
                 </Col>
+
                 <div className="text-center mt-3">
                     <Button
                         className={`${btnStyles.Button} ${btnStyles.Blue}`}
