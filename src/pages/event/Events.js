@@ -103,7 +103,6 @@ const Events = (props) => {
                 </Card.Body>
             </Card>
 
-            {/* Confirmation Modal */}
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Confirm Delete</Modal.Title>
