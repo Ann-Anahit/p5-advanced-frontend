@@ -43,8 +43,8 @@ User Experience (UX) centers on how users engage with and perceive a website. Fo
 
 Defining the site objectives involves understanding what the website aims to achieve. Objectives might include:
 
-* Connect Users: Enable users to easily connect with others who share similar interests.
 * Event Management: Provide tools for users to create, manage, and RSVP to events effortlessly.
+* Connect Users: Enable users to easily connect with others who share similar interests.
 * Community Building: Cultivate a sense of belonging and interaction among the user base.
 * Engagement: Promote regular participation and active involvement through engaging features.
 
@@ -319,17 +319,18 @@ Performed tests can be found in [TESTING.md](TESTING.md).
 
 ## Credits
 
-- All the features of my website were developed with the guidance of the lessons from the Code Institute's Moments project.
+- Most of the features of my website were developed with the guidance of the lessons from the Code Institute's Moments project.
 
 ## Content
 
-- The default profile is provided by Code Institute in the Django Rest Framework walkthrough project and I reused them.
-- The other images on the website were downloaded from [Vecteezy](https://de.vecteezy.com/).
+
+- The images on the website were downloaded from [Vecteezy](https://de.vecteezy.com/).
 
 ## Acknowledgments
 
 I would like to acknowledge:
 - Kay Welfare - My cohort facilitator who's always there for us.
-- My sister and Tristan, for understanding. 
+- Davit Zakharyan, Tatewik, Tristan und Seda for supporting me. 
+
 
 [Back to top](<#content>)
