@@ -15,8 +15,8 @@ const Events = (props) => {
         description,
         event_image,
         event_start,
-        event_duration,
-        event_location,
+        duration,
+        location,
         eventPage,
     } = props;
 
@@ -60,16 +60,15 @@ const Events = (props) => {
                             </div>
                             <div className="d-flex align-items-center justify-content-center mb-2">
                                 <i className="fa-solid fa-clock me-2" />
-                                <span>
-                                    {event_duration
-                                        ? `${event_duration} hours`
-                                        : "Duration not available"}
-                                </span>
+                                <span>{duration ? `${duration} hours` : "Duration not available"}</span>
                             </div>
+
                             <div className="d-flex align-items-center justify-content-center">
                                 <i className="fa-solid fa-map-marker-alt me-2" />
-                                <span>{event_location || "Location not available"}</span>
+                                <span>{location ? location : "Location not available"}</span>
                             </div>
+
+
                         </div>
                     </div>
                     <div className="flex-grow-1">
@@ -86,12 +85,13 @@ const Events = (props) => {
                                 <span>Hosted by </span>
                                 <Link
                                     to={`/profiles/${profile_id}`}
-                                    className="ms-2 text-decoration-none fw-bold"
+                                    className="ms-2 text-decoration-none"
                                 >
-                                    {owner}
+                                    <strong>{owner}</strong>
                                 </Link>
                             </div>
                         </div>
+
                     </div>
 
                     {is_owner && eventPage && (

@@ -28,10 +28,10 @@ function EventEditForm() {
         description: "",
         event_image: "",
         event_start: "",
-        event_duration: "",
-        event_location: "",
+        duration: "",
+        location: "",
     });
-    const { title, description, event_image, event_start, event_duration, event_location } = eventData;
+    const { title, description, event_image, event_start, duration, location } = eventData;
 
     const imageInput = useRef(null);
     const history = useHistory();
@@ -75,8 +75,8 @@ function EventEditForm() {
         formData.append("description", description);
         formData.append("event_image", imageInput.current.files[0]);
         formData.append("event_start", event_start);
-        formData.append("event_duration", event_duration);
-        formData.append("location", event_location);
+        formData.append("duration", duration);
+        formData.append("location", location);
 
         try {
             await axiosReq.put(`/event/${id}`, formData);
@@ -145,8 +145,8 @@ function EventEditForm() {
                             <Form.Label>Event Duration</Form.Label>
                             <Form.Control
                                 type="datetime-local"
-                                name="event_duration"
-                                value={event_duration}
+                                name="duration"
+                                value={duration}
                                 onChange={handleChange}
                             />
                         </Form.Group>
@@ -161,11 +161,11 @@ function EventEditForm() {
                             <Form.Control
                                 type="text"
                                 name="location"
-                                value={event_location}
+                                value={location}
                                 onChange={handleChange}
                             />
                         </Form.Group>
-                        {errors?.event_location?.map((message, idx) => (
+                        {errors?.location?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
                                 {message}
                             </Alert>
