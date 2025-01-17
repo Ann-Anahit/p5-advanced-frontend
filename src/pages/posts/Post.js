@@ -42,7 +42,7 @@ const Post = (props) => {
     useEffect(() => {
         // Fetch categories from the API
         axiosRes
-            .get("https://8000-annanahit-drfapi-fa28dgkrr6c.ws.codeinstitute-ide.net/postcategories/")
+            .get("/postcategories/")
             .then((response) => {
                 setCategories(response.data.results);
             })
@@ -78,14 +78,14 @@ const Post = (props) => {
             const { data } = await axiosRes.post("/likes/", { post: id });
             setPosts((prevPosts) => ({
                 ...prevPosts,
-                results: prevPosts.results.map((post) =>
-                    post.id === id
+                results: prevPosts.results.map((post) => {
+                    return post.id === id
                         ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
-                        : post
-                ),
+                        : post;
+                }),
             }));
         } catch (err) {
-            console.error(err);
+            console.log(err);
         }
     };
 
@@ -94,14 +94,14 @@ const Post = (props) => {
             await axiosRes.delete(`/likes/${like_id}/`);
             setPosts((prevPosts) => ({
                 ...prevPosts,
-                results: prevPosts.results.map((post) =>
-                    post.id === id
+                results: prevPosts.results.map((post) => {
+                    return post.id === id
                         ? { ...post, likes_count: post.likes_count - 1, like_id: null }
-                        : post
-                ),
+                        : post;
+                }),
             }));
         } catch (err) {
-            console.error(err);
+            console.log(err);
         }
     };
 
