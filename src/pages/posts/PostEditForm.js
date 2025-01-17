@@ -25,7 +25,7 @@ function PostEditForm() {
 
     useEffect(() => {
         axiosReq
-            .get("https://8000-annanahit-drfapi-fa28dgkrr6c.ws.codeinstitute-ide.net/postcategories/")
+            .get("/postcategories/")
             .then((response) => {
                 setCategories(response.data.results);
             })
