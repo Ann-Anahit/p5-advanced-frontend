@@ -23,18 +23,33 @@ function EventCreateForm() {
         event_image: "",
         event_start: "",
         event_duration: "",
-        event_location: "",
+        location: "",
     });
     const { title, description, event_image, event_start, event_duration, event_location } = postData;
     const imageInput = useRef(null);
     const history = useHistory();
 
     const handleChange = (event) => {
-        setPostData({
-            ...postData,
-            [event.target.name]: event.target.value,
-        });
+        const { name, value } = event.target;
+
+        if (name === "description") {
+            const wordCount = value.trim().split(/\s+/).length;
+            if (wordCount > 100) {
+                setErrors((prevErrors) => ({
+                    ...prevErrors,
+                    description: ["Description must not exceed 100 words."],
+                }));
+                return;
+            }
+        }
+
+        setPostData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+        setErrors((prevErrors) => ({ ...prevErrors, [name]: null }));
     };
+
 
     const handleChangeImage = (event) => {
         if (event.target.files.length) {
