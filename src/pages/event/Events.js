@@ -33,11 +33,11 @@ const Events = (props) => {
     const handleDelete = async () => {
         try {
             await axiosRes.delete(`/event/${id}/`);
+            setShowModal(false);
             history.goBack();
         } catch (err) {
             console.error(err);
         }
-        setShowModal(false);
     };
 
     return (
@@ -54,19 +54,21 @@ const Events = (props) => {
                         </Link>
 
                         <div className="mb-3">
-                            <div className="d-flex align-items-center justify-content-center">
+                            <div className="d-flex align-items-center justify-content-center mb-2">
                                 <i className="fa-solid fa-calendar-days me-2" />
                                 <span>{event_start}</span>
-                                <i className="fa-solid fa-clock ms-4 me-2" />
+                            </div>
+                            <div className="d-flex align-items-center justify-content-center mb-2">
+                                <i className="fa-solid fa-clock me-2" />
                                 <span>
-                                    {event_duration ? `${event_duration} hours` : "Duration not available"}
+                                    {event_duration
+                                        ? `${event_duration} hours`
+                                        : "Duration not available"}
                                 </span>
                             </div>
-                            <div className="d-flex align-items-center justify-content-center mt-2">
+                            <div className="d-flex align-items-center justify-content-center">
                                 <i className="fa-solid fa-map-marker-alt me-2" />
-                                <span>
-                                    {event_location || "Location not available"}
-                                </span>
+                                <span>{event_location || "Location not available"}</span>
                             </div>
                         </div>
                     </div>
@@ -101,6 +103,7 @@ const Events = (props) => {
                 </Card.Body>
             </Card>
 
+            {/* Confirmation Modal */}
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Confirm Delete</Modal.Title>
