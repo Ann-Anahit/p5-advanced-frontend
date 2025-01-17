@@ -57,7 +57,7 @@ migration ✅
 - when the user create new post, can choose a category with dropdown menue ✅
 - Category field in add post ✅
 - Category has icon, title ✅
-
+- correct location and duration names ✅
 - add event edit form to event
 - solve cors allow issue
 
