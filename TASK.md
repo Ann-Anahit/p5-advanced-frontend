@@ -61,4 +61,4 @@ migration ✅
 - add event edit form to event
 - solve cors allow issue
 
-
+- update 2 Readmes!
