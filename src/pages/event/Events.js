@@ -59,7 +59,9 @@ const Events = (props) => {
                             </div>
                             <div className="d-flex align-items-center justify-content-center mb-2">
                                 <i className="fa-solid fa-clock me-2" />
-                                <span>{duration ? `${duration} hours` : "Duration not available"}</span>
+                                <span>
+                                    {duration?.replace("hours hours", "hours") || "Duration not available"}
+                                </span>
                             </div>
                             <div className="d-flex align-items-center justify-content-center">
                                 <i className="fa-solid fa-map-marker-alt me-2" />
