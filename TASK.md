@@ -20,13 +20,12 @@ SH
 - set date under the profile img ✅
 - set edit delete buttons in profile one below the other
 - set pagination 
-- create post list in profile page 
 - set edit delete buttons under posts
 
 SH
 - set all cosole.log to console.error
 
-MH
+CH
 - in feed 
 - set the newest post at first
 - pagination or load more button
@@ -58,7 +57,10 @@ migration ✅
 - Category field in add post ✅
 - Category has icon, title ✅
 - correct location and duration names ✅
-- add event edit form to event
-- solve cors allow issue
 
+- solve cors allow issue ✅
+
+- add event edit form to event
+
+- change the homepage text add posts and events  
 - update 2 Readmes!
