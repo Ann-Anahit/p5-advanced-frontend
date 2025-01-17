@@ -14,3 +14,28 @@ h5 {
     width: 180px;
     margin: 8px;
 }
+
+.DetailImage {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+
+}
+
+.DetailPageImage {
+    max-height: 500px;
+}
+
+.Text {
+    margin-left: 8px;
+}
+
+.OwnerName {
+    font-weight: bold;
+    color: #855DCD;
+}
+
+.OwnerName:hover {
+    color: #855DCD;
+    text-decoration: underline;
+}

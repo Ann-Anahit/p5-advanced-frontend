@@ -79,8 +79,8 @@ function EventEditForm() {
         formData.append("location", location);
 
         try {
-            await axiosReq.put(`/event/${id}`, formData);
-            history.push(`/event/${id}`);
+            await axiosReq.put(`/event/${id}/`, formData);
+            history.push(`/event/${id}?success=true`);
         } catch (err) {
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
@@ -144,17 +144,19 @@ function EventEditForm() {
                         <Form.Group>
                             <Form.Label>Event Duration</Form.Label>
                             <Form.Control
-                                type="datetime-local"
+                                type="text"
                                 name="duration"
                                 value={duration}
                                 onChange={handleChange}
+                                placeholder="e.g., 2 hours, 3 days, 4 months"
                             />
                         </Form.Group>
-                        {errors?.event_duration?.map((message, idx) => (
+                        {errors?.duration?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
                                 {message}
                             </Alert>
                         ))}
+
 
                         <Form.Group>
                             <Form.Label>Location</Form.Label>
@@ -182,14 +184,14 @@ function EventEditForm() {
                                 <>
                                     <figure>
                                         <Image
-                                            className={appStyles.Image}
+                                            className={styles.Image}
                                             src={event_image}
                                             rounded
                                         />
                                     </figure>
                                     <div>
                                         <Form.Label
-                                            className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                                            className={`${btnStyles.Button} ${btnStyles.Color}`}
                                             htmlFor="image-upload"
                                         >
                                             Change the image
@@ -207,13 +209,13 @@ function EventEditForm() {
                                     />
                                 </Form.Label>
                             )}
-
-                            <Form.File
+                            <Form.Control
                                 id="image-upload"
+                                className="d-none"
+                                type="file"
                                 accept="image/*"
                                 onChange={handleChangeImage}
                                 ref={imageInput}
-                                className={styles.HiddenFileInput}
                             />
                         </Form.Group>
                         {errors?.event_image?.map((message, idx) => (
@@ -242,5 +244,7 @@ function EventEditForm() {
         </Form>
     );
 }
+
+
 
 export default EventEditForm;

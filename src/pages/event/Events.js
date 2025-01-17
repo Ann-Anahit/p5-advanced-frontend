@@ -45,13 +45,24 @@ const Events = (props) => {
             <Card className={`${styles.Event} mb-4`}>
                 <Card.Body className="d-flex flex-row align-items-start">
                     <div className="text-center">
-                        <Link to={`/event/${id}`}>
-                            <Card.Img
-                                src={event_image}
-                                alt={title}
-                                className={`${styles.EventImage} mb-3`}
-                            />
-                        </Link>
+                        <div className="d-flex flex-column align-items-start me-3">
+                            <Link to={`/event/${id}`}>
+                                <Card.Img
+                                    src={event_image}
+                                    alt={title}
+                                    className={`${styles.DetailImage} ${eventPage ? styles.DetailPageImage : ""} mb-3`}
+                                />
+                            </Link>
+                            <div className={`${styles.HostedBy}`}>
+                                <span>Hosted by</span>
+                                <Link
+                                    to={`/profiles/${profile_id}`}
+                                    className={`ms-1 text-decoration-none ${styles.OwnerName}`}
+                                >
+                                    {owner}
+                                </Link>
+                            </div>
+                        </div>
                         <div className="mb-3">
                             <div className="d-flex align-items-center justify-content-center mb-2">
                                 <i className="fa-solid fa-calendar-days me-2" />
@@ -71,26 +82,12 @@ const Events = (props) => {
                     </div>
                     <div className="flex-grow-1">
                         <Link to={`/event/${id}`} className="text-decoration-none">
-                            {title && <Card.Title className="text-start">{title}</Card.Title>}
+                            {title && <Card.Title className={`${styles.Text} text-start`}>{title}</Card.Title>}
                         </Link>
                         {description && (
-                            <Card.Text className="text-start mt-2">{description}</Card.Text>
+                            <Card.Text className={`${styles.Text} text-start mt-2`}>{description}</Card.Text>
                         )}
-
-                        <div className="mt-3">
-                            <div className="d-flex align-items-center mb-2">
-                                <span>Hosted by </span>
-                                <Link
-                                    to={`/profiles/${profile_id}`}
-                                    className="ms-2 text-decoration-none"
-                                >
-                                    <strong>{owner}</strong>
-                                </Link>
-                            </div>
-                        </div>
-
                     </div>
-
                     {is_owner && eventPage && (
                         <MoreDropdown
                             handleEdit={handleEdit}
