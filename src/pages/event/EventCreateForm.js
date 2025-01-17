@@ -22,10 +22,10 @@ function EventCreateForm() {
         description: "",
         event_image: "",
         event_start: "",
-        event_duration: "",
+        duration: "",
         location: "",
     });
-    const { title, description, event_image, event_start, event_duration, event_location } = postData;
+    const { title, description, event_image, event_start, duration, location } = postData;
     const imageInput = useRef(null);
     const history = useHistory();
 
@@ -69,8 +69,8 @@ function EventCreateForm() {
         formData.append("description", description);
         formData.append("event_image", imageInput.current.files[0]);
         formData.append("event_start", event_start);
-        formData.append("event_duration", event_duration);
-        formData.append("location", event_location);
+        formData.append("duration", duration);
+        formData.append("location", location);
 
         try {
             const { data } = await axiosReq.post("/event/", formData);
@@ -141,13 +141,13 @@ function EventCreateForm() {
                             <Form.Control
                                 className={styles.Input}
                                 type="text"
-                                name="event_duration"
-                                value={event_duration}
+                                name="duration"
+                                value={duration}
                                 onChange={handleChange}
                                 placeholder="e.g., 2 hours, 3 days, 4 months"
                             />
                         </Form.Group>
-                        {errors?.event_duration?.map((message, idx) => (
+                        {errors?.duration?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
                                 {message}
                             </Alert>
@@ -158,12 +158,12 @@ function EventCreateForm() {
                             <Form.Control
                                 className={styles.Input}
                                 type="text"
-                                name="event_location"
-                                value={event_location}
+                                name="location"
+                                value={location}
                                 onChange={handleChange}
                             />
                         </Form.Group>
-                        {errors?.event_location?.map((message, idx) => (
+                        {errors?.location?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
                                 {message}
                             </Alert>
