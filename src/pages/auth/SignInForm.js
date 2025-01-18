@@ -21,6 +21,7 @@ function SignInForm() {
   const { username, password } = signInData;
 
   const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
   const history = useHistory();
 
   const handleSubmit = async (event) => {
@@ -29,9 +30,13 @@ function SignInForm() {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
       setTokenTimestamp(data);
-      history.goBack();
+      setSuccessMessage("Sign in successful! Redirecting...");
+      setTimeout(() => {
+        history.goBack();
+      }, 2000);
     } catch (err) {
       setErrors(err.response?.data);
+      setSuccessMessage("");
     }
   };
 
@@ -49,6 +54,11 @@ function SignInForm() {
           <Container className={`${appStyles.Content} p-4`}>
             <h1 className={styles.Header}>Sign In</h1>
             <div className={styles.formWrapper}>
+              {successMessage && (
+                <Alert variant="success" className="mb-3">
+                  {successMessage}
+                </Alert>
+              )}
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="username">
                   <Form.Label className="d-none">Username</Form.Label>
