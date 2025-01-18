@@ -59,8 +59,9 @@ const HomePage = () => {
                 Welcome to <span className={styles.highlight}>Meet&Mingle</span>, is your vibrant space to connect, share, and engage with a community of like-minded individuals. Whether you're passionate about Lifestyle, Music, Art, Food, or Business, our platform provides a space where creativity thrives and connections grow.
                 <h3>Create Your Account</h3>
                 <p>Sign up and create your personal profile to start posting and sharing your experiences. With tailored categories based on your interests, your content will be seen by a community that genuinely appreciates it. Additionally, you have the opportunity to share and create events.</p>
+                <h3>Create, Edit, and Manage Your Content</h3>
+                <p>Meet&Mingle allows you to take control of your posts and events. Whether it’s sharing your thoughts, showcasing your work, or organizing an event, you have the power to manage and customize your content. From creating new events to editing your existing ones, everything is at your fingertips.</p>
                 <h3>Categories for Every Passion</h3>
-
                 <strong>Lifestyle:</strong> Share your personal journey, daily experiences, and tips for a fulfilling lifestyle.
                 <strong>Music:</strong>  Post about your favorite songs, upcoming gigs, or music-related discussions.
                 <strong>Art:</strong>  Showcase your artwork, express creativity, and engage in art-focused conversations.
