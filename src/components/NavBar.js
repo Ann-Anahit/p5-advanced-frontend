@@ -27,7 +27,7 @@ const NavBar = () => {
             await axios.post("dj-rest-auth/logout/");
             setCurrentUser(null);
             removeTokenTimestamp();
-            setShowModal(false); // Close modal after successful sign-out
+            setShowModal(false);
             history.push("/");
         } catch (err) {
             console.error("Error during sign out:", err);
@@ -157,7 +157,6 @@ const NavBar = () => {
                 </Container>
             </Navbar>
 
-            {/* Sign-out confirmation modal */}
             <Modal show={showModal} onHide={handleCloseModal} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Confirm Sign Out</Modal.Title>
