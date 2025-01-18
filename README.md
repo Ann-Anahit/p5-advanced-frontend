@@ -105,19 +105,19 @@ The color palette used in this website seems to have been chosen to evoke certai
 
 - **Black** `#050505` - Black is often associated with elegance, simplicity, and professionalism. It might be used for text or backgrounds, providing contrast to make other elements stand out.
 
-- **Sapphire** ![#104DB2](https://via.placeholder.com/15/104DB2/000000?text=+) `#104DB2` - Blue shades like sapphire often symbolize trust, reliability, and calmness. This could be used for buttons or important action elements to give users a sense of security.
+- **Sapphire** `#104DB2` - Blue shades like sapphire often symbolize trust, reliability, and calmness. This could be used for buttons or important action elements to give users a sense of security.
 
-- **Byzantine Blue** ![#3854BD](https://via.placeholder.com/15/3854BD/000000?text=+) `#3854BD` - A slightly lighter blue that could provide variation in the blue tones across the website, keeping the design visually interesting without overwhelming the user. Blue is also associated with communication and clarity.
+- **Byzantine Blue** `#3854BD` - A slightly lighter blue that could provide variation in the blue tones across the website, keeping the design visually interesting without overwhelming the user. Blue is also associated with communication and clarity.
 
-- **Amethyst** ![#855DCD](https://via.placeholder.com/15/855DCD/000000?text=+) `#855DCD`- Purple is associated with creativity, imagination, and luxury. This color could be used to highlight certain sections or elements that inspire creativity or give the site a modern, artistic feel.
+- **Amethyst** `#855DCD`- Purple is associated with creativity, imagination, and luxury. This color could be used to highlight certain sections or elements that inspire creativity or give the site a modern, artistic feel.
 
-- **Lavender (Floral)** ![#C36BE4](https://via.placeholder.com/15/C36BE4/000000?text=+) `#C36BE4` - Lavender is often linked to calmness, compassion, and refinement. It’s a softer color that complements the darker tones, giving the design a balanced feel and making it inviting.
+- **Lavender (Floral)** `#C36BE4` - Lavender is often linked to calmness, compassion, and refinement. It’s a softer color that complements the darker tones, giving the design a balanced feel and making it inviting.
 
-- **Platinum** ![#E3E3E3](https://via.placeholder.com/15/E3E3E3/000000?text=+) `#E3E3E3`- A neutral, light color often used for backgrounds or secondary elements. Platinum provides balance in contrast to the more vibrant colors and allows for readability and a clean, minimalistic feel.
+- **Platinum** `#E3E3E3`- A neutral, light color often used for backgrounds or secondary elements. Platinum provides balance in contrast to the more vibrant colors and allows for readability and a clean, minimalistic feel.
 
 Overall, this color palette creates a harmonious blend of trustworthiness, creativity, and professionalism, while maintaining an inviting and balanced aesthetic for users. Each color has a distinct role, and together they contribute to an engaging and visually appealing user experience.
 
-![connectify. Color Scheme](src/documentation/images/Colors.png)
+![Meet&Mingle Color Scheme](src/documentation/images/Colors.png)
 
 [Back to top](<#content>)
 
