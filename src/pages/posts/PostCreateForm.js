@@ -22,7 +22,6 @@ import { useRedirect } from "../../hooks/useRedirect";
 function PostCreateForm() {
     useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
-    const [wordCount, setWordCount] = useState(0);
     const [categories, setCategories] = useState([]);
 
     const [postData, setPostData] = useState({
@@ -67,25 +66,12 @@ function PostCreateForm() {
     }));
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
-        setPostData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-
-        if (name === "content") {
-            const words = value.trim().split(/\s+/);
-            if (words.length > 50) {
-                setErrors((prev) => ({
-                    ...prev,
-                    content: ["Content cannot exceed 50 words."],
-                }));
-            } else {
-                setErrors((prev) => ({ ...prev, content: null }));
-            }
-            setWordCount(words.length);
-        }
+        setPostData({
+            ...postData,
+            [event.target.name]: event.target.value,
+        });
     };
+
 
     const handleCategoryChange = (selectedOption) => {
         setPostData((prevData) => ({
@@ -174,7 +160,7 @@ function PostCreateForm() {
                         ))}
 
                         <Form.Group>
-                            <Form.Label>Content (Word Count: {wordCount}/50)</Form.Label>
+                            <Form.Label>Content</Form.Label>
                             <Form.Control
                                 as="textarea"
                                 rows={6}
