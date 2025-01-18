@@ -64,10 +64,10 @@ migration ✅
 
 - change the homepage text add posts and events ✅  
 - add delete modal to posts
-- Order posts created at/// set the newest post at first
-- post max char 250
+- Order posts created at/// set the newest post at first ✅
+- post max char 250  ✅
 - success messages to any operation with db o.g. sign in, sign up, sign out, update posts etc 
-- add event should not appear on header when user is not logged in  
+- add event should not appear on header when user is not logged in ✅ 
 
 
 - update backend Readme  ✅  
