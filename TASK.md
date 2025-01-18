@@ -27,7 +27,7 @@ SH
 
 CH
 - in feed 
-- set the newest post at first
+
 - pagination or load more button
 
 MH
@@ -60,7 +60,16 @@ migration ✅
 
 - solve cors allow issue ✅
 
-- add event edit form to event
+- add event edit form to event ✅
 
-- change the homepage text add posts and events  
+- change the homepage text add posts and events ✅  
+- add delete modal to posts
+- Order posts created at/// set the newest post at first
+- post max char 250
+- success messages to any operation with db o.g. sign in, sign up, sign out, update posts etc 
+
+
 - update 2 Readmes!
+- add Validator tests insted of automatic to backend TEST
+- add events 
+- add categories 
