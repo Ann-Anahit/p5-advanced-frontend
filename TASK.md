@@ -71,5 +71,5 @@ migration ✅
 
 - update 2 Readmes!
 - add Validator tests insted of automatic to backend TEST
-- add events 
+- add event should not appear on header when user is not logged in  
 - add categories 
