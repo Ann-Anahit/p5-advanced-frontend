@@ -14,7 +14,7 @@ const shufflePosts = (posts) => {
 };
 
 const HomePage = () => {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState({ results: [] });
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const postsPerPage = 3;
@@ -22,7 +22,7 @@ const HomePage = () => {
     const fetchPosts = async () => {
         try {
             const response = await axiosRes.get("/posts/");
-            const shuffledPosts = shufflePosts(response.data.results);
+            const shuffledPosts = shufflePosts(response.data);
             setPosts(shuffledPosts);
             setTotalPages(Math.ceil(shuffledPosts.length / postsPerPage));
         } catch (err) {
@@ -35,8 +35,7 @@ const HomePage = () => {
         fetchPosts();
     }, []);
 
-
-    const currentPosts = posts.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage);
+    const currentPosts = posts.results.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage);
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
