@@ -6,10 +6,12 @@ import btnStyles from "../styles/Button.module.css";
 
 
 const shufflePosts = (posts) => {
+    console.log("Original Posts:", posts);
     for (let i = posts.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [posts[i], posts[j]] = [posts[j], posts[i]];
     }
+    console.log("Shuffled Posts:", posts);
     return posts;
 };
 
@@ -17,25 +19,35 @@ const HomePage = () => {
     const [posts, setPosts] = useState({ results: [] });
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const postsPerPage = 3;
+    const postsPerPage = 5;
 
     const fetchPosts = async () => {
         try {
             const response = await axiosRes.get("/posts/");
-            const shuffledPosts = shufflePosts(response.data);
-            setPosts(shuffledPosts);
-            setTotalPages(Math.ceil(shuffledPosts.length / postsPerPage));
+            console.log("API Response:", response.data);
+
+            // Ensure response.data is in the expected format
+            const postArray = response.data.results || response.data;
+
+            if (Array.isArray(postArray)) {
+                const shuffledPosts = shufflePosts([...postArray]); // Use a copy to avoid mutating the original array
+                setPosts({ results: shuffledPosts });
+                setTotalPages(Math.ceil(shuffledPosts.length / postsPerPage));
+            } else {
+                console.error("Unexpected API response format:", response.data);
+            }
         } catch (err) {
             console.error("Error fetching posts:", err);
         }
     };
 
-
     useEffect(() => {
         fetchPosts();
     }, []);
 
-    const currentPosts = posts.results.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage);
+    const currentPosts = posts.results
+        ? posts.results.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+        : [];
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
@@ -48,7 +60,6 @@ const HomePage = () => {
             setCurrentPage(currentPage - 1);
         }
     };
-
     return (
         <div className={styles.container}>
             {/* Text Content */}
