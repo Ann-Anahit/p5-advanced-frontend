@@ -9,7 +9,7 @@ Visit the deployed website here → [Meet&Mingle](src/documentation/images/respo
 - [Testing User Stories](#testing-user-stories)
 - [Manual Testing](#manual-testing)
   - [Browser Testing](#browser-testing)
-- [Automated Testing](#automated-testing)
+- [Validators](#validator-testing)
   - [HTML Validator](#html-validator)
   - [CSS Validator](#css-validator)
   - [JavaScript Validator](#javascript-validator)
@@ -147,7 +147,7 @@ I tested the website in different browsers, both on computer and mobile.
 
 [Back to top](#content)
 
-## Automated Testing
+##  Validators
 
 ### HTML Validator
 

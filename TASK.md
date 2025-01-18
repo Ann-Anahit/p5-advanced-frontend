@@ -67,12 +67,13 @@ migration ✅
 - Order posts created at/// set the newest post at first
 - post max char 250
 - success messages to any operation with db o.g. sign in, sign up, sign out, update posts etc 
+- add event should not appear on header when user is not logged in  
 
 
 - update backend Readme  ✅  
+- add Validator tests insted of automatic to backend TEST ✅  
 - update frontend Readme!
-- add Validator tests insted of automatic to backend TEST
-- add event should not appear on header when user is not logged in  
 - add categories 
+- add events
 
 SET DEBUG FALSE
