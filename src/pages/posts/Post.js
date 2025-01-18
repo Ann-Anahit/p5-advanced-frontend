@@ -153,7 +153,27 @@ const Post = (props) => {
             </Link>
             <Card.Body>
                 {title && <Card.Title className="text-center">{title}</Card.Title>}
-                {content && <Card.Text>{content}</Card.Text>}
+                {content && (
+                    <Card.Text>
+                        {postPage ? (
+                            content
+                        ) : (
+                            <>
+                                {content.length > 250 ? (
+                                    <>
+                                        {content.substring(0, 250)}...
+                                        <Link to={`/posts/${id}`} className="ml-2">
+                                            Read more
+                                        </Link>
+                                    </>
+                                ) : (
+                                    content
+                                )}
+                            </>
+                        )}
+                    </Card.Text>
+                )}
+
                 {hashtags && (
                     <Card.Text className="text-muted">
                         <i className="fas fa-hashtag mr-2" />
