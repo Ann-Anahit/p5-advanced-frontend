@@ -25,6 +25,7 @@ function PostsPage({ message, filter = "" }) {
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
   const currentUser = useCurrentUser();
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -46,6 +47,8 @@ function PostsPage({ message, filter = "" }) {
     };
   }, [filter, query, pathname, currentUser]);
 
+  const sortedPosts = posts.results.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
@@ -66,12 +69,12 @@ function PostsPage({ message, filter = "" }) {
 
         {hasLoaded ? (
           <>
-            {posts.results.length ? (
+            {sortedPosts.length ? (
               <InfiniteScroll
-                children={posts.results.map((post) => (
+                children={sortedPosts.map((post) => (
                   <Post key={post.id} {...post} setPosts={setPosts} />
                 ))}
-                dataLength={posts.results.length}
+                dataLength={sortedPosts.length}
                 loader={<Asset spinner />}
                 hasMore={!!posts.next}
                 next={() => fetchMoreData(posts, setPosts)}
