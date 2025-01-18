@@ -4,14 +4,6 @@ import Post from "../pages/posts/Post";
 import styles from "../styles/HomePage.module.css";
 import btnStyles from "../styles/Button.module.css";
 
-const shufflePosts = (posts) => {
-    for (let i = posts.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [posts[i], posts[j]] = [posts[j], posts[i]];
-    }
-    return posts;
-};
-
 const HomePage = () => {
     const [posts, setPosts] = useState({ results: [] });
     const [currentPage, setCurrentPage] = useState(1);
@@ -21,12 +13,13 @@ const HomePage = () => {
     const fetchPosts = async () => {
         try {
             const response = await axiosRes.get("/posts/");
+            console.log("API Response:", response.data);
             const postArray = response.data.results || response.data;
 
             if (Array.isArray(postArray)) {
-                const shuffledPosts = shufflePosts([...postArray]); // Shuffle posts
-                setPosts({ results: shuffledPosts });
-                setTotalPages(Math.ceil(shuffledPosts.length / postsPerPage));
+                const sortedPosts = postArray.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                setPosts({ results: sortedPosts });
+                setTotalPages(Math.ceil(sortedPosts.length / postsPerPage));
             } else {
                 console.error("Unexpected API response format:", response.data);
             }
@@ -35,6 +28,7 @@ const HomePage = () => {
         }
     };
 
+
     useEffect(() => {
         fetchPosts();
     }, []);
@@ -42,6 +36,7 @@ const HomePage = () => {
     const currentPosts = posts.results
         ? posts.results.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         : [];
+
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
