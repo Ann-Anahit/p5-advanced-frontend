@@ -57,6 +57,16 @@ const NavBar = () => {
         </NavLink>
     );
 
+    const addLogoutIcon = (
+        <NavLink
+            className={styles.NavLink}
+            to="/"
+            onClick={handleSignOut}
+        >
+            <i className="fas fa-sign-out-alt"></i>Sign out
+        </NavLink>
+    );
+
     const loggedInIcons = (
         <>
             <NavLink
@@ -74,9 +84,7 @@ const NavBar = () => {
                 <i className="fas fa-heart"></i>Liked
             </NavLink>
             {EventIcon}
-            <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
-                <i className="fas fa-sign-out-alt"></i>Sign out
-            </NavLink>
+            {addLogoutIcon}
             <NavLink
                 className={styles.NavLink}
                 to={`/profiles/${currentUser?.profile_id}`}
@@ -119,7 +127,7 @@ const NavBar = () => {
                     </Navbar.Brand>
                 </NavLink>
                 {currentUser && addPostIcon}
-                {addEventIcon}
+                {currentUser && addEventIcon}
                 <Navbar.Toggle
                     ref={ref}
                     onClick={() => setExpanded(!expanded)}
