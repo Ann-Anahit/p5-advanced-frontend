@@ -1,11 +1,11 @@
-
+SET DEBUG FALSE
 Must have = MH   Should have = SH    Could have = CH 
 # IN FRONTEND 
 MH
 edit create post page 
 - fix image size ✅
 - style edit page ✅
-- limit char in post (maybe 500 words) ✅
+- limit char in post (ca 250 CHAR) ✅
 - set placeholder img ✅
 - change the placeholder img ✅
 
@@ -69,7 +69,10 @@ migration ✅
 - success messages to any operation with db o.g. sign in, sign up, sign out, update posts etc 
 
 
-- update 2 Readmes!
+- update backend Readme  ✅  
+- update frontend Readme!
 - add Validator tests insted of automatic to backend TEST
 - add event should not appear on header when user is not logged in  
 - add categories 
+
+SET DEBUG FALSE
