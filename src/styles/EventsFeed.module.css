@@ -1,0 +1,19 @@
+.SearchBar input {
+    border-radius: 20px;
+    color: #242a3d;
+    padding-left: 40px;
+    margin: 16px 0;
+}
+
+.SearchIcon {
+    position: absolute;
+    font-size: 1.2rem;
+    padding: 9px;
+    padding-left: 15px;
+    margin: 16px 0;
+}
+
+.SearchIcon:hover {
+    cursor: default;
+    color: #cfced3;
+}
