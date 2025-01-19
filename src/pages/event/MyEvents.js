@@ -12,19 +12,26 @@ import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";
 import { fetchMoreData } from "../../utils/utils";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
 
 function MyEvents({ message, filter = "" }) {
     const [events, setEvents] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
     const { pathname } = useLocation();
     const [query, setQuery] = useState("");
+    const currentUser = useCurrentUser();
 
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const { data } = await axiosReq.get(`/event/?${filter}&search=${query}`);
-                setEvents(data);
-                setHasLoaded(true);
+                if (currentUser) {
+                    const { data } = await axiosReq.get(
+                        `/myevent/?${filter}&search=${query}&owner=${currentUser.id}`
+                    );
+                    setEvents(data);
+                    setHasLoaded(true);
+                }
             } catch (err) {
                 console.error(err);
             }
@@ -38,7 +45,7 @@ function MyEvents({ message, filter = "" }) {
         return () => {
             clearTimeout(timer);
         };
-    }, [filter, query, pathname]);
+    }, [filter, query, pathname, currentUser]);
 
     return (
         <Row className="h-100 d-flex justify-content-center align-items-center">
