@@ -2,7 +2,7 @@ SET DEBUG FALSE
 Must have = MH   Should have = SH    Could have = CH 
 # IN FRONTEND 
 MH
-edit create post page 
+edit create post page ✅
 - fix image size ✅
 - style edit page ✅
 - limit char in post (ca 250 CHAR) ✅
@@ -18,16 +18,11 @@ MH
 
 SH
 - set date under the profile img ✅
-- set edit delete buttons in profile one below the other
-- set pagination 
-- set edit delete buttons under posts
 
-SH
-- set all cosole.log to console.error
+
 
 CH
 - in feed 
-
 - pagination or load more button
 
 MH
@@ -66,7 +61,8 @@ migration ✅
 - add delete modal to posts
 - Order posts created at/// set the newest post at first ✅
 - post max char 250  ✅
-- success messages to any operation with db o.g. sign in, sign out, update posts etc 
+- On home page when selected next or previous move to the top of the page.
+- success messages to any operation with db o.g. sign in ✅ 
 - add event should not appear on header when user is not logged in ✅ 
 
 
@@ -82,7 +78,7 @@ migration ✅
 - Fix the edti profile page, remove secondary "upload image thing", make page better put cancel and save buttons at the bottom.  ✅  
 - Add my events page. ✅ 
 - Move signout button from menu to profile page. ✅ 
-- On home page when selected next or previous move to the top of the page.
 
+- set all cosole.log to console.error ✅
 
 SET DEBUG to FALSE

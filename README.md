@@ -162,9 +162,10 @@ With correct username and password, the user can access their profile.
 
 ### The Home Page
 
-The Homepage is the main page of the website where the user can read about the side and see the actual posts offered by all users.
+The Homepage is the main page of the website where the user can read about the side and see the actual posts offered by all users. the first image shows for the sign in users, the second the sign out users
 
-![home page](src/documentation/images/homepage-out.png)
+![home page](src/documentation/images/Homepage.png)
+![home page](src/documentation/images/HomeOut.png)
 
 [Back to top](<#content>)
 
