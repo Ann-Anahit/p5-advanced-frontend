@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { Button } from "react-bootstrap";
 import { useSetProfileData } from "../../contexts/ProfileDataContext";
+import { Redirect } from "react-router-dom";
+
 
 const Profile = (props) => {
     const { profile, mobile, imageSize = 55 } = props;
@@ -15,6 +17,9 @@ const Profile = (props) => {
     const is_owner = currentUser?.username === owner;
 
     const { handleFollow, handleUnfollow } = useSetProfileData();
+    if (!currentUser) {
+        return <Redirect to="/" />;
+    }
 
     return (
         <div
