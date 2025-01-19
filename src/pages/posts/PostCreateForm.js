@@ -123,12 +123,10 @@ function PostCreateForm() {
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
-            <Row className="d-flex flex-column justify-content-center align-items-center">
-                <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-                    <Container
-                        className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-                    >
+        <Row className={`justify-content-center ${styles.Row}`}>
+            <Col className="my-auto py-2 p-md-2" sm={12}>
+                <Form onSubmit={handleSubmit}>
+                    <Container className={`${appStyles.Content} ${styles.Container}`}>
                         <Form.Group>
                             <Form.Label>Category</Form.Label>
                             <Select
@@ -136,6 +134,7 @@ function PostCreateForm() {
                                 onChange={handleCategoryChange}
                                 className="react-select-container"
                                 classNamePrefix="react-select"
+                                placeholder="Select a category"
                             />
                         </Form.Group>
                         {errors?.category?.map((message, idx) => (
@@ -147,6 +146,7 @@ function PostCreateForm() {
                         <Form.Group>
                             <Form.Label>Title</Form.Label>
                             <Form.Control
+                                className={styles.Input}
                                 type="text"
                                 name="title"
                                 value={title}
@@ -162,6 +162,7 @@ function PostCreateForm() {
                         <Form.Group>
                             <Form.Label>Content</Form.Label>
                             <Form.Control
+                                className={styles.Input}
                                 as="textarea"
                                 rows={6}
                                 name="content"
@@ -178,6 +179,7 @@ function PostCreateForm() {
                         <Form.Group>
                             <Form.Label>Hashtags</Form.Label>
                             <Form.Control
+                                className={styles.Input}
                                 type="text"
                                 name="hashtags"
                                 value={hashtags}
@@ -194,6 +196,7 @@ function PostCreateForm() {
                         <Form.Group>
                             <Form.Label>Inspiration</Form.Label>
                             <Form.Control
+                                className={styles.Input}
                                 type="text"
                                 name="inspiration"
                                 value={inspiration}
@@ -206,22 +209,20 @@ function PostCreateForm() {
                                 {message}
                             </Alert>
                         ))}
-                    </Container>
-                </Col>
 
-                <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-                    <Container
-                        className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-                    >
                         <Form.Group className="text-center">
                             {image ? (
                                 <>
                                     <figure>
-                                        <Image className={styles.PostImage} src={image} rounded />
+                                        <Image
+                                            className={styles.Image}
+                                            src={image}
+                                            rounded
+                                        />
                                     </figure>
                                     <div>
                                         <Form.Label
-                                            className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                                            className={`${btnStyles.Button} ${btnStyles.Color}`}
                                             htmlFor="image-upload"
                                         >
                                             Change the image
@@ -233,16 +234,19 @@ function PostCreateForm() {
                                     className="d-flex justify-content-center"
                                     htmlFor="image-upload"
                                 >
-                                    <Asset src={Upload} message="Click or tap to upload an image" />
+                                    <Asset
+                                        src={Upload}
+                                        message="Click or tap to upload an image"
+                                    />
                                 </Form.Label>
                             )}
-
-                            <Form.File
+                            <Form.Control
                                 id="image-upload"
+                                className="d-none"
+                                type="file"
                                 accept="image/*"
                                 onChange={handleChangeImage}
                                 ref={imageInput}
-                                className={styles.HiddenFileInput}
                             />
                         </Form.Group>
                         {errors?.image?.map((message, idx) => (
@@ -250,25 +254,27 @@ function PostCreateForm() {
                                 {message}
                             </Alert>
                         ))}
+
+                        <div className="text-center StackedButtons">
+                            <Button
+                                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                                onClick={() => history.push('/')}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                                type="submit"
+                            >
+                                Create
+                            </Button>
+                        </div>
                     </Container>
-                </Col>
-                <div className="text-center StackedButtons">
-                    <Button
-                        className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                        onClick={() => history.goBack()}
-                    >
-                        Cancel
-                    </Button>
-                    <Button
-                        className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                        type="submit"
-                    >
-                        Create
-                    </Button>
-                </div>
-            </Row>
-        </Form>
+                </Form>
+            </Col>
+        </Row>
     );
+
 }
 
 export default PostCreateForm;

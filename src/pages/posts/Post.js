@@ -40,7 +40,6 @@ const Post = (props) => {
     const [categoryDetails, setCategoryDetails] = useState(null);
 
     useEffect(() => {
-        // Fetch categories from the API
         axiosRes
             .get("/postcategories/")
             .then((response) => {
@@ -53,7 +52,6 @@ const Post = (props) => {
     }, []);
 
     useEffect(() => {
-        // Find and set the category details for the current post
         if (categories.length > 0) {
             const selectedCategory = categories.find((cat) => cat.id === category);
             setCategoryDetails(selectedCategory || null);
