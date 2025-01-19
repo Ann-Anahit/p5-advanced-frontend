@@ -69,7 +69,7 @@ const Post = (props) => {
             await axiosRes.delete(`/posts/${id}/`);
             history.goBack();
         } catch (err) {
-            console.log(err);
+            console.error(err);
         } finally {
             setShowModal(false);
         }
@@ -87,7 +87,7 @@ const Post = (props) => {
                 }),
             }));
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
     };
 
@@ -103,7 +103,7 @@ const Post = (props) => {
                 }),
             }));
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
     };
 

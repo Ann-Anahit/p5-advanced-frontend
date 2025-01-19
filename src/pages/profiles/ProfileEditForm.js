@@ -31,7 +31,7 @@ const ProfileEditForm = () => {
                     const { data } = await axiosReq.get(`/profiles/${id}/`);
                     setProfileData(data);
                 } catch (err) {
-                    console.log(err);
+                    console.error(err);
                     history.push("/");
                 }
             } else {
@@ -60,7 +60,7 @@ const ProfileEditForm = () => {
             setCurrentUser((currentUser) => ({ ...currentUser, profile_image: data.image }));
             history.goBack();
         } catch (err) {
-            console.log(err);
+            console.error(err);
             setErrors(err.response?.data);
         }
     };
