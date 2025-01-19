@@ -93,15 +93,7 @@ const NavBar = () => {
                 <i className="fas fa-heart"></i>Liked
             </NavLink>
             {EventIcon}
-            {MyEventsIcon} {/* New My Events Icon */}
-            <NavLink
-                className={styles.NavLink}
-                to="#"
-                onClick={handleShowModal}
-            >
-                <i className="fas fa-sign-out-alt"></i>Sign out
-            </NavLink>
-
+            {MyEventsIcon}
             <NavLink
                 className={styles.NavLink}
                 to={`/profiles/${currentUser?.profile_id}`}
