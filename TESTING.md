@@ -88,7 +88,7 @@ Visit the deployed website here → [Meet&Mingle](src/documentation/images/respo
 | Link to Sign In Page         | Navigate to the sign-in page when clicking the "Sign in!" link                      | Click the sign-in link and verify navigation                        | Passed |
 | Accessibility                | Ensure form fields and buttons are accessible to screen readers and keyboard navigation | Test with screen readers and keyboard navigation                    | Passed |
 | Responsive Design            | Ensure the form displays correctly on various screen sizes                         | Resize the browser window and verify form display                  | Passed |
-
+| Category Field                  | Dropdown menu opens and displays postcategories                  | Choose one category and check if it displays correctly               | Passed |
 | Title Field                  | Field accepts and displays text input for the post title                  | Enter a title and check if it displays correctly               | Passed |
 | Content Field            | Field accepts and displays text input for the post description            | Enter a description and check if it displays correctly         | Passed |
 | Post Hashtags Field             | Field accepts and displays text input for the Hashtags                             | Enter a Hashtag and check if it displays correctly       | Passed |
@@ -106,7 +106,6 @@ Visit the deployed website here → [Meet&Mingle](src/documentation/images/respo
 | Responsive Design            | Ensures the form displays correctly on various screen sizes                 | Resize the browser window and verify form display               | Passed |
 | Accessibility                | Ensures form fields, buttons, and image upload are accessible                | Test with screen readers and keyboard navigation                | Passed |
 | Redirect After Success       | Redirects to the epost detail page upon successful creation                 | Submit the form with valid data and verify redirection to the epost detail page | Passed |
-
 | Title Field                  | Field accepts and displays text input for the event title                  | Enter a title and check if it displays correctly               | Passed |
 | Description Field            | Field accepts and displays text input for the event description            | Enter a description and check if it displays correctly         | Passed |
 | Event Start Field             | Field accepts and displays date and time input                             | Enter a date and time and check if it displays correctly       | Passed |
@@ -125,7 +124,6 @@ Visit the deployed website here → [Meet&Mingle](src/documentation/images/respo
 | Responsive Design            | Ensures the form displays correctly on various screen sizes                 | Resize the browser window and verify form display               | Passed |
 | Accessibility                | Ensures form fields, buttons, and image upload are accessible                | Test with screen readers and keyboard navigation                | Passed |
 | Redirect After Success       | Redirects to the event detail page upon successful creation                 | Submit the form with valid data and verify redirection to the event detail page | Passed |
-
 | Initial Data Load         | Displays the list of Post after data is fetched                    | Load the component and verify if Post are displayed             | Passed |
 | Search Functionality      | Filters Post based on search query                                 | Enter a search term and verify if the results are filtered        | Passed |
 | Infinite Scroll           | Loads more Post when scrolled to the bottom                        | Scroll to the bottom of the list and verify if more Post load    | Passed |
@@ -196,6 +194,8 @@ I used [PageSpeed Insights](https://pagespeed.web.dev/) to test the full perform
 
 [Liked](src/documentation/images/liked_T.png)<br>
 
+[Event](src/documentation/images/event_p.png)<br>
+
 [Sign Up](src/documentation/images/sign_up.png)<br>
 
 [Sign In](src/documentation/images/sign_in.png)<br>
@@ -210,6 +210,8 @@ I used [PageSpeed Insights](https://pagespeed.web.dev/) to test the full perform
 [Feed](src/documentation/images/feed_m.png)<br>
 
 [Liked](src/documentation/images/liked_m.png)<br>
+
+[Event](src/documentation/images/event_m.png)<br>
 
 [Sign Up](src/documentation/images/signup_m.png)<br>
 
