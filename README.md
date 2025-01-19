@@ -346,11 +346,16 @@ Performed tests can be found in [TESTING.md](TESTING.md).
 
 ## Acknowledgment
 
-- I would like to begin by expressing my heartfelt thanks to my brother, David Zakharyan, who gave me the belief that I could succeed and supported me so much along the way. 
+- I would like to begin by expressing my heartfelt thanks to my brother David Zakharyan, who gave me the belief that I could succeed and supported me so much along the way. 
 - I am also deeply grateful to my mentor, Mitko Bachvarov, who has been there with invaluable advice and guidance during my last two projects.
 
-- I’m incredibly thankful to the CD tutors, especially Sarah, who never makes you feel like you’re not capable. All the other tutors are incredibly helpful as well. I would also like to mention Rebecca, Oisín, Thomas, and Alan for their support.
+- I’m incredibly thankful to the CD tutors, especially Sarah, who never makes you feel like you’re not capable. All the other tutors are incredibly helpful as well. I would also like to mention Rebecca, Oisín, Thomas and Alan for their support.
 
-- A huge thank you to Tristan for his patience and belief in me, and, of course, to my family—Tati, Sedul, and my parents and friends - who have always stood by my side.
+- A huge thank you to Tristan for his patience and belief in me and of course to my family—Tati, Sedul, and my parents and friends - who have always stood by my side.
+
+- And last but not least, I wanna quote Snoop Dogg here and thank myself:
+“Last but not least, I wanna thank me.
+I wanna thank me for believing in me.
+I wanna thank me for doing all this hard work...”
 
 [Back to top](<#content>)
