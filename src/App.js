@@ -20,7 +20,7 @@ import EventCreateForm from "./pages/event/EventCreateForm";
 import EventPage from "./pages/event/EventRenderPage";
 import EventEditForm from "./pages/event/EventEditForm";
 import EventDetailPage from "./pages/event/EventDetailPage";
-
+import MyEvents from "./pages/event/MyEvents.js";
 
 const App = () => {
   const currentUser = useCurrentUser();
@@ -90,7 +90,7 @@ const App = () => {
             <Route exact path="/event/create" component={EventCreateForm} />
             <Route exact path="/event/:id" component={EventDetailPage} />
             <Route exact path="/event/:id/edit" component={EventEditForm} />
-
+            <Route exact path="/my-events" component={MyEvents} />
 
             {/* Profile Routes */}
             <Route exact path="/profiles/:id" component={ProfilePage} />
