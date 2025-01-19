@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import CommentEditForm from "./CommentEditForm";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 import styles from "../../styles/Comment.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -22,6 +24,7 @@ const Comment = (props) => {
     } = props;
 
     const [showEditForm, setShowEditForm] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false); // State for delete modal
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
 
@@ -41,7 +44,10 @@ const Comment = (props) => {
                 ...prevComments,
                 results: prevComments.results.filter((comment) => comment.id !== id),
             }));
-        } catch (err) { }
+            setShowDeleteModal(false);
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     return (
@@ -70,10 +76,32 @@ const Comment = (props) => {
                 {is_owner && !showEditForm && (
                     <MoreDropdown
                         handleEdit={() => setShowEditForm(true)}
-                        handleDelete={handleDelete}
+                        handleDelete={() => setShowDeleteModal(true)} // Open delete modal
                     />
                 )}
             </Media>
+
+            {/* Delete Confirmation Modal */}
+            <Modal
+                show={showDeleteModal}
+                onHide={() => setShowDeleteModal(false)}
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirm Delete</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Are you sure you want to delete this comment? This action cannot be undone.
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+                        Cancel
+                    </Button>
+                    <Button variant="danger" onClick={handleDelete}>
+                        Delete
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </>
     );
 };
