@@ -63,19 +63,19 @@ const Events = (props) => {
                                 </Link>
                             </div>
                         </div>
-                        <div className="mb-3">
-                            <div className="d-flex align-items-center justify-content-center mb-2">
-                                <i className="fa-solid fa-calendar-days me-2" />
+                        <div className="ms-1 ">
+                            <div className="d-flex align-items-center">
+                                <i className="fa-solid fa-calendar-days" />
                                 <span>{event_start}</span>
                             </div>
-                            <div className="d-flex align-items-center justify-content-center mb-2">
-                                <i className="fa-solid fa-clock me-2" />
+                            <div className="d-flex align-items-center">
+                                <i className="fa-solid fa-clock" />
                                 <span>
                                     {duration?.replace("hours hours", "hours") || "Duration not available"}
                                 </span>
                             </div>
-                            <div className="d-flex align-items-center justify-content-center">
-                                <i className="fa-solid fa-map-marker-alt me-2" />
+                            <div className="d-flex align-items-center">
+                                <i className="fa-solid fa-map-marker-alt" />
                                 <span>{location ? location : "Location not available"}</span>
                             </div>
                         </div>

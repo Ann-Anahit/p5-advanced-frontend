@@ -158,8 +158,6 @@ function EventEditForm() {
                                 {message}
                             </Alert>
                         ))}
-
-
                         <Form.Group>
                             <Form.Label>Location</Form.Label>
                             <Form.Control
