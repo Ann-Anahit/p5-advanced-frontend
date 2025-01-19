@@ -43,7 +43,7 @@ User Experience (UX) centers on how users engage with and perceive a website. Fo
 
 Defining the site objectives involves understanding what the website aims to achieve. Objectives might include:
 
-* Event Management: Provide tools for users to create, manage, and RSVP to events effortlessly.
+* Event and post Management: Provide tools for users to create, manage, and RSVP to events and posts effortlessly.
 * Connect Users: Enable users to easily connect with others who share similar interests.
 * Community Building: Cultivate a sense of belonging and interaction among the user base.
 * Engagement: Promote regular participation and active involvement through engaging features.
@@ -57,16 +57,16 @@ A first-time user is someone visiting the site for the first time. Their story m
 * Onboarding: Discovering what the site is about, how to sign up, and what benefits it offers.
 * Exploration: Browsing available events to understand what’s available.
 * Registration: Creating an account and setting up a profile.
-* Initial Engagement: Finding and joining a first event.
+* Initial Engagement: Finding and joining a first event and a first post.
 
 #### Returning User
 
 A returning user is someone who has visited the site before but isn't necessarily a frequent user. Their story might involve:
 
-* Re-engagement: Logging in to see new events or updates from previously joined events.
+* Re-engagement: Logging in to see new events or updates from previously joined events and posts.
 * Profile Management: Updating personal information or preferences.
-* Event Participation: RSVPing to upcoming events or managing existing event participation.
-* Write messages with other User
+* Follow the other users and see the upcoming events.
+* Read the posts, comment, like and dislike the posts. 
 
 #### Frequent User
 
@@ -81,8 +81,8 @@ A frequent user regularly interacts with the site. Their story might involve:
 
 ### Website Structure
 
- I decided to take a straightforward approach and create a website similar to Walkthrough Moments. However, instead of focusing on sharing images, my site will engage users through events and activities.
- I also added a messaging tool to the platform, but unfortunately, it currently only functions in the backend. It doesn't yet work properly on the frontend.
+I chose a straightforward approach to design my website, drawing inspiration from Walkthrough Moments. However, instead of centering around sharing images, my platform focuses on engaging users through events and activities.
+The admin has the ability to manage categories for posts via the backend, with each category including a name and an image. Additionally, I introduced an event feature to the platform, offering distinct functionality compared to regular posts. Users can create events by providing details such as the event start time, duration, location, title, description, and an accompanying image. This added tool enhances interactivity and user engagement on the site.
 
 
 ### Wireframes
@@ -169,10 +169,14 @@ With correct username and password, the user can access their profile.
 
 [Back to top](<#content>)
 
+### The Homepage
+
+The Homepage is the main page of the website where the user can read about the side and see the actual posts offered by all users.
+
+![Homepage](src/documentation/images/Homepage.png)
+
 ### The Posts Feed
-
-The posts feed is the main page of the website, where the user can see all the events offered by other users. This page has infinite scroll.
-
+The posts feed   events  This page has infinite scroll.
 
 ### The Create Post Form
 
