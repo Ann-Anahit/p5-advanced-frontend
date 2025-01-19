@@ -354,8 +354,6 @@ Performed tests can be found in [TESTING.md](TESTING.md).
 - A huge thank you to Tristan for his patience and belief in me and of course to my family—Tati, Sedul, and my parents and friends - who have always stood by my side.
 
 - And last but not least, I wanna quote Snoop Dogg here and thank myself:
-“Last but not least, I wanna thank me.
-I wanna thank me for believing in me.
-I wanna thank me for doing all this hard work...”
+“... I wanna thank me for believing in me. I wanna thank me for doing all this hard work...”
 
 [Back to top](<#content>)
