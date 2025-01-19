@@ -138,9 +138,11 @@ This is a multi-page website. On each page we have:
 ![favicon](src/documentation/images/Favicon.png)
 
 - A navigation bar and links that change if the user is logged in or not.
-
 ![navbar](src/documentation/images/loggedout.png)
 ![navbar](src/documentation/images/Loggedin.png)
+
+- The log out button is located in the profile menu items.
+![navbar](src/documentation/images/logout.btn.png)
 
 [Back to top](<#content>)
 
