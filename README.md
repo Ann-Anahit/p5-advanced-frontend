@@ -186,10 +186,22 @@ This page is reserved for all events.
 
 ![Events page](src/documentation/images/Events.png)
 
+### The MyEvents Page
+
+This page is reserved for all events from the logged in user.
+
+![MyEvents page](src/documentation/images/MyEvent.png)
+
+### The Eventdetail Page
+
+On this page the user can edit or delete the own created event.
+
+![MyEvents page](src/documentation/images/MyeventDetail.png)
+
 
 ### The Create Post Form
 
-Here the user needs to provide a postcategory, title, description, hashtags, inspiration and image to create a post.
+On this page, the user needs to provide a post category, title, description, hashtags, inspiration, and an image to create a post.
 
 ![create post form](src/documentation/images/create_post.png)
 ![choose postcategories ](src/documentation/images/create_post2.png)
