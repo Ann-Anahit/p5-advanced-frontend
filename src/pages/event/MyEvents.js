@@ -14,8 +14,7 @@ import { fetchMoreData } from "../../utils/utils";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-
-function MyEvents({ message, filter = "" }) {
+function MyEvents({ message = "You don't have any created events yet." }) {
     const [events, setEvents] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
     const { pathname } = useLocation();
@@ -27,7 +26,7 @@ function MyEvents({ message, filter = "" }) {
             try {
                 if (currentUser) {
                     const { data } = await axiosReq.get(
-                        `/myevent/?${filter}&search=${query}&owner=${currentUser.id}`
+                        `/myevent/?search=${query}&owner=${currentUser.id}`
                     );
                     setEvents(data);
                     setHasLoaded(true);
@@ -45,12 +44,12 @@ function MyEvents({ message, filter = "" }) {
         return () => {
             clearTimeout(timer);
         };
-    }, [filter, query, pathname, currentUser]);
+    }, [query, pathname, currentUser]);
 
     return (
         <Row className="h-100 d-flex justify-content-center align-items-center">
             <Col className="py-2 p-0 p-lg-2" lg={8}>
-                <i class={`fa-solid fa-magnifying-glass ${styles.SearchIcon}`} />
+                <i className={`fa-solid fa-magnifying-glass ${styles.SearchIcon}`} />
                 <Form
                     className={styles.SearchBar}
                     onSubmit={(event) => event.preventDefault()}
