@@ -72,14 +72,14 @@ migration ✅
 
 - update backend Readme  ✅  
 - add Validator tests insted of automatic to backend TEST ✅  
-- update frontend Readme!
-- add categories 
-- add events
+- update frontend Readme! ✅
+- add categories ✅
+- add events ✅
 
 
 
-- Add delete confirmation popup for delete comments action.
-- Fix the edti profile page, remove secondary "upload image thing", make page better put cancel and save buttons at the bottom.
+- Add delete confirmation popup for delete comments action.  ✅  
+- Fix the edti profile page, remove secondary "upload image thing", make page better put cancel and save buttons at the bottom.  ✅  
 - Add my events page.
 - Move signout button from menu to profile page.
 - On home page when selected next or previous move to the top of the page.
