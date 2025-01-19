@@ -18,12 +18,11 @@ function MyEvents({ message, filter = "" }) {
     const [hasLoaded, setHasLoaded] = useState(false);
     const { pathname } = useLocation();
     const [query, setQuery] = useState("");
-    const userId = 1; // Replace this with a method to get the authenticated user's ID
 
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const { data } = await axiosReq.get(`/event/?${filter}user=${userId}&search=${query}`);
+                const { data } = await axiosReq.get(`/event/?${filter}&search=${query}`);
                 setEvents(data);
                 setHasLoaded(true);
             } catch (err) {
@@ -39,7 +38,7 @@ function MyEvents({ message, filter = "" }) {
         return () => {
             clearTimeout(timer);
         };
-    }, [filter, query, pathname, userId]);
+    }, [filter, query, pathname]);
 
     return (
         <Row className="h-100 d-flex justify-content-center align-items-center">
@@ -61,8 +60,8 @@ function MyEvents({ message, filter = "" }) {
                     <>
                         {events.results.length ? (
                             <InfiniteScroll
-                                children={events.results.map((events) => (
-                                    <Events key={events.id} {...events} setEvents={setEvents} />
+                                children={events.results.map((event) => (
+                                    <Events key={event.id} {...event} setEvents={setEvents} />
                                 ))}
                                 dataLength={events.results.length}
                                 loader={<Asset spinner />}
