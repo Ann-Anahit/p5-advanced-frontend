@@ -53,8 +53,8 @@ const Events = (props) => {
                                     className={`${styles.DetailImage} ${eventPage ? styles.DetailPageImage : ""} mb-3`}
                                 />
                             </Link>
-                            <div className={`${styles.HostedBy}`}>
-                                <span>Hosted by</span>
+                            <div>
+                                <span>Created by</span>
                                 <Link
                                     to={`/profiles/${profile_id}`}
                                     className={`ms-1 text-decoration-none ${styles.OwnerName}`}
