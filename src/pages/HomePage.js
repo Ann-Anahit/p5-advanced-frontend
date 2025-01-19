@@ -13,7 +13,6 @@ const HomePage = () => {
     const fetchPosts = async () => {
         try {
             const response = await axiosRes.get("/posts/");
-            console.log("API Response:", response.data);
             const postArray = response.data.results || response.data;
 
             if (Array.isArray(postArray)) {
@@ -28,7 +27,6 @@ const HomePage = () => {
         }
     };
 
-
     useEffect(() => {
         fetchPosts();
     }, []);
@@ -37,18 +35,17 @@ const HomePage = () => {
         ? posts.results.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         : [];
 
-
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 0);  // Scroll to the top
         }
     };
 
     const handlePrevPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 0);  // Scroll to the top
         }
     };
 
