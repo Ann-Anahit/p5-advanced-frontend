@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-import { Card, Col } from "react-bootstrap";
+import { Card, Col, Modal, Button } from "react-bootstrap";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Row from "react-bootstrap/Row";
@@ -64,12 +64,16 @@ const Post = (props) => {
         history.push(`/posts/${id}/edit`);
     };
 
+    const [showModal, setShowModal] = useState(false);
+
     const handleDelete = async () => {
         try {
             await axiosRes.delete(`/posts/${id}/`);
             history.goBack();
         } catch (err) {
             console.log(err);
+        } finally {
+            setShowModal(false);
         }
     };
 
@@ -106,118 +110,136 @@ const Post = (props) => {
     };
 
     return (
-        <Card className={styles.Post}>
-            <Card.Body>
-                <Row className="align-items-center justify-content-between">
-                    <Col xs="auto">
-                        <Link to={`/profiles/${profile_id}`} className="d-flex flex-column align-items-start">
+        <>
+            <Card className={styles.Post}>
+                <Card.Body>
+                    <Row className="align-items-center justify-content-between">
+                        <Col xs="auto">
+                            <Link to={`/profiles/${profile_id}`} className="d-flex flex-column align-items-start">
+                                <div className="d-flex align-items-center">
+                                    <Avatar src={profile_image} height={55} />
+                                    <span className="ml-2">{owner}</span>
+                                </div>
+                                <small className="text-muted">{updated_at}</small>
+                            </Link>
+                        </Col>
+                        <Col xs="auto">
                             <div className="d-flex align-items-center">
-                                <Avatar src={profile_image} height={55} />
-                                <span className="ml-2">{owner}</span>
-                            </div>
-                            <small className="text-muted">{updated_at}</small>
-                        </Link>
-                    </Col>
-                    <Col xs="auto">
-                        <div className="d-flex align-items-center">
-                            {is_owner && postPage && (
-                                <MoreDropdown
-                                    handleEdit={handleEdit}
-                                    handleDelete={handleDelete}
-                                />
-                            )}
-                        </div>
-                    </Col>
-                </Row>
-                <span>
-                    Category:{" "}
-                    {categoryDetails ? (
-                        <>
-                            {categoryDetails.image && (
-                                <img
-                                    src={categoryDetails.image}
-                                    alt={categoryDetails.name}
-                                    height="20"
-                                    className={styles.CategoryImage}
-                                />
-                            )}
-                            {categoryDetails.name}
-                        </>
-                    ) : (
-                        "None"
-                    )}
-                </span>
-            </Card.Body>
-            <Link to={`/posts/${id}`}>
-                <Card.Img src={image} alt={title} />
-            </Link>
-            <Card.Body>
-                {title && <Card.Title className="text-center">{title}</Card.Title>}
-                {content && (
-                    <Card.Text>
-                        {postPage ? (
-                            content
-                        ) : (
-                            <>
-                                {content.length > 250 ? (
-                                    <>
-                                        {content.substring(0, 250)}...
-                                        <Link to={`/posts/${id}`} className="ml-2">
-                                            Read more
-                                        </Link>
-                                    </>
-                                ) : (
-                                    content
+                                {is_owner && postPage && (
+                                    <MoreDropdown
+                                        handleEdit={handleEdit}
+                                        handleDelete={() => setShowModal(true)}
+                                    />
                                 )}
+                            </div>
+                        </Col>
+                    </Row>
+                    <span>
+                        Category:{" "}
+                        {categoryDetails ? (
+                            <>
+                                {categoryDetails.image && (
+                                    <img
+                                        src={categoryDetails.image}
+                                        alt={categoryDetails.name}
+                                        height="20"
+                                        className={styles.CategoryImage}
+                                    />
+                                )}
+                                {categoryDetails.name}
                             </>
+                        ) : (
+                            "None"
                         )}
-                    </Card.Text>
-                )}
-
-                {hashtags && (
-                    <Card.Text className="text-muted">
-                        <i className="fas fa-hashtag mr-2" />
-                        <strong>Hashtags:</strong> {hashtags}
-                    </Card.Text>
-                )}
-                {inspiration && (
-                    <Card.Text className="text-muted">
-                        <i className="fas fa-lightbulb mr-2" />
-                        <strong>Inspiration:</strong> {inspiration}
-                    </Card.Text>
-                )}
-                <div className={styles.PostBar}>
-                    {is_owner ? (
-                        <OverlayTrigger
-                            placement="top"
-                            overlay={<Tooltip>You can't like your own post!</Tooltip>}
-                        >
-                            <i className="far fa-heart" />
-                        </OverlayTrigger>
-                    ) : like_id ? (
-                        <span onClick={handleUnlike}>
-                            <i className={`fas fa-heart ${styles.Heart}`} />
-                        </span>
-                    ) : currentUser ? (
-                        <span onClick={handleLike}>
-                            <i className={`far fa-heart ${styles.HeartOutline}`} />
-                        </span>
-                    ) : (
-                        <OverlayTrigger
-                            placement="top"
-                            overlay={<Tooltip>Log in to like posts!</Tooltip>}
-                        >
-                            <i className="far fa-heart" />
-                        </OverlayTrigger>
+                    </span>
+                </Card.Body>
+                <Link to={`/posts/${id}`}>
+                    <Card.Img src={image} alt={title} />
+                </Link>
+                <Card.Body>
+                    {title && <Card.Title className="text-center">{title}</Card.Title>}
+                    {content && (
+                        <Card.Text>
+                            {postPage ? (
+                                content
+                            ) : (
+                                <>
+                                    {content.length > 250 ? (
+                                        <>
+                                            {content.substring(0, 250)}...
+                                            <Link to={`/posts/${id}`} className="ml-2">
+                                                Read more
+                                            </Link>
+                                        </>
+                                    ) : (
+                                        content
+                                    )}
+                                </>
+                            )}
+                        </Card.Text>
                     )}
-                    {likes_count}
-                    <Link to={`/posts/${id}`}>
-                        <i className="far fa-comments" />
-                    </Link>
-                    {comments_count}
-                </div>
-            </Card.Body>
-        </Card>
+
+                    {hashtags && (
+                        <Card.Text className="text-muted">
+                            <i className="fas fa-hashtag mr-2" />
+                            <strong>Hashtags:</strong> {hashtags}
+                        </Card.Text>
+                    )}
+                    {inspiration && (
+                        <Card.Text className="text-muted">
+                            <i className="fas fa-lightbulb mr-2" />
+                            <strong>Inspiration:</strong> {inspiration}
+                        </Card.Text>
+                    )}
+                    <div className={styles.PostBar}>
+                        {is_owner ? (
+                            <OverlayTrigger
+                                placement="top"
+                                overlay={<Tooltip>You can't like your own post!</Tooltip>}
+                            >
+                                <i className="far fa-heart" />
+                            </OverlayTrigger>
+                        ) : like_id ? (
+                            <span onClick={handleUnlike}>
+                                <i className={`fas fa-heart ${styles.Heart}`} />
+                            </span>
+                        ) : currentUser ? (
+                            <span onClick={handleLike}>
+                                <i className={`far fa-heart ${styles.HeartOutline}`} />
+                            </span>
+                        ) : (
+                            <OverlayTrigger
+                                placement="top"
+                                overlay={<Tooltip>Log in to like posts!</Tooltip>}
+                            >
+                                <i className="far fa-heart" />
+                            </OverlayTrigger>
+                        )}
+                        {likes_count}
+                        <Link to={`/posts/${id}`}>
+                            <i className="far fa-comments" />
+                        </Link>
+                        {comments_count}
+                    </div>
+                </Card.Body>
+            </Card>
+
+            {/* Delete Confirmation Modal */}
+            <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirm Deletion</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure you want to delete this post? This action cannot be undone.</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowModal(false)}>
+                        Cancel
+                    </Button>
+                    <Button variant="danger" onClick={handleDelete}>
+                        Delete
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
     );
 };
 
