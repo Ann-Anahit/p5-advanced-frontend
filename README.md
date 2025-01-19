@@ -144,61 +144,82 @@ This is a multi-page website. On each page we have:
 
 [Back to top](<#content>)
 
-### The Home Page
-
-On the home page the user can see a posts and the navigation bar.
-
-![home page](src/documentation/images/homepage-out.png)
-
-[Back to top](<#content>)
-
 ### The Sign Up Page
 
 The user needs to provide a username and password to register, and confirm this password to reinforce security.
 
 ![sign up page](src/documentation/images/Signup.png)
 
-[Back to top](<#content>)
 
 ### The Sign In Page
- Page
 
 With correct username and password, the user can access their profile.
 
 ![sign in page](src/documentation/images/Signin.png)
 
-[Back to top](<#content>)
 
-### The Homepage
+### The Home Page
 
 The Homepage is the main page of the website where the user can read about the side and see the actual posts offered by all users.
 
-![Homepage](src/documentation/images/Homepage.png)
-
-### The Posts Feed
-The posts feed   events  This page has infinite scroll.
-
-### The Create Post Form
-
-Here the user needs to provide a title, description, date, time and image to create a post.
-
-![create post form](src/documentation/images/create_post.png)
+![home page](src/documentation/images/homepage-out.png)
 
 [Back to top](<#content>)
 
+### The Posts Feed
 
-### Liked Page
+The posts feed is designed to keep users connected with the content that matters to them. When a user follows others, their feed dynamically displays posts from those users, ensuring a personalized and engaging experience. This page also features infinite scrolling, allowing seamless exploration of content without interruptions..
 
-This page is reserved for posts/events that the user has favorited because they are interested.
+![Feed](src/documentation/images/feed.png)
+
+### The Liked Page
+
+This page is reserved for posts that the user has liked.
 
 ![liked page](src/documentation/images/liked.png)
 
+### The Events Page
+
+This page is reserved for all events.
+
+![Events page](src/documentation/images/Events.png)
+
+
+### The Create Post Form
+
+Here the user needs to provide a postcategory, title, description, hashtags, inspiration and image to create a post.
+
+![create post form](src/documentation/images/create_post.png)
+![choose postcategories ](src/documentation/images/create_post2.png)
+
+### Edit Post Form
+
+Here the user can edit the own post.
+
+![edit profile form](src/documentation/images/postedit.png)
+
 [Back to top](<#content>)
 
 
-### My Profile
+### The Create Event Form
 
-Account user profile page. If you are the user of the account, you can see the button to follow other users. If it's a visitor to your page, they can see the posts you've created below your profile, as well as how many people you follow, your bio and photo.
+Here the user needs to provide a title, description, even-start, event-duration, location and an image to create an event.
+
+![create event form](src/documentation/images/Event_create.png)
+
+### Edit Event Form
+
+Here the user can edit the own event.
+
+![edit event form](src/documentation/images/eventedit.png)
+
+[Back to top](<#content>)
+
+
+
+### The Profile Page
+
+This is the account user profile page. If you are the user of the account, you can see the buttons to follow other users. If it's a visitor to your page, they can see the posts you've created below your profile, as well as how many people you follow, your bio and photo.
 
 ![profile page](src/documentation/images/User_profile.png)
 
@@ -212,13 +233,6 @@ As an user you can edit some information about your account.
 
 [Back to top](<#content>)
 
-### Edit Posts Page
-
-Here the user can edit the posts and change text.
-
-![edit profile page](src/documentation/images/edit_post.png)
-
-[Back to top](<#content>)
 
 
 
@@ -330,11 +344,13 @@ Performed tests can be found in [TESTING.md](TESTING.md).
 
 - The images on the website were downloaded from [Vecteezy](https://de.vecteezy.com/).
 
-## Acknowledgments
+## Acknowledgment
 
-I would like to acknowledge:
-- Kay Welfare - My cohort facilitator who's always there for us.
-- Davit Zakharyan, Tatewik, Tristan und Seda for supporting me. 
+- I would like to begin by expressing my heartfelt thanks to my brother, David Zakharyan, who gave me the belief that I could succeed and supported me so much along the way. 
+- I am also deeply grateful to my mentor, Mitko Bachvarov, who has been there with invaluable advice and guidance during my last two projects.
 
+- I’m incredibly thankful to the CD tutors, especially Sarah, who never makes you feel like you’re not capable. All the other tutors are incredibly helpful as well. I would also like to mention Rebecca, Oisín, Thomas, and Alan for their support.
+
+- A huge thank you to Tristan for his patience and belief in me, and, of course, to my family—Tati, Sedul, and my parents and friends - who have always stood by my side.
 
 [Back to top](<#content>)

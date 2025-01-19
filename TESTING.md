@@ -49,10 +49,11 @@ Visit the deployed website here → [Meet&Mingle](src/documentation/images/respo
 | Sign In Link               | Navigate to the sign-in page when clicked                                      | Click the sign-in link                                         | Passed |
 | Sign Up Link               | Navigate to the sign-up page when clicked                                      | Click the sign-up link                                         | Passed |
 | Post Link                | Navigate to the Post page when clicked                                       | Click the Post link                                          | Passed |
+| Event Link                | Navigate to the Event page when clicked                                       | Click the Event link                                          | Passed |
+| Create Post Link          | Navigate to the create post page when clicked                                | Click the create event link                                   | Passed |
 | Create Event Link          | Navigate to the create event page when clicked                                | Click the create event link                                   | Passed |
-| My Post Link             | Navigate to the user's Post page when clicked                                | Click the my Post link                                       | Passed |
-link                                  | Fail |
-| Liked Link             | Navigate to the user's favorites page when clicked                             | Click the favorites link                                       | Passed |
+| My Event Link             | Navigate to the user's Event page when clicked                                | Click the my Event link                                       | Passed |
+| Liked Link             | Navigate to the user's likes page when clicked                             | Click the likes link                                       | Passed |
 | User Profile Link          | Navigate to the user's profile page when clicked                               | Click the user profile link                                   | Passed |
 | Sign Out Modal             | Display a confirmation modal when clicking the sign-out link                   | Click the sign out link                                        | Passed |
 | Sign Out Confirmation      | Sign out the user and close the modal upon confirmation                        | Confirm the sign out in the modal                              | Passed |
@@ -87,9 +88,30 @@ link                                  | Fail |
 | Link to Sign In Page         | Navigate to the sign-in page when clicking the "Sign in!" link                      | Click the sign-in link and verify navigation                        | Passed |
 | Accessibility                | Ensure form fields and buttons are accessible to screen readers and keyboard navigation | Test with screen readers and keyboard navigation                    | Passed |
 | Responsive Design            | Ensure the form displays correctly on various screen sizes                         | Resize the browser window and verify form display                  | Passed |
+
+| Title Field                  | Field accepts and displays text input for the post title                  | Enter a title and check if it displays correctly               | Passed |
+| Content Field            | Field accepts and displays text input for the post description            | Enter a description and check if it displays correctly         | Passed |
+| Post Hashtags Field             | Field accepts and displays text input for the Hashtags                             | Enter a Hashtag and check if it displays correctly       | Passed |
+| Post Inspiration Field             | Field accepts and displays text input for the Inspiration                             | Enter a Inspiration and check if it displays correctly       | Passed |
+| Post Image Upload           | Allows image upload and displays the uploaded image                        | Click or tap to upload an image and check if it displays       | Passed |
+| Change Image Option          | Displays option to change the image after an image is uploaded              | Upload an image and check if the "Change the image" option appears | Passed |
+| Image Removal                | Removes the uploaded image when a new image is selected                     | Select a new image and verify the previous image is removed     | Passed |
+| Cancel Button                | Navigates back to the previous page without saving the epost                | Click the "Cancel" button and verify navigation                 | Passed |
+| Create Button                | Submits the form and creates the epost when clicked                         | Enter valid data and click the "Create" button                  | Passed |
+| Form Validation              | PrPost form submission with invalid or empty fields                       | Try submitting the form with missing or invalid data            | Passed |
+| Error Display for Title      | Displays error messages for invalid or empty title field                    | Enter invalid title and check if errors are displayed           | Passed |
+| Error Display for Description| Displays error messages for invalid or empty description field              | Enter invalid description and check if errors are displayed     | Passed |
+| Error Display for Epost Date | Displays error messages for invalid or empty epost date field               | Enter invalid epost date and check if errors are displayed      | Passed |
+| Error Display for Image      | Displays error messages for invalid image upload                            | Upload an invalid image and check if errors are displayed       | Passed |
+| Responsive Design            | Ensures the form displays correctly on various screen sizes                 | Resize the browser window and verify form display               | Passed |
+| Accessibility                | Ensures form fields, buttons, and image upload are accessible                | Test with screen readers and keyboard navigation                | Passed |
+| Redirect After Success       | Redirects to the epost detail page upon successful creation                 | Submit the form with valid data and verify redirection to the epost detail page | Passed |
+
 | Title Field                  | Field accepts and displays text input for the event title                  | Enter a title and check if it displays correctly               | Passed |
 | Description Field            | Field accepts and displays text input for the event description            | Enter a description and check if it displays correctly         | Passed |
-| Event Date Field             | Field accepts and displays date and time input                             | Enter a date and time and check if it displays correctly       | Passed |
+| Event Start Field             | Field accepts and displays date and time input                             | Enter a date and time and check if it displays correctly       | Passed |
+| Event Duration Field             | Field accepts and displays hours, days and months input                             | Enter a date and check if it displays correctly       | Passed |
+| Event Location Field             | Field accepts input                             | Enter a text and check if it displays correctly       | Passed |
 | Event Image Upload           | Allows image upload and displays the uploaded image                        | Click or tap to upload an image and check if it displays       | Passed |
 | Change Image Option          | Displays option to change the image after an image is uploaded              | Upload an image and check if the "Change the image" option appears | Passed |
 | Image Removal                | Removes the uploaded image when a new image is selected                     | Select a new image and verify the previous image is removed     | Passed |
@@ -103,13 +125,14 @@ link                                  | Fail |
 | Responsive Design            | Ensures the form displays correctly on various screen sizes                 | Resize the browser window and verify form display               | Passed |
 | Accessibility                | Ensures form fields, buttons, and image upload are accessible                | Test with screen readers and keyboard navigation                | Passed |
 | Redirect After Success       | Redirects to the event detail page upon successful creation                 | Submit the form with valid data and verify redirection to the event detail page | Passed |
+
 | Initial Data Load         | Displays the list of Post after data is fetched                    | Load the component and verify if Post are displayed             | Passed |
 | Search Functionality      | Filters Post based on search query                                 | Enter a search term and verify if the results are filtered        | Passed |
 | Infinite Scroll           | Loads more Post when scrolled to the bottom                        | Scroll to the bottom of the list and verify if more Post load    | Passed |
 | No Results Message        | Displays a "No Results" message when no Post match the search query | Perform a search with no matching results and verify the message  | Passed |
 | Loading Spinner           | Shows a loading spinner while data is being fetched                  | Wait for data to load and check if the spinner appears            | Passed |
 | Popular Profiles Section  | Displays popular profiles on the left side of the feed               | Verify the popular profiles section is visible and populated      | Passed |
-| Popular Post Section    | Displays popular Post on the right side of the feed                 | Verify the popular Post section is visible on larger screens    | Passed |
+| Actual Post Section    | Displays actual Posts on the homepage side                  | Verify the actual Post section is visible on larger screens    | Passed |
 | Data Fetch Delay          | Displays a loading spinner before data is fully loaded               | Check for a 1-second delay before Post are displayed             | Passed |
 | Component Update on Props | Updates event list based on changes to `filter`, `query`, `pathname`, and `currentUser` | Modify props and verify if Post list updates accordingly         | Passed |
 | Search Bar Functionality  | Search bar should filter Post dynamically as the user types         | Type into the search bar and verify if the event list filters     | Passed |
