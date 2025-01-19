@@ -42,14 +42,12 @@ function EventCreateForm() {
                 return;
             }
         }
-
         setPostData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
         setErrors((prevErrors) => ({ ...prevErrors, [name]: null }));
     };
-
 
     const handleChangeImage = (event) => {
         if (event.target.files.length) {

@@ -38,20 +38,19 @@ const HomePage = () => {
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
-            window.scrollTo(0, 0);  // Scroll to the top
+            window.scrollTo(0, 0);
         }
     };
 
     const handlePrevPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
-            window.scrollTo(0, 0);  // Scroll to the top
+            window.scrollTo(0, 0);
         }
     };
 
     return (
         <div className={styles.container}>
-            {/* Text Content */}
             <h1 className={styles.headline}>Meet&Mingle</h1>
             <h2 className={styles.subtitle}>Connect, Discover and Enjoy</h2>
             <div className={styles.paragraph}>
@@ -68,14 +67,11 @@ const HomePage = () => {
                 <strong>Business:</strong> Connect with entrepreneurs, discuss trends, and share business insights.
             </div>
 
-            {/* Post List */}
             <div className={styles.postsContainer}>
                 {currentPosts.map((post) => (
                     <Post key={post.id} {...post} setPosts={setPosts} />
                 ))}
             </div>
-
-            {/* Pagination Controls */}
             <div className={styles.pagination}>
                 <button
                     onClick={handlePrevPage}

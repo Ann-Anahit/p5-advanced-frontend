@@ -70,7 +70,6 @@ const ProfileEditForm = () => {
             <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
                 <Form onSubmit={handleSubmit}>
                     <Container className={`${appStyles.Content}`}>
-                        {/* Bio Section */}
                         <Form.Group>
                             <Form.Label>Bio</Form.Label>
                             <Form.Control
@@ -86,7 +85,6 @@ const ProfileEditForm = () => {
                                 {message}
                             </Alert>
                         ))}
-                        {/* Image Upload Section */}
                         <Form.Group className="text-center">
                             {image ? (
                                 <>
@@ -134,7 +132,6 @@ const ProfileEditForm = () => {
                                 {message}
                             </Alert>
                         ))}
-                        {/* Cancel and Save Buttons Section */}
                         <div className="text-center">
                             <Button
                                 className={`${btnStyles.Button} ${btnStyles.Blue}`}

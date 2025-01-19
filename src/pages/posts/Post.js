@@ -221,8 +221,6 @@ const Post = (props) => {
                     </div>
                 </Card.Body>
             </Card>
-
-            {/* Delete Confirmation Modal */}
             <Modal show={showModal} onHide={() => setShowModal(false)} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Confirm Deletion</Modal.Title>

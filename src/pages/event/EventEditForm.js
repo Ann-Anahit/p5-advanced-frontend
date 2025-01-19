@@ -245,6 +245,4 @@ function EventEditForm() {
     );
 }
 
-
-
 export default EventEditForm;

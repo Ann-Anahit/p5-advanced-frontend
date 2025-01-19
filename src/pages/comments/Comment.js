@@ -24,7 +24,7 @@ const Comment = (props) => {
     } = props;
 
     const [showEditForm, setShowEditForm] = useState(false);
-    const [showDeleteModal, setShowDeleteModal] = useState(false); // State for delete modal
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
 
@@ -76,12 +76,10 @@ const Comment = (props) => {
                 {is_owner && !showEditForm && (
                     <MoreDropdown
                         handleEdit={() => setShowEditForm(true)}
-                        handleDelete={() => setShowDeleteModal(true)} // Open delete modal
+                        handleDelete={() => setShowDeleteModal(true)}
                     />
                 )}
             </Media>
-
-            {/* Delete Confirmation Modal */}
             <Modal
                 show={showDeleteModal}
                 onHide={() => setShowDeleteModal(false)}
