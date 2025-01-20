@@ -189,7 +189,7 @@ This page is reserved for all events.
 
 ### The MyEvents Page
 
-This page is reserved for all events from the logged in user.
+This page is reserved for the event list from the logged in user.
 
 ![MyEvents page](src/documentation/images/MyEvent.png)
 
