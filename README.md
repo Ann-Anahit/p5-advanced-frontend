@@ -242,7 +242,7 @@ This is the account user profile page. If you are the user of the account, you c
 
 ### Edit Profile Menu
 
-As an user you can edit some information about your account.
+As an user you can edit some information about your account. I placed the sign-out button in the profile menu because it belongs to the profile.
 
 ![edit profile menu](src/documentation/images/edit.png)
 

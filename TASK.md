@@ -27,7 +27,8 @@ CH
 
 MH
 # IN BACKEND 
-## NEW APP 
+
+## NEW APP 1
  category✅
 - Model ✅
 migration ✅
@@ -38,7 +39,7 @@ migration ✅
 
 - add category field to post model and serializers ✅
 
-## NEW APP 
+## NEW APP 2
 events
 - Model ✅
 migration ✅
@@ -81,4 +82,4 @@ migration ✅
 
 - set all cosole.log to console.error ✅
 
-SET DEBUG to FALSE
+SET DEBUG to FALSE ✅
